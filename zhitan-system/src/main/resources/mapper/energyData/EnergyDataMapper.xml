@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhitan.energydata.mapper.EnergyDataStatisticMapper">
+
+    <select id="getModelNodeIndexIdByFixedNodeIds" resultType="com.zhitan.model.domain.vo.ModelNodePointInfo">
+        SELECT mn.node_id  nodeId,
+               mn."name"   "name",
+               ni.point_id indexId,
+               ei.energy_id
+        FROM "model_node" mn
+                 LEFT JOIN node_point ni ON mn.node_id = ni.node_id
+                 left join meter_point ei on ni.point_id = ei.point_id
+        WHERE mn.model_code = #{modelCode}  and ei.point_type = 'STATISTIC'
+        and mn.node_id in
+        <foreach collection="fixedNodeIds" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+</mapper>

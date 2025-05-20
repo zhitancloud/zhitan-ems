@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhitan.basicdata.mapper.SysEnergyTemplateMapper">
+
+    <resultMap type="com.zhitan.basicdata.domain.SysEnergyTemplate" id="SysEnerclassResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectSysEnerclassVo">
+        select id, name, create_by, create_time, update_by, update_time, remark from sys_energy_template
+    </sql>
+
+    <select id="selectSysEnerclassList" parameterType="com.zhitan.basicdata.domain.SysEnergyTemplate" resultMap="SysEnerclassResult">
+        <include refid="selectSysEnerclassVo"/>
+        <where>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+
+    <select id="selectSysEnerclassById" parameterType="Integer" resultMap="SysEnerclassResult">
+        <include refid="selectSysEnerclassVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSysEnerclass" parameterType="com.zhitan.basicdata.domain.SysEnergyTemplate">
+        insert into sys_energy_template
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            update_time,
+            create_time,
+            <if test="remark != null  and remark != ''">remark,</if>
+            <if test="id != null ">id,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="remark != null  and remark != ''">remark,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="updateBy != null  and updateBy != ''">update_by,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            now(),
+            now(),
+            <if test="remark != null  and remark != ''">#{remark},</if>
+            <if test="id != null ">#{id},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="remark != null  and remark != ''">#{remark},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysEnerclass" parameterType="com.zhitan.basicdata.domain.SysEnergyTemplate">
+        update sys_energy_template
+        <trim prefix="SET" suffixOverrides=",">
+            update_time = now(),
+            <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="remark != null  and remark != ''">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysEnerclassById" parameterType="Integer">
+        delete from sys_energy_template where id = #{id}
+    </delete>
+
+    <delete id="deleteSysEnerclassByIds" parameterType="String">
+        delete from sys_energy_template where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectSameEnergyNameNum" parameterType="String" resultType="Integer">
+        select COUNT(id) from sys_energy_template where name = #{name}
+    </select>
+
+    <select id="selectIdByName" parameterType="String" resultType="Integer">
+        select id from sys_energy_template where name = #{name}
+    </select>
+</mapper>

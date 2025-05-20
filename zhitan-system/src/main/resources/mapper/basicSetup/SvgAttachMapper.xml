@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhitan.basicSetup.mapper.SvgAttachMapper">
+    <resultMap id="SysEquipmentFile"
+               type="com.zhitan.realtimedata.domain.SvgAttach">
+        <result property="nodeId" column="node_id"/>
+        <result property="filePath" column="filepath"/>
+    </resultMap>
+    <resultMap id="SysSvgInfo"
+               type="com.zhitan.realtimedata.domain.SvgSetting">
+        <result property="id" column="id"/>
+        <result property="param" column="param"/>
+        <result property="tag" column="tag"/>
+    </resultMap>
+
+    <insert id="saveSettingInfo">
+        delete
+        from svg_setting
+        where node_id = #{nodeId};
+
+        <foreach collection="svgInfo" item="info" separator=";">
+            insert into svg_setting (id, node_id, param, tag)
+            values (#{info.id}, #{nodeId}, #{info.param}, #{info.tag});
+        </foreach>
+    </insert>
+
+  <update id="saveEquipmentFile">
+    INSERT INTO svg_attach (node_id, filepath)
+    VALUES(#{nodeId}, #{filePath}) ON CONFLICT (node_id) DO
+    UPDATE
+    SET filepath = excluded.filepath
+  </update>
+
+    <select id="getConfigure" resultMap="SysEquipmentFile">
+        select node_id, filepath
+        from svg_attach
+        where node_id = #{nodeId};
+    </select>
+
+    <select id="getConfigureTag" resultMap="SysSvgInfo">
+        select id, param, tag
+        from svg_setting
+        where node_id = #{nodeId}
+    </select>
+
+</mapper>

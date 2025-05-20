@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhitan.meter.mapper.MeterAnnexMapper">
+
+    <resultMap type="com.zhitan.meter.domain.MeterAnnex" id="MeterAnnexResult">
+        <result property="id" column="id"/>
+        <result property="meterId" column="meter_id"/>
+        <result property="fileName" column="file_name"/>
+        <result property="fileSuffix" column="file_suffix"/>
+        <result property="filePath" column="file_path"/>
+        <result property="delFlage" column="del_flage"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+    </resultMap>
+
+    <sql id="selectMeterAnnexVo">
+        select
+        id, meter_id, file_name, file_suffix, file_path, del_flage, create_time, create_by, update_time, update_by
+        from
+        meter_annex
+    </sql>
+
+    <select id="selectMeterAnnexList" parameterType="com.zhitan.meter.domain.MeterAnnex" resultMap="MeterAnnexResult">
+        <include refid="selectMeterAnnexVo"/>
+        <where>
+            del_flage='N'
+            <if test="fileName != null  and fileName != ''">and file_name like concat('%', #{fileName}, '%')</if>
+            <if test="meterId != null  and meterId != ''">and meter_id=#{meterId}</if>
+        </where>
+    </select>
+
+</mapper>

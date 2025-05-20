@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhitan.model.mapper.RuleFormulaMapper">
+    <resultMap id="formulaMap" type="com.zhitan.model.domain.RuleFormula">
+        <result property="id" column="id"/>
+        <result property="pointId" column="point_id"/>
+        <result property="formulaText" column="formula_text"/>
+        <result property="isPvCalc" column="is_pv_calc"/>
+    </resultMap>
+    <resultMap id="formulaParamMap" type="com.zhitan.model.domain.RuleFormulaParam">
+        <result property="formulaId" column="formula_id"/>
+        <result property="paramName" column="param_name"/>
+        <result property="paramValue" column="param_value"/>
+    </resultMap>
+    <insert id="insertIndexFormula">
+    insert into rule_formula (id, point_id, formula_text,is_pv_calc)
+    values (#{id}, #{indexId}, #{formulaText},#{isPvCalc});
+  </insert>
+  <insert id="saveIndexFormulaParam">
+    delete
+    from rule_formula_param
+    where point_id = #{indexId};
+    <foreach collection="ruleFormulaParams" item="formulaParam" separator=";">
+      insert into rule_formula_param (id, formula_id,point_id, param_name, param_value) values
+      (#{formulaParam.id}, #{formulaParam.formulaId}, #{formulaParam.indexId},
+      #{formulaParam.paramName},
+      #{formulaParam.paramValue})
+    </foreach>
+  </insert>
+  <update id="updateIndexFormula">
+    update rule_formula
+    set formula_text = #{formulaText},is_pv_calc = #{isPvCalc}
+    where id = #{id}
+  </update>
+  <select id="getFormula" resultMap="formulaMap">
+    select *
+    from rule_formula
+    where point_id = #{indexId}
+  </select>
+  <select id="getFormulaParam" resultMap="formulaParamMap">
+    select *
+    from rule_formula_param
+    where point_id = #{indexId}
+  </select>
+</mapper>
