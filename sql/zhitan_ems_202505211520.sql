@@ -12,7 +12,7 @@
  Target Server Version : 140010 (140010)
  File Encoding         : 65001
 
- Date: 21/05/2025 15:08:42
+ Date: 21/05/2025 15:20:17
 */
 
 
@@ -2611,6 +2611,7 @@ COMMENT ON TABLE "public"."sys_name_config" IS '系统名称配置';
 -- ----------------------------
 -- Records of sys_name_config
 -- ----------------------------
+INSERT INTO "public"."sys_name_config" VALUES ('综合能碳管理平台', '/prod-api/profile/upload/2025/05/16/logo英文-无底色_20250516003507A024.png', 'Copyright © 2017-2025 zhitan-ems All Rights Reserved.', '', '2024-11-05 18:43:33', 'admin', '2024-11-05 18:45:42', NULL, '1853749989367087106', '/prod-api/profile/upload/2025/05/16/logo英文-无底色_20250516003500A023.png', '/prod-api/profile/upload/2025/05/16/20250427160646_20250516003359A022.png');
 
 -- ----------------------------
 -- Table structure for sys_notice
