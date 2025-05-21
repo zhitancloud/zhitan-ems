@@ -1,17 +1,4 @@
 /*
- Navicat Premium Data Transfer
-
- Source Server         : 公司服务器pgsql-管理员账号
- Source Server Type    : PostgreSQL
- Source Server Version : 140010 (140010)
- Source Host           : 192.168.110.124:5432
- Source Catalog        : zhitan_ems_v3
- Source Schema         : public
-
- Target Server Type    : PostgreSQL
- Target Server Version : 140010 (140010)
- File Encoding         : 65001
-
  Date: 21/05/2025 15:20:17
 */
 
