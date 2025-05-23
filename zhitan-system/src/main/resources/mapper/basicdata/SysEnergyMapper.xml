@@ -29,9 +29,27 @@
     </resultMap>
 
     <sql id="selectSysEnergyVo">
-        select enername, muid, enerclassid, enersno, isstorage, opr_man, opr_time, mod_man, mod_time, note, enerid,
-        coefficient, execdate, price, emission_factors, create_by, create_time, update_by, update_time, remark from
-        sys_energy
+        select enername,
+               muid,
+               enerclassid,
+               enersno,
+               isstorage,
+               opr_man,
+               opr_time,
+               mod_man,
+               mod_time,
+               note,
+               enerid,
+               coefficient,
+               execdate,
+               price,
+               emission_factors,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from sys_energy
     </sql>
 
     <select id="selectSysEnergyList" parameterType="com.zhitan.basicdata.domain.SysEnergy" resultMap="SysEnergyResult">
@@ -137,7 +155,9 @@
     </update>
 
     <delete id="deleteSysEnergyById" parameterType="String">
-        delete from sys_energy where enerid = #{enerid}
+        delete
+        from sys_energy
+        where enerid = #{enerid}
     </delete>
 
     <delete id="deleteSysEnergyByIds" parameterType="String">
@@ -148,30 +168,39 @@
     </delete>
 
     <select id="getEnerClassid" parameterType="String" resultType="Integer">
-        select enerclassid from sys_enerclass where enerclassname = #{enerclassname}
+        select id
+        from sys_energy_template
+        where name = #{enerclassname}
     </select>
 
     <select id="selectSameEnergyNameNum" parameterType="String" resultType="Integer">
-        select COUNT(enerid) from sys_energy where enername = #{enername}
+        select COUNT(enerid)
+        from sys_energy
+        where enername = #{enername}
     </select>
 
     <select id="selectIdByName" parameterType="String" resultType="Integer">
-        select enerid from sys_energy where enername = #{enername}
+        select enerid
+        from sys_energy
+        where enername = #{enername}
     </select>
 
     <select id="listAllEnergyType" resultType="com.zhitan.basicdata.domain.vo.EnergyTypeModel">
-        select enername, enersno from sys_energy
+        select enername, enersno
+        from sys_energy
     </select>
 
 
     <select id="selectSysEnergyPage" resultMap="SysEnergyResult">
-        select a.*,b.enerclassname from sys_energy a left join sys_enerclass b on a.enerclassid = b.enerclassid
+        select a.*,b.name as enerclassname
+        from sys_energy a
+        left join sys_energy_template b on a.enerclassid = b.id
         <where>
-            <if test="sysEnergy.enername != null  and sysEnergy.enername != ''">and a.enername like concat('%',
-                #{sysEnergy.enername}, '%')
+            <if test="sysEnergy.enername != null  and sysEnergy.enername != ''">
+                and a.enername like concat('%',#{sysEnergy.enername}, '%')
             </if>
-            <if test="sysEnergy.enerclassid != null  and sysEnergy.enerclassid != ''">and a.enerclassid =
-                #{sysEnergy.enerclassid}
+            <if test="sysEnergy.enerclassid != null  and sysEnergy.enerclassid != ''">
+                and a.enerclassid = #{sysEnergy.enerclassid}
             </if>
         </where>
         order by a.create_time
