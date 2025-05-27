@@ -44,7 +44,7 @@ public class ElectricLoadController extends BaseController {
     @ApiOperation(value = "根据电表id获取负荷分析数据", notes = "根据电表id获取负荷分析数据")
     @GetMapping(value = "/detail")
     public AjaxResult list(@RequestParam(name = "nodeId") String nodeId,
-                           @RequestParam(name = "meterId") String meterId,
+                           @RequestParam(name = "meterId", required = false) String meterId,
                            @RequestParam(name = "timeType") String timeType,
                            @RequestParam(name = "timeCode") String timeCode) {
         MeterPoint meterPoint = energyIndexService.getMeterPointByMeterIdPointCodeAndNodeId(nodeId, meterId, CommonConst.TAG_CODE_ZYGGL);

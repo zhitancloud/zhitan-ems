@@ -45,7 +45,7 @@ public class ElectricThreePhaseController extends BaseController {
     @ApiOperation(value = "根据电表id查询三相不平衡数据", notes = "根据电表id查询三相不平衡数据")
     @GetMapping(value = "/detail")
     public AjaxResult list(@RequestParam(name = "nodeId") String nodeId,
-                           @RequestParam(name = "meterId") String meterId,
+                           @RequestParam(name = "meterId", required = false) String meterId,
                            @RequestParam(name = "timeType") String timeType,
                            @RequestParam(name = "timeCode") String timeCode,
                            @RequestParam(name = "requestType") String requestType) {
