@@ -66,10 +66,10 @@ public class SysLoginService {
     @Value("${aliyun.sms.max-sms-count}")
     private Integer MAX_SMS_DAILY_LIMIT;
 
-    @Value("${oss.ticket}")
-    private String ossTicket;
-    @Value("${oss.username}")
-    private String ossUserName;
+    @Value("${sso.ticket}")
+    private String ssoTicket;
+    @Value("${sso.username}")
+    private String ssoUserName;
 
 
     /**
@@ -307,8 +307,8 @@ public class SysLoginService {
      */
     public String loginSSO(String ticket) {
         //ticket验证
-        if(ossTicket.equals(ticket)){
-            return loginNoCode(ossUserName);
+        if(ssoTicket.equals(ticket)){
+            return loginNoCode(ssoUserName);
         }
         return null;
     }

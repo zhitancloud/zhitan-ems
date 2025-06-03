@@ -71,6 +71,6 @@ aliyun:
     time-minutes: 40
     max-sms-count: 1
 
-oss:
+sso:
   ticket: gwo9J8lBCcSOBTI6
   username: tanyuanjie
