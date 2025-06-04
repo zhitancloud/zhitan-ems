@@ -86,7 +86,9 @@ public class InputElectricityCostServiceImpl extends ServiceImpl<InputElectricit
     public int updateCostElectricityInput(InputElectricityCost inputElectricityCost) throws Exception {
         inputElectricityCost.setUpdateTime(DateUtils.getNowDate());
         InputElectricityCost search = inputElectricityCostMapper.selectOne(new QueryWrapper<InputElectricityCost>().
-                eq("type", inputElectricityCost.getType()).eq("time", inputElectricityCost.getTime()));
+                eq("type", inputElectricityCost.getType())
+                .eq("time", inputElectricityCost.getTime())
+                .ne("id",inputElectricityCost.getId()));
         if (search!=null){
             throw new Exception("该时间段已维护电量信息！");
         }

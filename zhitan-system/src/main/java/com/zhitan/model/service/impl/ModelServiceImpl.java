@@ -12,6 +12,7 @@ import com.zhitan.model.mapper.ModelNodeMapper;
 import com.zhitan.model.service.IModelService;
 import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -125,6 +126,9 @@ public class ModelServiceImpl implements IModelService {
     // 去除所有点位id信息
     List<String> indexIds = inforList.stream().map(ModelNodePointInfo::getIndexId).collect(Collectors.toList());
     List<MeterPoint> meterPointList = meterPointMapper.listMeterPointByIds(indexIds);
+    if(ObjectUtils.isEmpty(meterPointList)){
+      return voList;
+    }
     // 根据indexid查询对应计量器具信息
     List<String> meterIds = meterPointList.stream().map(MeterPoint::getMeterId).collect(Collectors.toList());
     Map<String, List<Meter>> meterImplementMap = meterImplementMapper.listMeterImplementByIds(meterIds).stream()

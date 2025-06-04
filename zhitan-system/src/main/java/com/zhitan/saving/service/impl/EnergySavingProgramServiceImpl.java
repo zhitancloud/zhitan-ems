@@ -16,6 +16,7 @@ import com.zhitan.saving.mapper.EnergySavingProgramMapper;
 import com.zhitan.saving.service.IEnergySavingProgramService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,10 +64,13 @@ public class EnergySavingProgramServiceImpl extends ServiceImpl<EnergySavingProg
 
         Page<  EnergySavingProgram> pageInfo = PageUtils.getPageInfo(  EnergySavingProgram.class);
 
-
-        Page<  EnergySavingProgram> energySavingProgramPage = this.baseMapper.selectPage(pageInfo,
-                new LambdaQueryWrapper<  EnergySavingProgram>().eq(EnergySavingProgram::getDel, CommonConst.DEL_FLAG_0)
-//                        .eq(ObjectUtils.isNotEmpty(energySavingProgram.getEndTime()), EnergySavingProgram::getEndTime, energySavingProgram.getEndTime())
+        Page<EnergySavingProgram> energySavingProgramPage = this.baseMapper.selectPage(pageInfo,
+                new LambdaQueryWrapper<  EnergySavingProgram>()
+                        .eq(EnergySavingProgram::getDel, CommonConst.DEL_FLAG_0)
+                        .like(ObjectUtils.isNotEmpty(energySavingProgram.getLiablePerson()),
+                                EnergySavingProgram::getLiablePerson, energySavingProgram.getLiablePerson())
+                        .like(ObjectUtils.isNotEmpty(energySavingProgram.getPlan()),
+                                EnergySavingProgram::getPlan,  energySavingProgram.getPlan())
                         .orderByDesc(EnergySavingProgram::getCreateTime)
         );
 

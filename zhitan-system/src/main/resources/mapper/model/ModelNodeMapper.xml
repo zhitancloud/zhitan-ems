@@ -349,7 +349,7 @@
         m.max_allowable_power maxAllowablePower
         FROM meter m
         LEFT JOIN meter_point ei ON ei.meter_id = m."id"
-        LEFT JOIN node_point ni ON ni.index_id = ei.index_id
+        LEFT JOIN node_point ni ON ni.point_id = ei.point_id
         WHERE ni.node_id = #{nodeId}
         <if test="energyType!=null and energyType!=''">
             AND M.energy_type = #{energyType}
