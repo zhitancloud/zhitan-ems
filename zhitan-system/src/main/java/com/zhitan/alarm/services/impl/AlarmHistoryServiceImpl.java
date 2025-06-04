@@ -100,7 +100,7 @@ public class AlarmHistoryServiceImpl implements IAlarmHistoryService {
             LambdaQueryWrapper<NodePoint> queryWrapper = new LambdaQueryWrapper<>();
             queryWrapper.eq(NodePoint::getNodeId, historyAlarm.getNodeId());
             List<NodePoint> nodePointList = nodePointMapper.selectList(queryWrapper);
-            List<String> allIndexIdList = nodePointList.stream().map(NodePoint::getIndexId).collect(Collectors.toList());
+            List<String> allIndexIdList = nodePointList.stream().map(NodePoint::getPointId).collect(Collectors.toList());
             if (ObjectUtils.isNotEmpty(allIndexIdList)) {
                 List<MeterPoint> indexList = meterPointMapper.listMeterPointByIds(allIndexIdList);
                 if (ObjectUtils.isNotEmpty(historyAlarm.getIndexName())) {

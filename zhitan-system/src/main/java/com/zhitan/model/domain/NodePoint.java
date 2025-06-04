@@ -17,7 +17,7 @@ public class NodePoint implements Serializable {
     /**
      * 指标主键
      */
-    private String indexId;
+    private String pointId;
 
 }
 

@@ -127,7 +127,7 @@ public class EnergyConsumeDataServiceImpl implements IEnergyConsumeDataService {
         //电：只有HOUR数据有效；其他能源类型：HOUR、DAY有数据
         switch (sysEnergyInfo.getEnersno()) {
             case "electric":
-                List<com.zhitan.peakvalley.domain.EnergyUsedElectricity> energyUsedElectricities = peakValleyMapper.getDataStatistics(nodeIndices.stream().map(NodePoint::getIndexId).collect(Collectors.toSet()), bsTime, endTime, TimeTypeConst.TIME_TYPE_HOUR);
+                List<com.zhitan.peakvalley.domain.EnergyUsedElectricity> energyUsedElectricities = peakValleyMapper.getDataStatistics(nodeIndices.stream().map(NodePoint::getPointId).collect(Collectors.toSet()), bsTime, endTime, TimeTypeConst.TIME_TYPE_HOUR);
                 costValue = energyUsedElectricities.stream().map(com.zhitan.peakvalley.domain.EnergyUsedElectricity::getCost).reduce(BigDecimal.ZERO, BigDecimal::add);
                 accumulationValue = energyUsedElectricities.stream().map(com.zhitan.peakvalley.domain.EnergyUsedElectricity::getElectricity).reduce(BigDecimal.ZERO, BigDecimal::add);
                 break;
