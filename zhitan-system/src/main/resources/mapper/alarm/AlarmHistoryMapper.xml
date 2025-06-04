@@ -24,11 +24,12 @@
         <result property="indexName" column="indexname"/>
         <result property="unitId" column="unit_id"/>
         <result property="alarmLevel" column="alarm_level"/>
-        <result property="alarmLimitType" column="limit_type"/>
+        <result property="limitType" column="limit_type"/>
         <result property="limitingValue" column="limiting_value"/>
         <result property="alarmBeginTime" column="begin_time"/>
         <result property="alarmValue" column="alarm_value"/>
-        <result property="indexId" column="index_id"/>
+        <result property="indexId" column="point_id"/>
+        <result property="indexType" column="point_type"/>
         <result property="nodeId" column="node_id"/>
         <result property="duration" column="duration"/>
         <result property="alarmBeginTime" column="begin_time"/>
@@ -37,16 +38,16 @@
 
     <sql id="selectHistoryAlarmVo">
         select id,
-               index_id,
-               index_name,
-               item_id,
-               limiting_value,
-               alarm_value,
-               alarm_value_quality,
-               begin_time,
-               end_time,
-               duration,
-               content
+        index_id,
+        index_name,
+        item_id,
+        limiting_value,
+        alarm_value,
+        alarm_value_quality,
+        begin_time,
+        end_time,
+        duration,
+        content
         from alarm_history
     </sql>
 
@@ -164,13 +165,13 @@
         AND bj.index_id = ei.point_id
         AND alit.alarm_code = bj.alarm_code
         AND alit.time_slot='LIVE'
-        <if test="pointType != null  and pointType != ''">
-            AND ei.point_type=#{pointType}
+        <if test="indexType != null  and indexType != ''">
+            AND ei.point_type=#{indexType}
         </if>
         <if test="indexName != null  and indexName != ''">and ei.name like concat('%', #{indexName},
             '%')
         </if>
-        <if test="alarmLimitType != null  and alarmLimitType != ''">and alit.limit_type=#{alarmLimitType}</if>
+        <if test="limitType != null  and limitType != ''">and alit.limit_type=#{alarmLimitType}</if>
         <if test="alarmLevel != null  and alarmLevel != ''">and alit.alarm_level=#{alarmLevel}</if>
         <if test="beginTime != null and beginTime != ''">and begin_time &gt;=
             to_timestamp(#{beginTime},'yyyy-mm-dd hh24:mi:ss')
@@ -299,11 +300,11 @@
         alarm_item alit
         WHERE
         ni.node_id IN (
-            SELECT node_id FROM model_node WHERE address LIKE (
-            SELECT address FROM model_node WHERE node_id = #{jkHistoryAlarm.nodeId} )
-            <if test='jkHistoryAlarm.eierarchyFlag=="ALL"'>
-                || '%'
-            </if>
+        SELECT node_id FROM model_node WHERE address LIKE (
+        SELECT address FROM model_node WHERE node_id = #{jkHistoryAlarm.nodeId} )
+        <if test='jkHistoryAlarm.eierarchyFlag=="ALL"'>
+            || '%'
+        </if>
         )
         AND ei.point_id = ni.point_id
         AND mo.node_id = ni.node_id
