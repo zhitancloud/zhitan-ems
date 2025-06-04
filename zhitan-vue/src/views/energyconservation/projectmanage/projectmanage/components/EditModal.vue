@@ -19,7 +19,7 @@
           type="date"
           placeholder="请选择开始时间"
           format="YYYY-MM-DD"
-          date-format="YYYY/MM/DD"
+          value-format="YYYY-MM-DD"
         />
       </el-form-item>
       <el-form-item label="结束时间" prop="value5">
@@ -28,7 +28,7 @@
           type="date"
           placeholder="请选择结束时间"
           format="YYYY-MM-DD"
-          date-format="YYYY/MM/DD"
+          value-format="YYYY-MM-DD"
         />
       </el-form-item> -->
       <el-form-item label="负责人" prop="liablePerson">
@@ -40,7 +40,7 @@
           type="date"
           placeholder="请选择完成时间"
           format="YYYY-MM-DD"
-          date-format="YYYY/MM/DD"
+          value-format="YYYY-MM-DD"
         />
       </el-form-item>
       <el-form-item label="备注" prop="remark">

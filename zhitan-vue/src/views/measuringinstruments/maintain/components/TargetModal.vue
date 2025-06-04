@@ -6,7 +6,7 @@
     <el-table :data="tableData" v-loading="loading" height="500">
       <el-table-column prop="code" label="指标编码" show-overflow-tooltip align="center" />
       <el-table-column prop="name" label="指标名称" show-overflow-tooltip align="center" />
-      <el-table-column prop="pointType" label="指标类型" show-overflow-tooltip align="center"
+      <el-table-column prop="indexType" label="指标类型" show-overflow-tooltip align="center"
         :formatter="(row, column) => proxy.selectDictLabel(sys_index_type, row.meterStatus)" />
       <el-table-column prop="unitId" label="单位" show-overflow-tooltip align="center"
         :formatter="(row, column) => proxy.selectDictLabel(sys_unit, row.meterStatus)" />

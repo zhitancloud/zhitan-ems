@@ -25,8 +25,8 @@
                 time-format="HH:mm:ss"
               />
             </el-form-item>
-            <el-form-item label="报警类别" prop="pointType">
-              <el-select v-model="form.pointType" placeholder="请选择报警类别" style="width: 200px">
+            <el-form-item label="报警类别" prop="indexType">
+              <el-select v-model="form.indexType" placeholder="请选择报警类别" style="width: 200px">
                 <el-option
                   v-for="dict in alarm_record_category"
                   :key="dict.value"
@@ -58,10 +58,10 @@
               <el-table-column label="指标名称" prop="indexName" align="center" show-overflow-tooltip />
               <el-table-column
                 label="报警类别"
-                prop="pointType"
+                prop="indexType"
                 align="center"
                 show-overflow-tooltip
-                :formatter="(row, column) => proxy.selectDictLabel(alarm_record_category, row.pointType)"
+                :formatter="(row, column) => proxy.selectDictLabel(alarm_record_category, row.indexType)"
               />
               <el-table-column
                 label="能源类型"
@@ -100,7 +100,7 @@ let form = ref({
     proxy.dayjs(new Date()).format("YYYY-MM-DD 23:59:59"),
   ],
   nodeId: "",
-  pointType: "",
+  indexType: "",
   // energyType: '',
   indexName: "",
 })
@@ -108,7 +108,7 @@ const energyTypeList = ref()
 function getEnergyTypeList() {
   listEnergyTypeList().then((res) => {
     energyTypeList.value = res.data
-    form.value.pointType = alarm_record_category.value[0].value
+    form.value.indexType = alarm_record_category.value[0].value
     // form.value.energyType = energyTypeList.value[0].enersno
     getList()
   })
@@ -165,7 +165,7 @@ function resetQuery() {
       proxy.dayjs(new Date()).format("YYYY-MM-DD 23:59:59"),
     ],
     nodeId: "",
-    pointType: alarm_record_category.value[0].value,
+    indexType: alarm_record_category.value[0].value,
     // energyType: '',
     indexName: "",
   }

@@ -167,6 +167,17 @@
                   ></el-switch>
                 </template>
               </el-table-column>
+              <el-table-column
+                label="体验到期时间"
+                align="center"
+                prop="trialExpireTime"
+                v-if="columns[6].visible"
+                width="160"
+              >
+                <template #default="scope">
+                  <span>{{ parseTime(scope.row.trialExpireTime) }}</span>
+                </template>
+              </el-table-column>
               <el-table-column label="创建时间" align="center" prop="createTime" v-if="columns[6].visible" width="160">
                 <template #default="scope">
                   <span>{{ parseTime(scope.row.createTime) }}</span>
@@ -325,6 +336,22 @@
                   :disabled="item.status == 1"
                 ></el-option>
               </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="14">
+            <el-form-item label="体验到期时间">
+              <el-date-picker
+                v-model="form.trialExpireTime"
+                type="datetime"
+                format="YYYY-MM-DD HH:mm:ss"
+                value-format="YYYY-MM-DD HH:mm:ss"
+                placeholder="体验到期时间"
+                style="width: 340px"
+                unlink-panels
+                time-format="HH:mm:ss"
+              />
             </el-form-item>
           </el-col>
         </el-row>

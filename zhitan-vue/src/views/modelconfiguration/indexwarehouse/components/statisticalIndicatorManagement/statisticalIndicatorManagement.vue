@@ -2,8 +2,8 @@
   <div class="page-box">
     <div class="form-card">
       <el-form :model="form" ref="queryRef" :inline="true" label-width="70px">
-        <el-form-item label="指标分类" prop="indexCategory">
-          <el-select v-model="form.indexCategory" placeholder="请选择指标分类" style="width: 200px">
+        <el-form-item label="指标分类" prop="pointCategory">
+          <el-select v-model="form.pointCategory" placeholder="请选择指标分类" style="width: 200px" clearable>
             <el-option v-for="dict in sys_index_category" :key="dict.value" :label="dict.label" :value="dict.value" />
           </el-select>
         </el-form-item>
@@ -35,11 +35,11 @@
         <el-table-column prop="code" label="指标编码" align="center" show-overflow-tooltip />
         <el-table-column prop="name" label="指标名称" align="center" show-overflow-tooltip />
         <el-table-column
-          prop="indexCategory"
+          prop="pointCategory"
           label="系统指标分类"
           align="center"
           show-overflow-tooltip
-          :formatter="(row, column) => proxy.selectDictLabel(sys_index_category, row.indexCategory)"
+          :formatter="(row, column) => proxy.selectDictLabel(sys_index_category, row.pointCategory)"
         />
         <el-table-column
           prop="unitId"
@@ -66,7 +66,7 @@
     />
     <edit-modal
       ref="EditModalRef"
-      :pointType="pointType"
+      :indexType="indexType"
       :sys_index_category="sys_index_category"
       :sys_unit="sys_unit"
       @getList="getList(currentNode)"
@@ -82,10 +82,10 @@ const { proxy } = getCurrentInstance()
 const { sys_index_category } = proxy.useDict("sys_index_category")
 const { sys_unit } = proxy.useDict("sys_unit")
 
-const props = defineProps(["pointType"])
+const props = defineProps(["indexType"])
 let loading = ref(false)
 let form = ref({
-  indexCategory: null,
+  pointCategory: null,
   name: null,
 })
 let tableData = ref([])
@@ -102,7 +102,7 @@ function getList(modelNode) {
   if (modelNode) {
     loading.value = true
     form.value.nodeId = modelNode.id
-    form.value.pointType = props.pointType
+    form.value.pointType = props.indexType
     listEnergyindex({ ...queryParams.value, ...form.value }).then((response) => {
       tableData.value = response.rows
       total.value = response.total
@@ -131,7 +131,7 @@ let names = ref([])
 // 非多个禁用
 let multiple = ref(true)
 function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.indexId)
+  ids.value = selection.map((item) => item.pointId)
   names.value = selection.map((item) => item.name)
   multiple.value = !selection.length
 }
@@ -141,7 +141,7 @@ function handleQuery() {
 
 function resetQuery() {
   form.value = {
-    indexCategory: null,
+    pointCategory: null,
     name: null,
   }
   getList(currentNode.value)
@@ -155,7 +155,7 @@ function handleAdd(row) {
 }
 
 function handleDel(row) {
-  const indexIds = row.indexId || ids.value
+  const indexIds = row.pointId || ids.value
   const indexNames = row.name || names.value
   proxy.$modal
     .confirm('是否确认删除指标名为"' + indexNames + '"的数据项?', "警告", {
@@ -177,7 +177,7 @@ let storageModalRef = ref("")
 function handleSave(row) {
   if (storageModalRef.value) {
     storageModalRef.value.handleOpen(row, currentNode.value)
-    storageModalRef.value.getIndexStorageFun(row.indexId)
+    storageModalRef.value.getIndexStorageFun(row.pointId)
   }
 }
 

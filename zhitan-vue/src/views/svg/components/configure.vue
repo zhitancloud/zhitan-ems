@@ -147,7 +147,7 @@ function querySearch(queryString, cb) {
   if (queryString) {
     getAllCollectTag({
       codeOrName: queryString,
-      pointType: "COLLECT",
+      indexType: "COLLECT",
     }).then((response) => {
       // 调用 callback 返回建议列表的数据
       let result = response.data

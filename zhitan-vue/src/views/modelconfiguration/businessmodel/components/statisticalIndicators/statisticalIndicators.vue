@@ -57,7 +57,7 @@ function handleAdd() {
 
 function statisticIndexConfirmSelect(selectedIndex) {
   tableData.value = selectedIndex
-  let indexIds = selectedIndex.map((item) => item.indexId)
+  let indexIds = selectedIndex.map((item) => item.pointId)
   setNodeToIndex(currentNode.value.id, indexIds, "STATISTIC").then((response) => {
     if (response.code !== 200) {
       proxy.$modal.msgError(response.msg)
@@ -71,7 +71,7 @@ let names = ref([])
 // 非多个禁用
 let multiple = ref(true)
 function handleDel(row) {
-  const indexIds = row && row.indexId ? [row.indexId] : ids.value
+  const indexIds = row && row.pointId ? [row.pointId] : ids.value
   const indexNames = row.name || names.value
   proxy.$modal
     .confirm('是否确认删除指标名为"' + indexNames + '"的数据项?', "警告")
@@ -96,7 +96,7 @@ defineExpose({
   getList,
 })
 function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.indexId)
+  ids.value = selection.map((item) => item.pointId)
   names.value = selection.map((item) => item.name)
   multiple.value = !selection.length
 }

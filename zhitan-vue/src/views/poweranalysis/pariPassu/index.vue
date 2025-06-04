@@ -425,24 +425,24 @@ function getList() {
   //       });
   //     }
   //     if (!!res.data) {
-  //       res.data.map((energyUsed) => {
-  //         xdata.push(energyUsed.nodeName)
+  //       res.data.map((dataItem) => {
+  //         xdata.push(dataItem.nodeName)
   //         seriesdata.forEach((seriesdataItem) => {
   //           if (
-  //             energyUsed.data.find(
+  //             dataItem.data.find(
   //               (dataItemItem) =>
   //                 dataItemItem.energyTypeName == seriesdataItem.name
   //             ) == undefined
   //           ) {
-  //             energyUsed.data.push({
-  //               nodeId: energyUsed.nodeId,
-  //               nodeName: energyUsed.nodeName,
+  //             dataItem.data.push({
+  //               nodeId: dataItem.nodeId,
+  //               nodeName: dataItem.nodeName,
   //               energyTypeNo: null,
   //               energyTypeName: seriesdataItem.name,
   //               energyConsumption: 0,
   //             });
   //           }
-  //           energyUsed.data.map(dataItemItem => {
+  //           dataItem.data.map(dataItemItem => {
   //             if (seriesdataItem.name == dataItemItem.energyTypeName) {
   //               seriesdataItem.data.push(dataItemItem.energyConsumption)
   //             }

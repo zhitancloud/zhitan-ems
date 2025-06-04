@@ -17,9 +17,14 @@
           </el-col>
         </el-row>
         <el-row class="form-row">
-          <el-col :span="18">
+          <el-col :span="9">
             <el-form-item label="后台logo" prop="leftLogo">
               <ImageUpload v-model="form.leftLogo" :fileType="['png']" :limit="1" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="9">
+            <el-form-item label="管理员微信二维码" prop="adminWechatQrCode" label-width="130px">
+              <ImageUpload v-model="form.adminWechatQrCode" :fileType="['png']" :limit="1" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -83,6 +88,10 @@ function handleSave() {
     form.value.homeLogo = baseUrl + form.value.homeLogo
   }
 
+  if (!form.value.adminWechatQrCode.includes(baseUrl)) {
+    form.value.adminWechatQrCode = baseUrl + form.value.adminWechatQrCode
+  }
+
   systemNameSave(form.value).then((res) => {
     if (res.code == 200) {
       proxy.$modal.msgSuccess(res.msg)
@@ -103,32 +112,31 @@ function handleSave() {
 }
 
 .name-settings-card {
- 
   border-radius: 4px;
   margin: 16px;
   padding: 24px;
   flex: 1;
   height: calc(100vh - 100px);
   overflow-y: auto;
-  
+
   .el-form {
     width: 100%;
-    
+
     .form-row {
       margin-bottom: 24px;
-      
+
       &.form-footer {
         margin-top: 40px;
       }
     }
-    
+
     .el-form-item {
       margin-bottom: 0;
-      
+
       .el-form-item__label {
         color: var(--el-text-color-primary, #fff);
       }
-      
+
       .el-form-item__content {
         .el-button {
           padding: 10px 24px;

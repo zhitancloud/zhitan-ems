@@ -3,7 +3,7 @@
     <div class="form-card">
       <el-form :model="queryParams" ref="queryRef" :inline="true" label-width="80px" @submit.prevent>
         <el-form-item label="能源品种">
-          <el-input v-model="queryParams.enerclassname" placeholder="能源品种" maxlength="30" />
+          <el-input v-model="queryParams.name" placeholder="能源品种" maxlength="30" clearable />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
@@ -17,14 +17,8 @@
     <div class="table-bg-style">
       <div class="table-box">
         <el-table v-loading="loading" :data="energyVarietiesList">
-          <el-table-column
-            label="能源品种"
-            align="center"
-            key="enerclassname"
-            prop="enerclassname"
-            :show-overflow-tooltip="true"
-          />
-          <el-table-column label="备注" align="center" key="note" prop="note" :show-overflow-tooltip="true" />
+          <el-table-column label="能源品种" align="center" key="name" prop="name" :show-overflow-tooltip="true" />
+          <el-table-column label="备注" align="center" key="remark" prop="remark" :show-overflow-tooltip="true" />
           <el-table-column
             label="创建人"
             align="center"
@@ -81,13 +75,13 @@
       <el-form :model="form" :rules="rules" ref="formRef" label-width="100px">
         <el-row>
           <el-col :span="24">
-            <el-form-item label="能源品种" prop="enerclassname">
-              <el-input v-model="form.enerclassname" placeholder="请输入能源品种" />
+            <el-form-item label="能源品种" prop="name">
+              <el-input v-model="form.name" placeholder="请输入能源品种" />
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="备注" prop="note">
-              <el-input v-model="form.note" placeholder="请输入备注" type="textarea" />
+            <el-form-item label="备注" prop="remark">
+              <el-input v-model="form.remark" placeholder="请输入备注" type="textarea" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -120,10 +114,10 @@ const data = reactive({
     pageNum: 1,
     pageSize: 10,
     total: 0,
-    enerclassname: null,
+    name: null,
   },
   rules: {
-    enerclassname: [{ required: true, message: "能源品种不能为空", trigger: "blur" }],
+    name: [{ required: true, message: "能源品种不能为空", trigger: "blur" }],
   },
 })
 const { queryParams, form, rules } = toRefs(data)
@@ -149,7 +143,7 @@ function resetQuery() {
     pageNum: 1,
     pageSize: 10,
     total: 0,
-    enerclassname: null,
+    name: null,
   }
   getList()
 }
@@ -168,7 +162,7 @@ function handleAdd() {
 // }
 function handleUpdate(row) {
   reset()
-  getEnergyVarieties(row.enerclassid).then((response) => {
+  getEnergyVarieties(row.id).then((response) => {
     form.value = response.data
     open.value = true
     title.value = "编辑能源品种管理"
@@ -178,7 +172,7 @@ function handleUpdate(row) {
 function submitForm() {
   proxy.$refs["formRef"].validate((valid) => {
     if (valid) {
-      if (form.value.enerclassid != undefined) {
+      if (form.value.id != undefined) {
         updateEnergyVarieties(form.value).then((response) => {
           proxy.$modal.msgSuccess("修改成功")
           open.value = false
@@ -202,7 +196,7 @@ function cancel() {
 // 模型配置管理-能源品种设置-新增/编辑-表单重置
 function reset() {
   form.value = {
-    enerclassname: "",
+    name: "",
     note: "",
   }
   proxy.resetForm("formRef")
@@ -210,9 +204,9 @@ function reset() {
 // 模型配置管理-能源品种设置-删除
 function handleDelete(row) {
   proxy.$modal
-    .confirm('是否确认删除能源品种为"' + row.enerclassname + '"的数据项？')
+    .confirm('是否确认删除能源品种为"' + row.name + '"的数据项？')
     .then(function () {
-      return delEnergyVarieties(row.enerclassid)
+      return delEnergyVarieties(row.id)
     })
     .then(() => {
       getList()

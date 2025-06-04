@@ -18,7 +18,7 @@
           type="date"
           placeholder="请选择印发时间"
           format="YYYY-MM-DD"
-          date-format="YYYY/MM/DD"
+          value-format="YYYY-MM-DD"
         />
       </el-form-item>
       <el-form-item label="附件" prop="url">
@@ -53,6 +53,7 @@ const formRules = {
 }
 
 function submitForm() {
+  console.log(form.value, fileList.value)
   proxy.$refs.queryRef.validate((valid) => {
     if (valid) {
       loading.value = true
@@ -90,6 +91,7 @@ function handleOpen(row) {
         {
           url: row.url,
           name: row.url,
+          fullUrl: row.url,
         },
       ]
     }

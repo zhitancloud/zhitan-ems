@@ -3,7 +3,7 @@ import request from "@/utils/request"
 // 修改组态图
 export function updateEquipmentfile(data) {
   return request({
-    url: "/basicSetup/equipmentfile",
+    url: "/equipmentFile",
     method: "put",
     data: data,
   })
@@ -19,7 +19,7 @@ export function getAllCollectTag(data) {
 
 export function saveSettingApi(nodeId, data) {
   return request({
-    url: "/basicSetup/equipmentfile/setting/" + nodeId,
+    url: "/equipmentFile/setting/" + nodeId,
     method: "put",
     data: data,
   })
@@ -27,7 +27,7 @@ export function saveSettingApi(nodeId, data) {
 
 export function getConfigure(nodeId) {
   return request({
-    url: "/basicSetup/equipmentfile/configure/" + nodeId,
+    url: "/equipmentFile/configure/" + nodeId,
     method: "get",
   })
 }
