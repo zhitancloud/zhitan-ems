@@ -15,7 +15,7 @@
             start-placeholder="选择开始时间"
             end-placeholder="选择结束时间"
             format="YYYY-MM-DD"
-            date-format="YYYY/MM/DD"
+            value-format="YYYY-MM-DD"
           />
         </el-form-item> -->
         <el-form-item>

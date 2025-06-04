@@ -115,6 +115,11 @@ function handleNodeClick(data) {
 
 const LineChartRef = ref()
 function getList() {
+  tableData.value = []
+  lineChartData.value.series = []
+  if (!queryParams.value.meterId) {
+    return
+  }
   loading.value = true
   let params = {
     nodeId: queryParams.value.nodeId,

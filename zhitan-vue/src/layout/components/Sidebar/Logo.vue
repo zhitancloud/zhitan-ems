@@ -28,8 +28,6 @@
 <script setup>
 import Cookies from "js-cookie"
 import variables from "@/assets/styles/variables.module.scss"
-import logo from "@/assets/logo/logo-2.png"
-import logo2 from "@/assets/logo/logo-3.png"
 import useSettingsStore from "@/store/modules/settings"
 import { color } from "echarts"
 const systemInfo = JSON.parse(Cookies.get("SystemInfo"))

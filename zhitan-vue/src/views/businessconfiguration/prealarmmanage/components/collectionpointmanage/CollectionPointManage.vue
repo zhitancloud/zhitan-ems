@@ -80,7 +80,7 @@ let currentNode = ref()
 function getList(modelNode) {
   currentNode.value = modelNode
   queryParams.value.nodeId = modelNode.id
-  ;(queryParams.value.pointType = "COLLECT"), getTabList()
+  ;(queryParams.value.indexType = "COLLECT"), getTabList()
 }
 function getTabList() {
   loading.value = true

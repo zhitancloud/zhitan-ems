@@ -58,7 +58,7 @@ let queryParams = ref({
     pageSize: 10,
     alarmLevel: '',
     nodeId: '',
-    pointType: 'COLLECT'
+    indexType: 'COLLECT'
 })
 function handleOpen(modelNode, row) {
     currentNode.value = modelNode

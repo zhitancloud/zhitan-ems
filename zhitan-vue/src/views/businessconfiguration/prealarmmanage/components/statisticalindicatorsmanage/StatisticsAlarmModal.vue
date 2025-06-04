@@ -45,7 +45,7 @@ let queryParams = ref({
     pageNum: 1,
     pageSize: 10,
     nodeId: '',
-    pointType: 'STATISTIC'
+    indexType: 'STATISTIC'
 })
 
 

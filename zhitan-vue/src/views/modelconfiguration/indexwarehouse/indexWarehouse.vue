@@ -54,12 +54,12 @@
               <deviceConfig ref="deviceConfigRef" />
             </div>
             <div class="content-box1" v-if="tab == '2'">
-              <statisticalIndicatorManagement ref="statisticalIndicatorManagementRef" :pointType="'STATISTIC'" />
+              <statisticalIndicatorManagement ref="statisticalIndicatorManagementRef" :indexType="'STATISTIC'" />
             </div>
           </div>
         </BaseCard>
 
-        <!-- <statisticalIndicatorManagement ref="statisticalIndicatorManagementRef" :pointType='"STATISTIC"' /> -->
+        <!-- <statisticalIndicatorManagement ref="statisticalIndicatorManagementRef" :indexType='"STATISTIC"' /> -->
       </div>
     </div>
     <treeNodeModal

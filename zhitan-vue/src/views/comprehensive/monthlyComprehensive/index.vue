@@ -89,7 +89,7 @@ const energyTypeList = ref()
 function getEnergyTypeList() {
   listEnergyTypeList().then((res) => {
     energyTypeList.value = res.data
-    // form.value.pointType = alarm_record_category.value[0].value
+    // form.value.indexType = alarm_record_category.value[0].value
     // form.value.energyType = energyTypeList.value[0].enersno
     getList()
   })

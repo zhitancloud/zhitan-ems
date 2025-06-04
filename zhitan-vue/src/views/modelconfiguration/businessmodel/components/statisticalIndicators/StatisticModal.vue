@@ -56,13 +56,13 @@
         <el-table
           v-loading="loading"
           :data="tableData"
-          row-key="indexId"
+          row-key="pointId"
           @select="handleSelectChange"
           @select-all="handleSelectionAllChange"
           height="50vh"
           ref="energySettingTable"
         >
-          <el-table-column type="selection" width="55" align="center" row-key="indexId" :reserve-selection="true" />
+          <el-table-column type="selection" width="55" align="center" row-key="pointId" :reserve-selection="true" />
           <el-table-column label="指标编码" align="center" prop="code" />
           <el-table-column label="指标名称" align="center" prop="name" />
           <el-table-column
@@ -163,7 +163,7 @@ function getList() {
     loading.value = false
     nextTick(function () {
       energySettingTable.value.data.forEach((rowData) => {
-        let exist = selectedStatistic.value.filter((f) => f.indexId === rowData.indexId).length
+        let exist = selectedStatistic.value.filter((f) => f.pointId === rowData.pointId).length
         if (exist > 0) {
           energySettingTable.value.toggleRowSelection(rowData, true)
         }
@@ -193,18 +193,18 @@ function handleClose() {
 function formatterSelect(selection, data) {
   let idMap = {}
   selection.forEach((item) => {
-    idMap[item.indexId] = true
+    idMap[item.pointId] = true
   })
-  let allIn = data.every((item) => idMap.hasOwnProperty(item.indexId))
+  let allIn = data.every((item) => idMap.hasOwnProperty(item.pointId))
   return allIn
 }
 function handleSelectionAllChange(selection) {
   if (formatterSelect(selection, tableData.value)) {
     selection.forEach((row) => {
-      let rowStatus = selectedStatistic.value.filter((f) => f.indexId == row.indexId).length
+      let rowStatus = selectedStatistic.value.filter((f) => f.pointId == row.pointId).length
       if (rowStatus === 0) {
         selectedStatistic.value.push({
-          indexId: row.indexId,
+          pointId: row.pointId,
           code: row.code,
           name: row.name,
         })
@@ -212,20 +212,20 @@ function handleSelectionAllChange(selection) {
     })
   } else {
     selectedStatistic.value = selectedStatistic.value.filter((f) => {
-      return !tableData.value.some((s) => s.indexId == f.indexId)
+      return !tableData.value.some((s) => s.pointId == f.pointId)
     })
   }
 }
 function handleSelectChange(selection, row) {
-  let rowStatus = selection.filter((f) => f.indexId === row.indexId).length
+  let rowStatus = selection.filter((f) => f.pointId === row.pointId).length
   if (rowStatus > 0) {
     selectedStatistic.value.push({
-      indexId: row.indexId,
+      pointId: row.pointId,
       code: row.code,
       name: row.name,
     })
   } else {
-    selectedStatistic.value = selectedStatistic.value.filter((f) => f.indexId !== row.indexId)
+    selectedStatistic.value = selectedStatistic.value.filter((f) => f.pointId !== row.pointId)
   }
 }
 
