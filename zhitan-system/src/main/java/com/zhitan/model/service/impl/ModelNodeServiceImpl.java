@@ -242,9 +242,9 @@ public class ModelNodeServiceImpl implements IModelNodeService {
     }
 
     @Override
-    public Page<MeterPoint> getSettingIndex(String indexType, String nodeId, String code,
+    public Page<MeterPoint> getSettingIndex(String pointType, String nodeId, String code,
                                             String name, Long pageNum, Long pageSize) {
-        return modelNodeMapper.getSettingIndexByType(indexType, nodeId,
+        return modelNodeMapper.getSettingIndexByType(pointType, nodeId,
                 code, name,
                 new Page<>(pageNum, pageSize));
     }
