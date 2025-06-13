@@ -110,7 +110,7 @@ public interface ModelNodeMapper extends BaseMapper<ModelNode> {
 
     void delIndex(@Param("nodeId") String nodeId, @Param("indexIds") String[] indexIds);
 
-    Page<MeterPoint> getSettingIndexByType(@Param("indexType") String indexType,
+    Page<MeterPoint> getSettingIndexByType(@Param("pointType") String pointType,
                                            @Param("nodeId") String nodeId,
                                            @Param("code") String code,
                                            @Param("name") String name,

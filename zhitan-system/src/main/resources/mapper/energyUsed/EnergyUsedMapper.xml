@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhitan.dataitem.mapper.EnergyUsedMapper">
+<mapper namespace="com.zhitan.energyUsed.mapper.EnergyUsedMapper">
     <resultMap type="com.zhitan.energyUsed.domain.StageDataEntry" id="stageDataEntryResult">
         <result property="code" column="code"/>
         <result property="name" column="name"/>
@@ -239,7 +239,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             A.node_Id,
             A."name" AS nodeName,
             A.energy_id AS energyTypeNo,
-            A.index_type AS energyTypeName,
+            A.point_type AS energyTypeName,
             A."value" AS energyConsumption
         FROM
         (

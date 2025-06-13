@@ -23,6 +23,7 @@ import com.zhitan.productoutput.mapper.ProductOutputMapper;
 import com.zhitan.realtimedata.domain.EnergyUsed;
 import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -61,7 +62,11 @@ public class ConsumptionAnalysisServiceImpl implements IConsumptionAnalysisServi
         final String analysisType = dto.getAnalysisType();
         final String nodeId = dto.getNodeId();
         final String energyType = dto.getEnergyType();
-        final Date queryTime = dto.getDataTime();
+        Date queryTime = new Date();
+        if (ObjectUtils.isNotEmpty(dto.getDataTime())){
+            queryTime = dto.getDataTime();
+        }
+
 
         /**
          * 查询点位与用能单元信息
@@ -73,7 +78,10 @@ public class ConsumptionAnalysisServiceImpl implements IConsumptionAnalysisServi
         Date endTime;
         Date lastTime;
         Date lastEndTime;
-        String queryTimeType = dto.getTimeType();
+        String queryTimeType = TimeType.DAY.name();
+        if (StringUtils.isNotEmpty(dto.getTimeType())) {
+            queryTimeType = dto.getTimeType();
+        }
         String shixuTimeType;
         String timeFormat;
         if (TimeType.DAY.name().equals(queryTimeType)) {
