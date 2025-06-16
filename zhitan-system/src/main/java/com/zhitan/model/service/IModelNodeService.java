@@ -8,6 +8,7 @@ import com.zhitan.meter.domain.Meter;
 import com.zhitan.model.domain.MeterPoint;
 import com.zhitan.model.domain.ModelNode;
 import com.zhitan.model.domain.TreeObject;
+import com.zhitan.model.domain.vo.MeterPointVO;
 import com.zhitan.model.domain.vo.ModelNodePointInfo;
 
 import java.util.List;
@@ -82,7 +83,7 @@ public interface IModelNodeService {
 
     List<Meter> getSettingDevice(String nodeId);
 
-    List<MeterPoint> getSettingIndex(String nodeId);
+    List<MeterPointVO> getSettingIndex(String nodeId);
 
     List<MeterPoint> getSettingIndexByWhere(String nodeId, String indexName);
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhitan.basicdata.mapper.SysEnergyTemplateMapper">
 
     <resultMap type="com.zhitan.basicdata.domain.SysEnergyTemplate" id="SysEnerclassResult">
@@ -18,10 +18,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select id, name, create_by, create_time, update_by, update_time, remark from sys_energy_template
     </sql>
 
-    <select id="selectSysEnerclassList" parameterType="com.zhitan.basicdata.domain.SysEnergyTemplate" resultMap="SysEnerclassResult">
+    <select id="selectSysEnerclassList" parameterType="com.zhitan.basicdata.domain.SysEnergyTemplate"
+            resultMap="SysEnerclassResult">
         <include refid="selectSysEnerclassVo"/>
         <where>
-            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test='name != null  and name != ""'>and name like concat('%', #{name}, '%')</if>
         </where>
     </select>
 
@@ -35,7 +36,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             update_time,
             create_time,
-            <if test="remark != null  and remark != ''">remark,</if>
             <if test="id != null ">id,</if>
             <if test="name != null  and name != ''">name,</if>
             <if test="remark != null  and remark != ''">remark,</if>
@@ -45,7 +45,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             now(),
             now(),
-            <if test="remark != null  and remark != ''">#{remark},</if>
             <if test="id != null ">#{id},</if>
             <if test="name != null  and name != ''">#{name},</if>
             <if test="remark != null  and remark != ''">#{remark},</if>
@@ -58,6 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update sys_energy_template
         <trim prefix="SET" suffixOverrides=",">
             update_time = now(),
+            name = #{name},
             <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>
             <if test="remark != null  and remark != ''">remark = #{remark},</if>
         </trim>
@@ -76,7 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <select id="selectSameEnergyNameNum" parameterType="String" resultType="Integer">
-        select COUNT(id) from sys_energy_template where name = #{name}
+        select COUNT(id) from sys_energy_template where name = #{enerclassname}
     </select>
 
     <select id="selectIdByName" parameterType="String" resultType="Integer">

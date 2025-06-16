@@ -9,6 +9,7 @@ import com.zhitan.energyUsed.domain.vo.NodePointValueVO;
 import com.zhitan.meter.domain.Meter;
 import com.zhitan.model.domain.MeterPoint;
 import com.zhitan.model.domain.ModelNode;
+import com.zhitan.model.domain.vo.MeterPointVO;
 import com.zhitan.model.domain.vo.ModelNodePointInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -88,7 +89,7 @@ public interface ModelNodeMapper extends BaseMapper<ModelNode> {
 
     List<Meter> getSettingDevice(String nodeId);
 
-    List<MeterPoint> getSettingIndex(String nodeId);
+    List<MeterPointVO> getSettingIndex(String nodeId);
 
 
     void delDevice(@Param("nodeId") String nodeId, @Param("deviceIds") String[] deviceIds);
