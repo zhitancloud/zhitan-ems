@@ -3,6 +3,7 @@ package com.zhitan.basicdata.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zhitan.basicdata.domain.SysEnergyTemplate;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,10 +17,10 @@ public interface SysEnergyTemplateMapper extends BaseMapper<SysEnergyTemplate>
     /**
      * 查询能源品种设置
      *
-     * @param enerclassid 能源品种设置ID
+     * @param energyTypeId 能源品种设置ID
      * @return 能源品种设置
      */
-    public SysEnergyTemplate selectSysEnerclassById(Integer enerclassid);
+    SysEnergyTemplate selectSysEnerclassById(@Param("id") Integer energyTypeId);
 
     /**
      * 查询能源品种设置列表
@@ -27,7 +28,7 @@ public interface SysEnergyTemplateMapper extends BaseMapper<SysEnergyTemplate>
      * @param sysEnergyTemplate 能源品种设置
      * @return 能源品种设置集合
      */
-    public List<SysEnergyTemplate> selectSysEnerclassList(SysEnergyTemplate sysEnergyTemplate);
+    List<SysEnergyTemplate> selectSysEnerclassList(SysEnergyTemplate sysEnergyTemplate);
 
     /**
      * 新增能源品种设置
@@ -35,7 +36,7 @@ public interface SysEnergyTemplateMapper extends BaseMapper<SysEnergyTemplate>
      * @param sysEnergyTemplate 能源品种设置
      * @return 结果
      */
-    public int insertSysEnerclass(SysEnergyTemplate sysEnergyTemplate);
+    int insertSysEnerclass(SysEnergyTemplate sysEnergyTemplate);
 
     /**
      * 修改能源品种设置
@@ -43,29 +44,29 @@ public interface SysEnergyTemplateMapper extends BaseMapper<SysEnergyTemplate>
      * @param sysEnergyTemplate 能源品种设置
      * @return 结果
      */
-    public int updateSysEnerclass(SysEnergyTemplate sysEnergyTemplate);
+    int updateSysEnerclass(SysEnergyTemplate sysEnergyTemplate);
 
     /**
      * 删除能源品种设置
      *
-     * @param enerclassid 能源品种设置ID
+     * @param energyTypeId 能源品种设置ID
      * @return 结果
      */
-    public int deleteSysEnerclassById(Integer enerclassid);
+    int deleteSysEnerclassById(@Param("id") Integer energyTypeId);
 
     /**
      * 批量删除能源品种设置
      *
-     * @param enerclassids 需要删除的数据ID
+     * @param energyTypeIds 需要删除的数据ID
      * @return 结果
      */
-    public int deleteSysEnerclassByIds(Integer[] enerclassids);
+    int deleteSysEnerclassByIds(@Param("ids") Integer[] energyTypeIds);
     /**
      * 查询一样的能源名称有几个 能源名称唯一校验
      */
-    int selectSameEnergyNameNum(String enerclassname);
+    int selectSameEnergyNameNum(@Param("name") String name);
     /**
      * 修改的时候查询一样能源名称的id
      */
-    Integer selectIdByName(String enerclassname);
+    Integer selectIdByName(@Param("name") String name);
 }

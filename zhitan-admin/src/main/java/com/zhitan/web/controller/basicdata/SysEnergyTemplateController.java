@@ -23,10 +23,9 @@ import java.util.List;
  */
 @RestController
 @AllArgsConstructor
-@Api(value = "能源品种设置controller",tags = {"能源品种设置管理"})
+@Api(value = "能源品种设置controller", tags = {"能源品种设置管理"})
 @RequestMapping("/enerInfoManage/enerclass")
-public class SysEnergyTemplateController extends BaseController
-{
+public class SysEnergyTemplateController extends BaseController {
     private ISysEnergyTemplateService sysEnerclassService;
 
     /**
@@ -34,8 +33,7 @@ public class SysEnergyTemplateController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('enerInfoManage:enerclass:list')")
     @GetMapping("/page")
-    public TableDataInfo page(SysEnergyTemplate sysEnergyTemplate, Long pageNum, Long pageSize)
-    {
+    public TableDataInfo page(SysEnergyTemplate sysEnergyTemplate, Long pageNum, Long pageSize) {
         Page<SysEnergyTemplate> list = sysEnerclassService.selectSysEnerclassPage(sysEnergyTemplate, pageNum, pageSize);
         return getDataTable(list);
     }
@@ -44,8 +42,7 @@ public class SysEnergyTemplateController extends BaseController
      * 查询所有能源品种设置列表
      */
     @GetMapping("/list")
-    public AjaxResult list(SysEnergyTemplate sysEnergyTemplate)
-    {
+    public AjaxResult list(SysEnergyTemplate sysEnergyTemplate) {
         List<SysEnergyTemplate> list = sysEnerclassService.selectSysEnerclassList(sysEnergyTemplate);
         return AjaxResult.success(list);
     }
@@ -56,8 +53,7 @@ public class SysEnergyTemplateController extends BaseController
     @PreAuthorize("@ss.hasPermi('enerInfoManage:enerclass:export')")
     @Log(title = "能源品种设置", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
-    public AjaxResult export(SysEnergyTemplate sysEnergyTemplate)
-    {
+    public AjaxResult export(SysEnergyTemplate sysEnergyTemplate) {
         List<SysEnergyTemplate> list = sysEnerclassService.selectSysEnerclassList(sysEnergyTemplate);
         ExcelUtil<SysEnergyTemplate> util = new ExcelUtil<SysEnergyTemplate>(SysEnergyTemplate.class);
         return util.exportExcel(list, "enerclass");
@@ -82,11 +78,11 @@ public class SysEnergyTemplateController extends BaseController
     public AjaxResult add(@RequestBody SysEnergyTemplate sysEnergyTemplate) {
         //非空校验
         String name = sysEnergyTemplate.getName();
-        if(name.length()>10){
+        if (name.length() > 10) {
             return AjaxResult.error("新增失败，能源名称超长！");
         }
-        Integer nameNum = sysEnerclassService.selectSameEnergyNameNum(name);
-        if (nameNum==0){
+        int nameNum = sysEnerclassService.selectSameEnergyNameNum(name);
+        if (nameNum == 0) {
             return toAjax(sysEnerclassService.insertSysEnerclass(sysEnergyTemplate));
         }
         return AjaxResult.error("新增失败，请检查能源名称是否重复！");
@@ -101,16 +97,16 @@ public class SysEnergyTemplateController extends BaseController
     public AjaxResult edit(@RequestBody SysEnergyTemplate sysEnergyTemplate) {
         //唯一校验
         Integer id = sysEnergyTemplate.getId();
-        String enerName = sysEnergyTemplate.getName();
-        if(enerName.length()>10){
+        String name = sysEnergyTemplate.getName();
+        if (name.length() > 10) {
             return AjaxResult.error("修改失败，能源名称超长！");
         }
         // 通过要改的能源名称查已有一样的能源名称有几个,如果等于1就要通过id判断是不是改自己
-        if(sysEnerclassService.selectSameEnergyNameNum(enerName) == 1
-                && id.equals(sysEnerclassService.selectIdByName(enerName))){
+        if (sysEnerclassService.selectSameEnergyNameNum(name) == 1
+                && id.equals(sysEnerclassService.selectIdByName(name))) {
             return toAjax(sysEnerclassService.updateSysEnerclass(sysEnergyTemplate));
-        // 如果=0 就说明这个能源名称可改
-        }else if(sysEnerclassService.selectSameEnergyNameNum(enerName)==0){
+            // 如果=0 就说明这个能源名称可改
+        } else if (sysEnerclassService.selectSameEnergyNameNum(name) == 0) {
             return toAjax(sysEnerclassService.updateSysEnerclass(sysEnergyTemplate));
         }
         return AjaxResult.error("修改失败，能源名称重复！");
@@ -121,9 +117,8 @@ public class SysEnergyTemplateController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('enerInfoManage:enerclass:remove')")
     @Log(title = "能源品种设置", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{enerclassids}")
-    public AjaxResult remove(@PathVariable Integer[] enerclassids)
-    {
+    @DeleteMapping("/{enerclassids}")
+    public AjaxResult remove(@PathVariable Integer[] enerclassids) {
         return toAjax(sysEnerclassService.deleteSysEnerclassByIds(enerclassids));
     }
 }
