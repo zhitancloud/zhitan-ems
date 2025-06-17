@@ -19,7 +19,6 @@ public class MeterPointVO {
     /**
      * 主键
      */
-    @TableId
     @ApiModelProperty(value = "主键")
     private String pointId;
 
