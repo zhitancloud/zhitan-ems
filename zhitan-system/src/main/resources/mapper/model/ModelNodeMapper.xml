@@ -48,41 +48,41 @@
         select count(*)
         from model_node
         where code = #{code}
-          and model_code = #{modelCode};
+        and model_code = #{modelCode};
     </select>
     <select id="modelNodeHasExistWhenUpdate" resultType="java.lang.Integer">
         select count(*)
         from model_node
         where code = #{code}
-          and model_code = #{modelCode}
-          AND node_id != #{nodeId};
+        and model_code = #{modelCode}
+        AND node_id != #{nodeId};
     </select>
     <select id="getSettingDevice"
             resultType="com.zhitan.meter.domain.Meter">
         select id, code, meter_name as meterName
         from meter m
-                 left join node_device nd on m.id = nd.device_id
+        left join node_device nd on m.id = nd.device_id
         where nd.node_id = #{nodeId};
     </select>
     <select id="getSettingIndex"
-            resultType="com.zhitan.model.domain.MeterPoint">
-        select ei.point_id as indexId, code, name, index_type as pointType
+            resultType="com.zhitan.model.domain.vo.MeterPointVO">
+        select ei.point_id as pointId, code, name, point_type as pointType
         from meter_point ei
-                 left join node_point ni on ei.point_id = ni.point_id
+        left join node_point ni on ei.point_id = ni.point_id
         where ni.node_id = #{nodeId}
     </select>
     <select id="getSettingEnergy"
             resultType="com.zhitan.basicdata.domain.SysEnergy">
         select enerid, enersno, enername
         from sys_energy e
-                 left join node_energy ne on e.enerid = ne.energy_id
+        left join node_energy ne on e.enerid = ne.energy_id
         where ne.node_id = #{nodeId};
     </select>
     <select id="getSettingProduct"
             resultType="com.zhitan.basicdata.domain.Product">
         select p.id, p.sn, p.name
         from product p
-                 left join node_product np on p.id = np.product_id
+        left join node_product np on p.id = np.product_id
         where np.node_id = #{nodeId};
     </select>
     <select id="getSettingIndexByType"
@@ -189,13 +189,13 @@
 
         update model_node
         set address = replace(address, (select address from model_node where node_id = #{nodeId}),
-                              (select address ||
-                                      (select code from model_node where node_id = #{nodeId}) ||
-                                      ','
-                               from model_node
-                               where node_id = #{parentId}))
+        (select address ||
+        (select code from model_node where node_id = #{nodeId}) ||
+        ','
+        from model_node
+        where node_id = #{parentId}))
         where parent_id = #{nodeId}
-           or node_id = #{nodeId};
+        or node_id = #{nodeId};
     </update>
     <update id="updateModelNodeOrder">
         <foreach collection="orders" index="id" item="order" separator=";">
@@ -286,57 +286,57 @@
 
     <select id="getModelNodeIndexIdRelationInforByCode"
             resultType="com.zhitan.model.domain.vo.ModelNodePointInfo">
-        SELECT mn.node_id  nodeId,
-               mn."name"   "name",
-               ni.point_id indexId
+        SELECT mn.node_id nodeId,
+        mn."name" "name",
+        ni.point_id indexId
         FROM model_node mn
-                 LEFT JOIN node_point ni ON mn.node_id = ni.node_id
+        LEFT JOIN node_point ni ON mn.node_id = ni.node_id
         WHERE mn.model_code = #{code}
-          AND mn.parent_id IS NOT NULL
+        AND mn.parent_id IS NOT NULL
     </select>
 
     <select id="listModelNodeIndexIdRelationInforByParentId"
             resultType="com.zhitan.model.domain.vo.ModelNodePointInfo">
-        SELECT mn.node_id  nodeId,
-               mn."name"   "name",
-               ni.point_id indexId
+        SELECT mn.node_id nodeId,
+        mn."name" "name",
+        ni.point_id indexId
         FROM "model_node" mn
-                 LEFT JOIN node_point ni ON mn.node_id = ni.node_id
+        LEFT JOIN node_point ni ON mn.node_id = ni.node_id
         WHERE mn.parent_id = #{parentId}
     </select>
 
     <select id="getModelNodeIndexIdRelationInforByNodeId"
             resultType="com.zhitan.model.domain.vo.ModelNodePointInfo">
-        SELECT mn.node_id  nodeId,
-               mn."name"   "name",
-               ni.point_id indexId
+        SELECT mn.node_id nodeId,
+        mn."name" "name",
+        ni.point_id indexId
         FROM "model_node" mn
-                 LEFT JOIN "node_point" ni ON mn.node_id = ni.node_id
+        LEFT JOIN "node_point" ni ON mn.node_id = ni.node_id
         WHERE mn.node_id = #{nodeId}
     </select>
 
     <select id="getModelNodeByModelCodeByIndexCode" resultType="com.zhitan.model.domain.ModelNode">
-        SELECT node_id       nodeId,
-               code,
-               "name",
-               parent_id     parentId,
-               address,
-               model_code    modelCode,
-               node_category nodeCategory
+        SELECT node_id nodeId,
+        code,
+        "name",
+        parent_id parentId,
+        address,
+        model_code modelCode,
+        node_category nodeCategory
         FROM "model_node"
         WHERE model_code = #{indexCode}
-          AND parent_id IS NULL
+        AND parent_id IS NULL
         LIMIT 1;
     </select>
     <select id="selectIndexByModelCodeAndNodeId"
             resultType="com.zhitan.model.domain.vo.ModelNodePointInfo">
-        SELECT mn.node_id  nodeId,
-               mn."name",
-               ni.point_id indexId
+        SELECT mn.node_id nodeId,
+        mn."name",
+        ni.point_id indexId
         FROM model_node mn
-                 LEFT JOIN node_point ni ON ni.node_id = mn.node_id
+        LEFT JOIN node_point ni ON ni.node_id = mn.node_id
         WHERE mn.model_code = #{modelCode}
-          AND mn.node_id = #{nodeId}
+        AND mn.node_id = #{nodeId}
     </select>
 
     <select id="getSettingDeviceIndex" resultType="com.zhitan.meter.domain.Meter">
@@ -360,11 +360,11 @@
         delete
         from node_point
         where node_id = #{nodeId}
-          and point_id in (select ni.point_id
-                           from node_point ni
-                                    left join meter_point ei on ni.point_id = ei.point_id
-                           where node_id = #{nodeId}
-                             and ei.point_type = #{pointType});
+        and point_id in (select ni.point_id
+        from node_point ni
+        left join meter_point ei on ni.point_id = ei.point_id
+        where node_id = #{nodeId}
+        and ei.point_type = #{indexType});
     </delete>
     <insert id="setIndexAndNodeId">
         <foreach collection="indexIds" item="indexId" separator=";">
@@ -389,15 +389,15 @@
         </if>
     </select>
     <select id="getModelNodeByParentId" resultType="com.zhitan.model.domain.vo.ModelNodePointInfo">
-        SELECT mn.node_id  nodeId,
-               mn."name"   "name",
-               ni.point_id indexId,
-               ei.energy_id
+        SELECT mn.node_id nodeId,
+        mn."name" "name",
+        ni.point_id indexId,
+        ei.energy_id
         FROM "model_node" mn
-                 LEFT JOIN "node_point" ni ON mn.node_id = ni.node_id
-                 left join meter_point ei on ni.point_id = ei.point_id
+        LEFT JOIN "node_point" ni ON mn.node_id = ni.node_id
+        left join meter_point ei on ni.point_id = ei.point_id
         WHERE mn.parent_id = #{parentId}
-          and ei.point_type = 'STATISTIC'
+        and ei.point_type = 'STATISTIC'
     </select>
     <select id="getFirstModeNodeInfo" resultType="com.zhitan.model.domain.ModelNode">
         <include refid="selectModelNodeVo"/>
@@ -427,51 +427,51 @@
     </select>
 
     <select id="getDataItemByParentNodeId" resultType="com.zhitan.energyUsed.domain.vo.NodePointValueVO">
-        SELECT mn.node_id  nodeId,
-               mn."name"   nodeName,
-               di.point_id indexId,
-               di."value"  value
+        SELECT mn.node_id nodeId,
+        mn."name" nodeName,
+        di.point_id indexId,
+        di."value" value
         FROM model_node mn
-                 LEFT JOIN node_point ni ON mn.node_id = ni.node_id
-                 LEFT JOIN meter_point ei ON ei.point_id = ni.point_id
-                 LEFT JOIN energy_used di ON ei.point_id = di.point_id
+        LEFT JOIN node_point ni ON mn.node_id = ni.node_id
+        LEFT JOIN meter_point ei ON ei.point_id = ni.point_id
+        LEFT JOIN energy_used di ON ei.point_id = di.point_id
         WHERE mn.parent_id = #{parentId}
-          AND ei.energy_id = #{energyType}
-          AND ei.point_type = 'STATISTIC'
-          AND di.time_type = #{timeType.name}
-          AND di.data_time >= #{dateTimeMap.startTime}
-          AND di.data_time &lt;= #{dateTimeMap.endTime}
+        AND ei.energy_id = #{energyType}
+        AND ei.point_type = 'STATISTIC'
+        AND di.time_type = #{timeType.name}
+        AND di.data_time >= #{dateTimeMap.startTime}
+        AND di.data_time &lt;= #{dateTimeMap.endTime}
     </select>
 
     <select id="getDataItemByNodeId" resultType="com.zhitan.energyUsed.domain.vo.NodePointValueVO">
-        SELECT mn.node_id  nodeId,
-               mn."name"   nodeName,
-               di.point_id indexId,
-               di."value"  value
+        SELECT mn.node_id nodeId,
+        mn."name" nodeName,
+        di.point_id indexId,
+        di."value" value
         FROM "model_node" mn
-                 LEFT JOIN node_point ni ON mn.node_id = ni.node_id
-                 LEFT JOIN meter_point ei ON ei.point_id = ni.point_id
-                 LEFT JOIN energy_used di ON ei.point_id = di.point_id
+        LEFT JOIN node_point ni ON mn.node_id = ni.node_id
+        LEFT JOIN meter_point ei ON ei.point_id = ni.point_id
+        LEFT JOIN energy_used di ON ei.point_id = di.point_id
         WHERE mn.node_id = #{nodeId}
-          AND ei.energy_id = #{energyType}
-          AND ei.point_type = 'STATISTIC'
-          AND di.time_type = #{timeType.name}
-          AND di.data_time >= #{dateTimeMap.startTime}
-          AND di.data_time &lt;= #{dateTimeMap.endTime}
+        AND ei.energy_id = #{energyType}
+        AND ei.point_type = 'STATISTIC'
+        AND di.time_type = #{timeType.name}
+        AND di.data_time >= #{dateTimeMap.startTime}
+        AND di.data_time &lt;= #{dateTimeMap.endTime}
     </select>
     <select id="getAllModelNodeIndexByAddress" resultType="com.zhitan.model.domain.vo.ModelNodePointInfo">
-        SELECT mn.node_id    nodeId,
-               mn.code       nodeCode,
-               mn."name"     nodeName,
-               ni.point_id   indexId,
-               ei."name"     indexName,
-               ei.point_type pointType,
-               mi.energy_type
+        SELECT mn.node_id nodeId,
+        mn.code nodeCode,
+        mn."name" nodeName,
+        ni.point_id indexId,
+        ei."name" indexName,
+        ei.point_type pointType,
+        mi.energy_type
         FROM "model_node" mn
-                 LEFT JOIN node_point ni ON mn.node_id = ni.node_id
-                 LEFT JOIN meter_point ei ON ni.point_id = ei.point_id
-                 LEFT JOIN meter mi ON mi."id" = ei.meter_id
+        LEFT JOIN node_point ni ON mn.node_id = ni.node_id
+        LEFT JOIN meter_point ei ON ni.point_id = ei.point_id
+        LEFT JOIN meter mi ON mi."id" = ei.meter_id
         WHERE mn.model_code = #{modelCode}
-          AND mn.address LIKE concat(#{address}, '%')
+        AND mn.address LIKE concat(#{address}, '%')
     </select>
 </mapper>

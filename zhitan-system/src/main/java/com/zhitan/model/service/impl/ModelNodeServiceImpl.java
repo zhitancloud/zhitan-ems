@@ -9,6 +9,7 @@ import com.zhitan.meter.domain.Meter;
 import com.zhitan.model.domain.MeterPoint;
 import com.zhitan.model.domain.ModelNode;
 import com.zhitan.model.domain.TreeObject;
+import com.zhitan.model.domain.vo.MeterPointVO;
 import com.zhitan.model.domain.vo.ModelNodePointInfo;
 import com.zhitan.model.mapper.MeterPointMapper;
 import com.zhitan.model.mapper.ModelNodeMapper;
@@ -170,7 +171,7 @@ public class ModelNodeServiceImpl implements IModelNodeService {
     }
 
     @Override
-    public List<MeterPoint> getSettingIndex(String nodeId) {
+    public List<MeterPointVO> getSettingIndex(String nodeId) {
         return modelNodeMapper.getSettingIndex(nodeId);
     }
 
