@@ -364,7 +364,7 @@
         from node_point ni
         left join meter_point ei on ni.point_id = ei.point_id
         where node_id = #{nodeId}
-        and ei.point_type = #{pointType});
+        and ei.point_type = #{indexType});
     </delete>
     <insert id="setIndexAndNodeId">
         <foreach collection="indexIds" item="indexId" separator=";">
