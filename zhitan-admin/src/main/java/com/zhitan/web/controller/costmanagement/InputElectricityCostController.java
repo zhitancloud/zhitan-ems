@@ -76,6 +76,12 @@ public class InputElectricityCostController extends BaseController
     public AjaxResult edit(@RequestBody InputElectricityCost inputElectricityCost) throws Exception {
         LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
         inputElectricityCost.setUpdateBy(loginUser.getUsername());
+        //校验尖峰平谷电量相加是否=总用电
+        BigDecimal total = inputElectricityCost.getFlatElectricity().add(inputElectricityCost.getSharpElectricity()).
+                add(inputElectricityCost.getPeakElectricity()).add(inputElectricityCost.getValleyElectricity());
+        if(total.compareTo(inputElectricityCost.getElectricityNum())!=0){
+            return AjaxResult.error("尖峰平谷电量相加不等于总用电量");
+        }
         return toAjax(costElectricityInputService.updateCostElectricityInput(inputElectricityCost));
     }
 

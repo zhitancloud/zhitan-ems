@@ -67,7 +67,7 @@ public interface ISysEnergyTemplateService
     /**
      * 修改的时候查询一样能源名称的id
      */
-    Integer selectIdByName(String enerclassname);
+    Integer selectIdByName(String name);
 
     Page<SysEnergyTemplate> selectSysEnerclassPage(SysEnergyTemplate sysEnergyTemplate, Long pageNum, Long pageSize);
 }
