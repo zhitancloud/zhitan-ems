@@ -70,13 +70,13 @@
 
     <delete id="deleteSysEnerclassByIds" parameterType="String">
         delete from sys_energy_template where id in
-        <foreach item="id" collection="array" open="(" separator="," close=")">
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>
 
     <select id="selectSameEnergyNameNum" parameterType="String" resultType="Integer">
-        select COUNT(id) from sys_energy_template where name = #{enerclassname}
+        select COUNT(id) from sys_energy_template where name = #{name}
     </select>
 
     <select id="selectIdByName" parameterType="String" resultType="Integer">

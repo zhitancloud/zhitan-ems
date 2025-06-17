@@ -26,13 +26,13 @@ public class SysEnergyTemplateServiceImpl implements ISysEnergyTemplateService
     /**
      * 查询能源品种设置
      *
-     * @param enerclassid 能源品种设置ID
+     * @param energyTypeId 能源品种设置ID
      * @return 能源品种设置
      */
     @Override
-    public SysEnergyTemplate selectSysEnerclassById(Integer enerclassid)
+    public SysEnergyTemplate selectSysEnerclassById(Integer energyTypeId)
     {
-        return sysEnergyTemplateMapper.selectSysEnerclassById(enerclassid);
+        return sysEnergyTemplateMapper.selectSysEnerclassById(energyTypeId);
     }
 
     /**
@@ -78,39 +78,39 @@ public class SysEnergyTemplateServiceImpl implements ISysEnergyTemplateService
     /**
      * 批量删除能源品种设置
      *
-     * @param enerclassids 需要删除的能源品种设置ID
+     * @param energyTypeIds 需要删除的能源品种设置ID
      * @return 结果
      */
     @Override
-    public int deleteSysEnerclassByIds(Integer[] enerclassids)
+    public int deleteSysEnerclassByIds(Integer[] energyTypeIds)
     {
-        return sysEnergyTemplateMapper.deleteSysEnerclassByIds(enerclassids);
+        return sysEnergyTemplateMapper.deleteSysEnerclassByIds(energyTypeIds);
     }
 
     /**
      * 删除能源品种设置信息
      *
-     * @param enerclassid 能源品种设置ID
+     * @param energyTypeId 能源品种设置ID
      * @return 结果
      */
     @Override
-    public int deleteSysEnerclassById(Integer enerclassid)
+    public int deleteSysEnerclassById(Integer energyTypeId)
     {
-        return sysEnergyTemplateMapper.deleteSysEnerclassById(enerclassid);
+        return sysEnergyTemplateMapper.deleteSysEnerclassById(energyTypeId);
     }
     /**
      * 查询一样的能源名称有几个 能源名称唯一校验
      */
     @Override
-    public int selectSameEnergyNameNum(String enerclassname) {
-        return sysEnergyTemplateMapper.selectSameEnergyNameNum(enerclassname);
+    public int selectSameEnergyNameNum(String name) {
+        return sysEnergyTemplateMapper.selectSameEnergyNameNum(name);
     }
     /**
      * 修改的时候查询一样能源名称的id
      */
     @Override
-    public Integer selectIdByName(String enerclassname) {
-        return sysEnergyTemplateMapper.selectIdByName(enerclassname);
+    public Integer selectIdByName(String name) {
+        return sysEnergyTemplateMapper.selectIdByName(name);
     }
 
     @Override

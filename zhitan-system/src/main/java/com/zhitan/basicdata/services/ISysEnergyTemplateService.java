@@ -16,10 +16,10 @@ public interface ISysEnergyTemplateService
     /**
      * 查询能源品种设置
      *
-     * @param enerclassid 能源品种设置ID
+     * @param energyTypeId 能源品种设置ID
      * @return 能源品种设置
      */
-    SysEnergyTemplate selectSysEnerclassById(Integer enerclassid);
+    SysEnergyTemplate selectSysEnerclassById(Integer energyTypeId);
 
     /**
      * 查询能源品种设置列表
@@ -48,22 +48,22 @@ public interface ISysEnergyTemplateService
     /**
      * 批量删除能源品种设置
      *
-     * @param enerclassids 需要删除的能源品种设置ID
+     * @param energyTypeIds 需要删除的能源品种设置ID
      * @return 结果
      */
-    int deleteSysEnerclassByIds(Integer[] enerclassids);
+    int deleteSysEnerclassByIds(Integer[] energyTypeIds);
 
     /**
      * 删除能源品种设置信息
      *
-     * @param enerclassid 能源品种设置ID
+     * @param energyTypeId 能源品种设置ID
      * @return 结果
      */
-    int deleteSysEnerclassById(Integer enerclassid);
+    int deleteSysEnerclassById(Integer energyTypeId);
     /**
      * 查询一样的能源名称有几个 能源名称唯一校验
      */
-    int selectSameEnergyNameNum(String enerclassname);
+    int selectSameEnergyNameNum(String name);
     /**
      * 修改的时候查询一样能源名称的id
      */
