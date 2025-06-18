@@ -8,6 +8,8 @@ import com.zhitan.meter.services.IMeterService;
 import com.zhitan.model.domain.EnergyIndexQuery;
 import com.zhitan.model.domain.MeterPoint;
 import com.zhitan.model.domain.PointTemplate;
+import com.zhitan.model.domain.vo.MeterPointAddDTO;
+import com.zhitan.model.domain.vo.MeterPointEditDTO;
 import com.zhitan.model.domain.vo.ModelNodePointInfo;
 import com.zhitan.model.mapper.MeterPointMapper;
 import com.zhitan.model.service.IMeterPointService;
@@ -83,25 +85,25 @@ public class MeterPointServiceImpl implements IMeterPointService {
      * 新增指标信息
      *
      * @param nodeId
-     * @param meterPoint 指标信息
+     * @param meterPointAddDTO 指标信息
      * @return 结果
      */
     @Override
-    public int insertMeterPoint(String nodeId, MeterPoint meterPoint) {
-        meterPoint.setNodeId(nodeId);
-        meterPointMapper.insertMeterPoint(meterPoint);
-        return meterPointMapper.insertNodePoint(nodeId, meterPoint.getPointId());
+    public int insertMeterPoint(String nodeId, MeterPointAddDTO meterPointAddDTO) {
+        meterPointAddDTO.setNodeId(nodeId);
+        meterPointMapper.insertMeterPoint(meterPointAddDTO);
+        return meterPointMapper.insertNodePoint(nodeId, meterPointAddDTO.getPointId());
     }
 
     /**
      * 修改指标信息
      *
-     * @param meterPoint 指标信息
+     * @param meterPointEditDTO 指标信息
      * @return 结果
      */
     @Override
-    public int updateMeterPoint(MeterPoint meterPoint) {
-        return meterPointMapper.updateMeterPoint(meterPoint);
+    public int updateMeterPoint(MeterPointEditDTO meterPointEditDTO) {
+        return meterPointMapper.updateMeterPoint(meterPointEditDTO);
     }
 
     /**
