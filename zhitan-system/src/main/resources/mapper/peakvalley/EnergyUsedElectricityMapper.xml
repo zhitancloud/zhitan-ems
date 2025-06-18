@@ -63,7 +63,7 @@
         di.remark
         FROM
         "energy_used_electricity" di
-        JOIN energy_point ei  ON di.index_id = ei.point_id
+        JOIN meter_point ei  ON di.index_id = ei.point_id
         WHERE
         di.index_id IN ( SELECT index_id FROM node_point WHERE node_id = #{nodeId})
         <if test="energyType !='' and energyType !=null  and energyType =='allType'">
