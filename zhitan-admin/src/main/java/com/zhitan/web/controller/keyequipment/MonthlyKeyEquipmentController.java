@@ -5,16 +5,15 @@ import com.zhitan.common.core.controller.BaseController;
 import com.zhitan.common.core.domain.AjaxResult;
 import com.zhitan.keyequipment.domain.MonthlyKeyEquipment;
 import com.zhitan.keyequipment.service.IMonthlyKeyEquipmentService;
-import com.zhitan.model.domain.MeterPoint;
 import com.zhitan.model.domain.ModelNode;
+import com.zhitan.model.domain.vo.MeterPointVO;
 import com.zhitan.model.service.IModelNodeService;
-import com.zhitan.realtimedata.domain.EnergyUsed;
+import com.zhitan.realtimedata.domain.dto.EnergyUsedDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +41,7 @@ public class MonthlyKeyEquipmentController extends BaseController {
 
     @GetMapping("/list")
     @ApiOperation(value = "重点设备能耗统计（月）列表")
-    public AjaxResult list(EnergyUsed energyUsed) throws ParseException {
+    public AjaxResult list(EnergyUsedDTO energyUsed) throws ParseException {
         List<MonthlyKeyEquipment> dataList = new ArrayList<>();
 
         Map tableColumn = new HashMap<>();//表数据
@@ -65,22 +64,22 @@ public class MonthlyKeyEquipmentController extends BaseController {
             report.setDataTime(sf.parse(bb));
             report.setValue("value" + i);
             dataList.add(report);
-            tableColumn.put("value" + i, String.valueOf(i) + "日");
+            tableColumn.put("value" + i, i + "日");
             i++;
         }
         List<Map> table = new ArrayList<>();
         MonthlyKeyEquipment reportList = new MonthlyKeyEquipment();
         table.add(tableColumn);
         reportList.setTablehead(table);
-        List<ModelNode> nodeId = modelNodeService.getModelNodeByModelCode(energyUsed.getPointCode());
+        List<ModelNode> nodeId = modelNodeService.getModelNodeByModelCode(energyUsed.getIndexCode());
         if (CollectionUtils.isEmpty(nodeId)) {
             return success(new ArrayList<>());
         }
-        List<MeterPoint> energyList = modelNodeService.getSettingIndex(nodeId.get(0).getNodeId());
+        List<MeterPointVO> energyList = modelNodeService.getSettingIndex(nodeId.get(0).getNodeId());
         if (CollectionUtils.isEmpty(energyList)) {
             return success(new ArrayList<>());
         }
-        List<String> indexIds = energyList.stream().map(MeterPoint::getPointId).collect(Collectors.toList());
+        List<String> indexIds = energyList.stream().map(MeterPointVO::getPointId).collect(Collectors.toList());
 
         List<MonthlyKeyEquipment> list = monthlyKeyEquipmentService.getMonthlyKeyEquipmentList(indexIds, dataList, energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
 
@@ -89,7 +88,7 @@ public class MonthlyKeyEquipmentController extends BaseController {
 
     @GetMapping("/listChart")
     @ApiOperation(value = "重点设备能耗统计（月）图表")
-    public AjaxResult listChart(EnergyUsed energyUsed) throws ParseException {
+    public AjaxResult listChart(EnergyUsedDTO energyUsed) throws ParseException {
         DateFormat df = new SimpleDateFormat("yyyy-MM");
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String aa = df.format(energyUsed.getDataTime());

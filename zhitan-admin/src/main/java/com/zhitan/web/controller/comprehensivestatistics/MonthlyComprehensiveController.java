@@ -7,14 +7,13 @@ import com.zhitan.comprehensivestatistics.domain.MonthlyComprehensive;
 import com.zhitan.comprehensivestatistics.service.ImonthlyComprehensive;
 import com.zhitan.model.domain.ModelNode;
 import com.zhitan.model.service.IModelNodeService;
-import com.zhitan.realtimedata.domain.EnergyUsed;
+import com.zhitan.realtimedata.domain.dto.EnergyUsedDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +32,7 @@ import java.util.*;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@Api(value = "综合指标分析（月）controller",tags = {"综合指标分析"})
+@Api(value = "综合指标分析（月）controller", tags = {"综合指标分析"})
 @RequestMapping("/comprehensive/monthlyComprehensive")
 public class MonthlyComprehensiveController extends BaseController {
 
@@ -43,19 +42,19 @@ public class MonthlyComprehensiveController extends BaseController {
     /*全厂能耗统计*/
     @ApiOperation(value = "获取综合指标分析（月）列表")
     @GetMapping("/list")
-    public AjaxResult list(EnergyUsed energyUsed) {
+    public AjaxResult list(EnergyUsedDTO energyUsed) {
         try {
 
-            Map tableColumn =new HashMap<>();//表数据
-            List<MonthlyComprehensive> dataList=new ArrayList<>();
+            Map tableColumn = new HashMap<>();//表数据
+            List<MonthlyComprehensive> dataList = new ArrayList<>();
             DateFormat df = new SimpleDateFormat("yyyy-MM");
             SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String aa= df.format(energyUsed.getDataTime());
-            String bb="";
+            String aa = df.format(energyUsed.getDataTime());
+            String bb = "";
             int i = 1;
-            String beginTime=aa+"-01 00:00:00";
+            String beginTime = aa + "-01 00:00:00";
             energyUsed.setBeginTime(sf.parse(beginTime));
-            String endTime=aa+"-"+Integer.valueOf(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length()-2))+" 00:00:00";
+            String endTime = aa + "-" + Integer.valueOf(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length() - 2)) + " 00:00:00";
             energyUsed.setEndTime(sf.parse(endTime));
             while (i <= Integer.parseInt(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length() - 2))) {
                 if (i > 9) {
@@ -67,7 +66,7 @@ public class MonthlyComprehensiveController extends BaseController {
                 report.setDataTime(sf.parse(bb));
                 report.setValue("value" + i);
                 dataList.add(report);
-                tableColumn.put("value" + i, String.valueOf(i) + "日");
+                tableColumn.put("value" + i, i + "日");
                 i++;
             }
 
@@ -76,7 +75,7 @@ public class MonthlyComprehensiveController extends BaseController {
             table.add(tableColumn);
             reportList.setTablehead(table);
 
-            ModelNode modelNode = modelNodeService.getModelNodeByModelCodeByIndexCode(energyUsed.getPointCode());
+            ModelNode modelNode = modelNodeService.getModelNodeByModelCodeByIndexCode(energyUsed.getIndexCode());
             if (ObjectUtils.isEmpty(modelNode)) {
                 return AjaxResult.success(reportList);
             }
@@ -98,17 +97,18 @@ public class MonthlyComprehensiveController extends BaseController {
      */
     @GetMapping("/listChart")
     @ApiOperation(value = "获取综合指标分析图表（月）数据")
-    public AjaxResult listChart(EnergyUsed energyUsed) throws ParseException {
+    public AjaxResult listChart(EnergyUsedDTO energyUsed) throws ParseException {
         DateFormat df = new SimpleDateFormat("yyyy-MM");
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String aa= df.format(energyUsed.getDataTime());
-        String beginTime=aa+"-01 00:00:00";
+        String aa = df.format(energyUsed.getDataTime());
+        String beginTime = aa + "-01 00:00:00";
         energyUsed.setBeginTime(sf.parse(beginTime));
-        String endTime=aa+"-"+Integer.valueOf(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length()-2))+" 00:00:00";
+        String endTime = aa + "-" + Integer.valueOf(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length() - 2)) + " 00:00:00";
         energyUsed.setEndTime(sf.parse(endTime));
         List<MonthlyComprehensive> list = monthlyComprehensive.getListChart(energyUsed.getPointId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
         return AjaxResult.success(list);
     }
+
     public static String getLastDayOfMonth(String yearMonth) {
         int year = Integer.parseInt(yearMonth.split("-")[0]);  //年
         int month = Integer.parseInt(yearMonth.split("-")[1]); //月
@@ -128,23 +128,24 @@ public class MonthlyComprehensiveController extends BaseController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(cal.getTime());
     }
+
     /*综合月报表导出*/
 //    @Log(title = "综合月报表导出", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     @ApiOperation(value = "综合月报表导出")
-    public AjaxResult export(EnergyUsed energyUsed) {
+    public AjaxResult export(EnergyUsedDTO energyUsed) {
         try {
 
-            Map tableColumn =new HashMap<>();//表数据
-            List<MonthlyComprehensive> dataList=new ArrayList<>();
+            Map tableColumn = new HashMap<>();//表数据
+            List<MonthlyComprehensive> dataList = new ArrayList<>();
             DateFormat df = new SimpleDateFormat("yyyy-MM");
             SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String aa= df.format(energyUsed.getDataTime());
-            String bb="";
+            String aa = df.format(energyUsed.getDataTime());
+            String bb = "";
             int i = 1;
-            String beginTime=aa+"-01 00:00:00";
+            String beginTime = aa + "-01 00:00:00";
             energyUsed.setBeginTime(sf.parse(beginTime));
-            String endTime=aa+"-"+Integer.valueOf(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length()-2))+" 00:00:00";
+            String endTime = aa + "-" + Integer.valueOf(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length() - 2)) + " 00:00:00";
             energyUsed.setEndTime(sf.parse(endTime));
             while (i <= Integer.parseInt(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length() - 2))) {
                 if (i > 9) {
@@ -165,7 +166,7 @@ public class MonthlyComprehensiveController extends BaseController {
             table.add(tableColumn);
             reportList.setTablehead(table);
 
-            ModelNode modelNode = modelNodeService.getModelNodeByModelCodeByIndexCode(energyUsed.getPointCode());
+            ModelNode modelNode = modelNodeService.getModelNodeByModelCodeByIndexCode(energyUsed.getIndexCode());
             if (ObjectUtils.isEmpty(modelNode)) {
                 return AjaxResult.success(reportList);
             }
@@ -183,17 +184,17 @@ public class MonthlyComprehensiveController extends BaseController {
             return AjaxResult.error("获取出错!");
         }
     }
-    public void valueRep(Object dr){
+
+    public void valueRep(Object dr) {
         Field[] fields = dr.getClass().getDeclaredFields();
-        for(Field field:fields){
+        for (Field field : fields) {
             field.setAccessible(true);
             Object obj = field.getType();
-            if(field.getType().getName().equals("java.lang.Double")){
+            if (field.getType().getName().equals("java.lang.Double")) {
                 String name = field.getName();
                 try {
-                    if(ObjectUtils.isEmpty(field.get(dr)))
-                    {
-                        field.set(dr,0.00);
+                    if (ObjectUtils.isEmpty(field.get(dr))) {
+                        field.set(dr, 0.00);
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();

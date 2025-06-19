@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface RuleFormulaMapper {
 
-  void insertIndexFormula(RuleFormula ruleFormula);
+    void insertIndexFormula(RuleFormula ruleFormula);
 
-  void updateIndexFormula(RuleFormula ruleFormula);
+    void updateIndexFormula(RuleFormula ruleFormula);
 
-  void saveIndexFormulaParam(@Param("indexId") String indexId, @Param("indexFormulaParams") List<RuleFormulaParam> ruleFormulaParams);
+    void saveIndexFormulaParam(@Param("indexId") String indexId, @Param("ruleFormulaParams") List<RuleFormulaParam> ruleFormulaParams);
 
-  RuleFormula getFormula(String indexId);
+    RuleFormula getFormula(String indexId);
 
-  List<RuleFormulaParam> getFormulaParam(String indexId);
+    List<RuleFormulaParam> getFormulaParam(String indexId);
 }

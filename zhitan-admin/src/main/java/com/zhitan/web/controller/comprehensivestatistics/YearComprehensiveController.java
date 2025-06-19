@@ -10,14 +10,13 @@ import com.zhitan.comprehensivestatistics.domain.YearComperhensive;
 import com.zhitan.comprehensivestatistics.service.IyearComprehensive;
 import com.zhitan.model.domain.ModelNode;
 import com.zhitan.model.service.IModelNodeService;
-import com.zhitan.realtimedata.domain.EnergyUsed;
+import com.zhitan.realtimedata.domain.dto.EnergyUsedDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +35,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@Api(value = "综合指标分析（年）controller",tags = {"综合指标分析"})
+@Api(value = "综合指标分析（年）controller", tags = {"综合指标分析"})
 @RequestMapping("/comprehensive/yearComprehensive")
 public class YearComprehensiveController extends BaseController {
 
@@ -45,14 +44,15 @@ public class YearComprehensiveController extends BaseController {
 
     /**
      * 全厂能耗统计
+     *
      * @param energyUsed
      * @return
      */
     @GetMapping("/list")
     @ApiOperation(value = "获取综合指标分析（年）列表")
-    public AjaxResult list(EnergyUsed energyUsed) {
+    public AjaxResult list(EnergyUsedDTO energyUsed) {
         try {
-            ModelNode modelNode = modelNodeService.getModelNodeByModelCodeByIndexCode(energyUsed.getPointCode());
+            ModelNode modelNode = modelNodeService.getModelNodeByModelCodeByIndexCode(energyUsed.getIndexCode());
             if (ObjectUtils.isEmpty(modelNode)) {
                 return AjaxResult.success("暂无数据");
             }
@@ -67,9 +67,9 @@ public class YearComprehensiveController extends BaseController {
             String bb = "";
             int i = 1;
             while (i <= 12) {
-                if(i > 9){
+                if (i > 9) {
                     bb = aa + "-" + i + "-01 00:00:00";
-                }else{
+                } else {
                     bb = aa + "-0" + i + "-01 00:00:00";
                 }
                 YearComperhensive report = new YearComperhensive();
@@ -92,7 +92,7 @@ public class YearComprehensiveController extends BaseController {
      */
     @GetMapping("/listChart")
     @ApiOperation(value = "获取综合指标分析图表（年）数据")
-    public AjaxResult listChart(EnergyUsed energyUsed){
+    public AjaxResult listChart(EnergyUsedDTO energyUsed) {
 
         energyUsed.setBeginTime(DateUtil.beginOfYear(energyUsed.getDataTime()));
         energyUsed.setEndTime(DateUtil.endOfYear(energyUsed.getDataTime()));
@@ -107,9 +107,9 @@ public class YearComprehensiveController extends BaseController {
     @Log(title = "综合报表", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     @ApiOperation(value = "综合年报表导出")
-    public AjaxResult export(EnergyUsed energyUsed) {
+    public AjaxResult export(EnergyUsedDTO energyUsed) {
         try {
-            ModelNode modelNode = modelNodeService.getModelNodeByModelCodeByIndexCode(energyUsed.getPointCode());
+            ModelNode modelNode = modelNodeService.getModelNodeByModelCodeByIndexCode(energyUsed.getIndexCode());
             if (ObjectUtils.isEmpty(modelNode)) {
                 return AjaxResult.success("暂无数据");
             }
@@ -120,20 +120,20 @@ public class YearComprehensiveController extends BaseController {
             String bb = "";
             int i = 1;
             while (i <= 12) {
-                if(i>9){
-                    bb=aa+"-"+i+"-01 00:00:00";
-                }else{
-                    bb=aa+"-0"+i+"-01 00:00:00";
+                if (i > 9) {
+                    bb = aa + "-" + i + "-01 00:00:00";
+                } else {
+                    bb = aa + "-0" + i + "-01 00:00:00";
                 }
-                YearComperhensive report=new YearComperhensive();
+                YearComperhensive report = new YearComperhensive();
                 report.setDataTime(sf.parse(bb));
-                report.setValue("value"+i);
+                report.setValue("value" + i);
                 dataList.add(report);
                 i++;
             }
             List<YearComperhensive> list = yearComprehensive.getYearComprehensiveList(modelNode.getNodeId(),
                     dataList, energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
-            if(CollectionUtils.isNotEmpty(list)){
+            if (CollectionUtils.isNotEmpty(list)) {
                 list.forEach(this::valueRep);
             }
             ExcelUtil<YearComperhensive> util = new ExcelUtil<>(YearComperhensive.class);
@@ -144,17 +144,16 @@ public class YearComprehensiveController extends BaseController {
         }
     }
 
-    public void valueRep(Object dr){
+    public void valueRep(Object dr) {
         Field[] fields = dr.getClass().getDeclaredFields();
-        for(Field field:fields){
+        for (Field field : fields) {
             field.setAccessible(true);
             Object obj = field.getType();
-            if(field.getType().getName().equals("java.lang.Double")){
+            if (field.getType().getName().equals("java.lang.Double")) {
                 String name = field.getName();
                 try {
-                    if(ObjectUtils.isEmpty(field.get(dr)))
-                    {
-                        field.set(dr,0.00);
+                    if (ObjectUtils.isEmpty(field.get(dr))) {
+                        field.set(dr, 0.00);
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
