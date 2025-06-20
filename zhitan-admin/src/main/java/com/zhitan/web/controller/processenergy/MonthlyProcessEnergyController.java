@@ -49,21 +49,21 @@ public class MonthlyProcessEnergyController extends BaseController {
         Map tableColumn = new HashMap<>();//表数据
         DateFormat df = new SimpleDateFormat("yyyy-MM");
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String aa = df.format(energyUsed.getDataTime());
-        String bb = "";
+        String formattedDate = df.format(energyUsed.getDataTime());
+        String hourDateTimeStr = "";
         int i = 1;
-        String beginTime = aa + "-01 00:00:00";
+        String beginTime = formattedDate + "-01 00:00:00";
         energyUsed.setBeginTime(sf.parse(beginTime));
-        String endTime = aa + "-" + Integer.valueOf(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length() - 2)) + " 00:00:00";
+        String endTime = formattedDate + "-" + Integer.valueOf(getLastDayOfMonth(formattedDate).substring(getLastDayOfMonth(formattedDate).length() - 2)) + " 00:00:00";
         energyUsed.setEndTime(sf.parse(endTime));
-        while (i <= Integer.valueOf(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length() - 2))) {
+        while (i <= Integer.valueOf(getLastDayOfMonth(formattedDate).substring(getLastDayOfMonth(formattedDate).length() - 2))) {
             if (i > 9) {
-                bb = aa + "-" + i + " 00:00:00";
+                hourDateTimeStr = formattedDate + "-" + i + " 00:00:00";
             } else {
-                bb = aa + "-0" + i + " 00:00:00";
+                hourDateTimeStr = formattedDate + "-0" + i + " 00:00:00";
             }
             MonthlyProcessEnergy report = new MonthlyProcessEnergy();
-            report.setDataTime(sf.parse(bb));
+            report.setDataTime(sf.parse(hourDateTimeStr));
             report.setValue("value" + i);
             dataList.add(report);
             tableColumn.put("value" + i, i + "日");
@@ -98,10 +98,10 @@ public class MonthlyProcessEnergyController extends BaseController {
     public AjaxResult listChart(EnergyUsedDTO energyUsed) throws ParseException {
         DateFormat df = new SimpleDateFormat("yyyy-MM");
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String aa = df.format(energyUsed.getDataTime());
-        String beginTime = aa + "-01 00:00:00";
+        String formattedDate = df.format(energyUsed.getDataTime());
+        String beginTime = formattedDate + "-01 00:00:00";
         energyUsed.setBeginTime(sf.parse(beginTime));
-        String endTime = aa + "-" + Integer.valueOf(getLastDayOfMonth(aa).substring(getLastDayOfMonth(aa).length() - 2)) + " 00:00:00";
+        String endTime = formattedDate + "-" + Integer.valueOf(getLastDayOfMonth(formattedDate).substring(getLastDayOfMonth(formattedDate).length() - 2)) + " 00:00:00";
         energyUsed.setEndTime(sf.parse(endTime));
         List<MonthlyProcessEnergy> list = monthlyProcessEnergyService.getListChart(energyUsed.getPointId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
         return AjaxResult.success(list);

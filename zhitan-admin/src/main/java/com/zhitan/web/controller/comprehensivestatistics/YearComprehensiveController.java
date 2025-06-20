@@ -63,17 +63,17 @@ public class YearComprehensiveController extends BaseController {
 
             DateFormat df = new SimpleDateFormat("yyyy");
             SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String aa = df.format(energyUsed.getDataTime());
-            String bb = "";
+            String formattedDate = df.format(energyUsed.getDataTime());
+            String hourDateTimeStr = "";
             int i = 1;
             while (i <= 12) {
                 if (i > 9) {
-                    bb = aa + "-" + i + "-01 00:00:00";
+                    hourDateTimeStr = formattedDate + "-" + i + "-01 00:00:00";
                 } else {
-                    bb = aa + "-0" + i + "-01 00:00:00";
+                    hourDateTimeStr = formattedDate + "-0" + i + "-01 00:00:00";
                 }
                 YearComperhensive report = new YearComperhensive();
-                report.setDataTime(sf.parse(bb));
+                report.setDataTime(sf.parse(hourDateTimeStr));
                 report.setValue("value" + i);
                 dataList.add(report);
                 i++;
@@ -116,17 +116,17 @@ public class YearComprehensiveController extends BaseController {
             List<YearComperhensive> dataList = new ArrayList<>();
             DateFormat df = new SimpleDateFormat("yyyy");
             SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String aa = df.format(energyUsed.getBeginTime());
-            String bb = "";
+            String formattedDate = df.format(energyUsed.getBeginTime());
+            String hourDateTimeStr = "";
             int i = 1;
             while (i <= 12) {
                 if (i > 9) {
-                    bb = aa + "-" + i + "-01 00:00:00";
+                    hourDateTimeStr = formattedDate + "-" + i + "-01 00:00:00";
                 } else {
-                    bb = aa + "-0" + i + "-01 00:00:00";
+                    hourDateTimeStr = formattedDate + "-0" + i + "-01 00:00:00";
                 }
                 YearComperhensive report = new YearComperhensive();
-                report.setDataTime(sf.parse(bb));
+                report.setDataTime(sf.parse(hourDateTimeStr));
                 report.setValue("value" + i);
                 dataList.add(report);
                 i++;

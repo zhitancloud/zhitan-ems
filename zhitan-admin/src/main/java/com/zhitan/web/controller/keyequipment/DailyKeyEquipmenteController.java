@@ -55,20 +55,20 @@ public class DailyKeyEquipmenteController extends BaseController {
         List<DailyKeyEquipment> dataList = new ArrayList<>();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String aa = df.format(energyUsed.getDataTime());
-        String bb;
+        String formattedDate = df.format(energyUsed.getDataTime());
+        String hourDateTimeStr;
         int i = 0;
         energyUsed.setBeginTime(energyUsed.getDataTime());
-        String endTime = aa + " 24:00:00";
+        String endTime = formattedDate + " 24:00:00";
         energyUsed.setEndTime(sf.parse(endTime));
         while (i < 24) {
             if (i > 9) {
-                bb = aa + " " + i + ":00:00";
+                hourDateTimeStr = formattedDate + " " + i + ":00:00";
             } else {
-                bb = aa + " 0" + i + ":00:00";
+                hourDateTimeStr = formattedDate + " 0" + i + ":00:00";
             }
             DailyKeyEquipment report = new DailyKeyEquipment();
-            report.setDataTime(sf.parse(bb));
+            report.setDataTime(sf.parse(hourDateTimeStr));
             report.setValue("value" + i);
             dataList.add(report);
             i++;
@@ -84,9 +84,9 @@ public class DailyKeyEquipmenteController extends BaseController {
     public AjaxResult listChart(EnergyUsedDTO energyUsed) throws ParseException {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String aa = df.format(energyUsed.getDataTime());
+        String formattedDate = df.format(energyUsed.getDataTime());
         energyUsed.setBeginTime(energyUsed.getDataTime());
-        String endTime = aa + " 24:00:00";
+        String endTime = formattedDate + " 24:00:00";
         energyUsed.setEndTime(sf.parse(endTime));
         List<DailyKeyEquipment> list = dailykeyEquipment.getListChart(energyUsed.getPointId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
         return AjaxResult.success(list);
