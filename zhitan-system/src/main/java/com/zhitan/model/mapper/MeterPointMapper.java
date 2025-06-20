@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhitan.basicdata.domain.vo.EnergyTypeMeterPointVO;
 import com.zhitan.model.domain.EnergyIndexQuery;
 import com.zhitan.model.domain.MeterPoint;
+import com.zhitan.model.domain.vo.MeterPointAddDTO;
+import com.zhitan.model.domain.vo.MeterPointEditDTO;
 import com.zhitan.model.domain.vo.ModelNodePointInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -42,18 +44,18 @@ public interface MeterPointMapper extends BaseMapper<MeterPoint> {
     /**
      * 新增指标信息
      *
-     * @param meterPoint 指标信息
+     * @param meterPointAddDTO 指标信息
      * @return 结果
      */
-    int insertMeterPoint(MeterPoint meterPoint);
+    int insertMeterPoint(MeterPointAddDTO meterPointAddDTO);
 
     /**
      * 修改指标信息
      *
-     * @param meterPoint 指标信息
+     * @param meterPointEditDTO 指标信息
      * @return 结果
      */
-    int updateMeterPoint(MeterPoint meterPoint);
+    int updateMeterPoint(MeterPointEditDTO meterPointEditDTO);
 
     /**
      * 批量删除指标信息

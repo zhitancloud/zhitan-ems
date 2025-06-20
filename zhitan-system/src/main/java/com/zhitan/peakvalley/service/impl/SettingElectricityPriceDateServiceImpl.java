@@ -1,8 +1,10 @@
 package com.zhitan.peakvalley.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhitan.common.exception.ServiceException;
 import com.zhitan.common.utils.DateUtils;
 import com.zhitan.common.utils.StringUtils;
 import com.zhitan.common.utils.uuid.UUID;
@@ -59,6 +61,14 @@ public class SettingElectricityPriceDateServiceImpl extends ServiceImpl<SettingE
      */
     @Override
     public int insertElectricityPriceDate(SettingElectricityPriceDate settingElectricityPriceDate) {
+        boolean exists = settingElectricityPriceDateMapper.exists(Wrappers.<SettingElectricityPriceDate>lambdaQuery()
+                .lt(SettingElectricityPriceDate::getBeginDate, settingElectricityPriceDate.getEndDate())
+                .gt(SettingElectricityPriceDate::getEndDate, settingElectricityPriceDate.getBeginDate())
+        );
+
+        if (exists) {
+            throw new ServiceException("时间段存在交集，无法保存");
+        }
         settingElectricityPriceDate.setCreateTime(DateUtils.getNowDate());
         settingElectricityPriceDate.setId(UUID.fastUUID().toString());
         return settingElectricityPriceDateMapper.insertElectricityPriceDate(settingElectricityPriceDate);
@@ -72,6 +82,14 @@ public class SettingElectricityPriceDateServiceImpl extends ServiceImpl<SettingE
      */
     @Override
     public int updateElectricityPriceDate(SettingElectricityPriceDate settingElectricityPriceDate) {
+        boolean exists = settingElectricityPriceDateMapper.exists(Wrappers.<SettingElectricityPriceDate>lambdaQuery()
+                .ne(SettingElectricityPriceDate::getId, settingElectricityPriceDate.getId())
+                .lt(SettingElectricityPriceDate::getBeginDate, settingElectricityPriceDate.getEndDate())
+                .gt(SettingElectricityPriceDate::getEndDate, settingElectricityPriceDate.getBeginDate())
+        );
+        if (exists) {
+            throw new ServiceException("时间段存在交集，无法保存");
+        }
         settingElectricityPriceDate.setUpdateTime(DateUtils.getNowDate());
         return settingElectricityPriceDateMapper.updateElectricityPriceDate(settingElectricityPriceDate);
     }

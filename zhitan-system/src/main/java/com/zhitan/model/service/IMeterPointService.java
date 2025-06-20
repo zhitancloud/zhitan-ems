@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhitan.common.core.domain.AjaxResult;
 import com.zhitan.model.domain.EnergyIndexQuery;
 import com.zhitan.model.domain.MeterPoint;
+import com.zhitan.model.domain.vo.MeterPointAddDTO;
+import com.zhitan.model.domain.vo.MeterPointEditDTO;
 import com.zhitan.model.domain.vo.ModelNodePointInfo;
 
 import java.util.List;
@@ -61,18 +63,18 @@ public interface IMeterPointService {
      * 新增指标信息
      *
      * @param nodeId
-     * @param meterPoint 指标信息
+     * @param meterPointAddDTO 指标信息
      * @return 结果
      */
-    int insertMeterPoint(String nodeId, MeterPoint meterPoint);
+    int insertMeterPoint(String nodeId, MeterPointAddDTO meterPointAddDTO);
 
     /**
      * 修改指标信息
      *
-     * @param meterPoint 指标信息
+     * @param meterPointEditDTO 指标信息
      * @return 结果
      */
-    int updateMeterPoint(MeterPoint meterPoint);
+    int updateMeterPoint(MeterPointEditDTO meterPointEditDTO);
 
     /**
      * 批量删除指标信息

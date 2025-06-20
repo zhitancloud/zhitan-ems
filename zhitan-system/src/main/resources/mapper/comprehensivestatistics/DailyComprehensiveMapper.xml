@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhitan.comprehensivestatistics.mapper.DailyComprehensiveMapper">
     <resultMap id="dataItemMap" type="com.zhitan.comprehensivestatistics.domain.DailyComprehensive">
-        <result column="index_id" property="indexId"/>
-        <result column="index_name" property="indexName"/>
+        <result column="point_id" property="indexId"/>
+        <result column="point_name" property="indexName"/>
         <result column="time_type" property="timeType"/>
         <result column="time_code" property="timeCode"/>
         <result column="unit_id" property="unitId"/>
@@ -37,59 +37,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!--全厂能耗统计-->
     <select id="getDailyComprehensiveList" resultType="com.zhitan.comprehensivestatistics.domain.DailyComprehensive">
         SELECT
-            aa.index_id,
-            aa.index_name,
-            aa.unit_id,
-            <foreach item="item" index="index" collection="dataList">
-                COALESCE ( MAX ( CASE WHEN data_time = #{item.dataTime} THEN "value" END ), null ) AS ${item.value},
-            </foreach>
-            aa.time_type,
-            aa.order_num orderNum
+        aa.point_id AS "indexId",
+        aa.point_name AS "indexName",
+        aa.unit_id,
+        <foreach item="item" index="index" collection="dataList">
+            COALESCE ( MAX ( CASE WHEN data_time = #{item.dataTime} THEN "value" END ), null ) AS ${item.value},
+        </foreach>
+        aa.time_type,
+        aa.order_num orderNum
         FROM
-            (
-            SELECT
-                ni.point_id,
-                ei."name" AS "index_name",
-                ei.unit_id,
-                di."value",
-                di.data_time,
-                di.time_type,
-                mn.order_num
-            FROM
-                model_node mn
-                LEFT JOIN node_point ni ON ni.node_id = mn.node_id
-                LEFT JOIN meter_point ei ON ei.point_id = ni.index_id
-                LEFT JOIN energy_used di ON ni.index_id = di.point_id
-            WHERE
-                mn.parent_id = #{nodeId}
-                AND di.data_time >= #{beginTime}
-                AND di.data_time &lt; #{endTime}
-                AND di.time_type = #{timeType}
-                <if test="indexStorageId !='' and indexStorageId !=null">
-                    and ei.energy_id=#{indexStorageId}
-                </if>
-            ) aa
+        (
+        SELECT
+        ni.point_id,
+        ei."name" AS "point_name",
+        ei.unit_id,
+        di."value",
+        di.data_time,
+        di.time_type,
+        mn.order_num
+        FROM
+        model_node mn
+        LEFT JOIN node_point ni ON ni.node_id = mn.node_id
+        LEFT JOIN meter_point ei ON ei.point_id = ni.index_id
+        LEFT JOIN energy_used di ON ni.index_id = di.point_id
+        WHERE
+        mn.parent_id = #{nodeId}
+        AND di.data_time >= #{beginTime}
+        AND di.data_time &lt; #{endTime}
+        AND di.time_type = #{timeType}
+        <if test="indexStorageId !='' and indexStorageId !=null">
+            and ei.energy_id=#{indexStorageId}
+        </if>
+        ) aa
         GROUP BY
-            aa.index_id, aa.index_name, aa.unit_id, aa.time_type, aa.order_num
+        aa.point_id, aa.point_name, aa.unit_id, aa.time_type, aa.order_num
         ORDER BY aa.order_num ASC
     </select>
 
     <select id="getListChart" resultType="com.zhitan.comprehensivestatistics.domain.DailyComprehensive">
         SELECT
-            di.point_id,
-            ci.name AS "index_name",
-            ci.unit_id,
-            di."value",
-            di.data_time,
-            di.time_type,
-            di.time_code
+        di.point_id,
+        ci.name AS "point_name",
+        ci.unit_id,
+        di."value",
+        di.data_time,
+        di.time_type,
+        di.time_code
         FROM
-            energy_used di LEFT JOIN meter_point ci ON di.point_id = ci.point_id
+        energy_used di LEFT JOIN meter_point ci ON di.point_id = ci.point_id
         WHERE
-            di.index_id =#{indexId}
-            AND di.data_time &lt; #{endTime}
-            AND di.data_time >= #{beginTime}
-            AND di.time_type = #{timeType}
+        di.index_id =#{indexId}
+        AND di.data_time &lt; #{endTime}
+        AND di.data_time >= #{beginTime}
+        AND di.time_type = #{timeType}
         ORDER BY data_time ASC
     </select>
 </mapper>

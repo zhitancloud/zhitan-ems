@@ -9,6 +9,8 @@ import com.zhitan.common.enums.BusinessType;
 import com.zhitan.common.utils.poi.ExcelUtil;
 import com.zhitan.model.domain.EnergyIndexQuery;
 import com.zhitan.model.domain.MeterPoint;
+import com.zhitan.model.domain.vo.MeterPointAddDTO;
+import com.zhitan.model.domain.vo.MeterPointEditDTO;
 import com.zhitan.model.domain.vo.ModelNodePointInfo;
 import com.zhitan.model.service.IMeterPointService;
 import io.swagger.annotations.Api;
@@ -41,9 +43,7 @@ public class MeterPointController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('energyindex:energyindex:query')")
     @GetMapping("/list")
-    public TableDataInfo list(MeterPoint meterPoint, @RequestParam Long pageNum, @RequestParam Long pageSize) {
-        EnergyIndexQuery query = new EnergyIndexQuery(meterPoint.getNodeId(), meterPoint.getName(),
-                meterPoint.getPointCategory(), meterPoint.getPointType());
+    public TableDataInfo list(EnergyIndexQuery query, @RequestParam Long pageNum, @RequestParam Long pageSize) {
         Page<MeterPoint> list = meterPointService.pageMeterPoint(query, pageNum, pageSize);
         return getDataTable(list);
     }
@@ -96,13 +96,13 @@ public class MeterPointController extends BaseController {
     @Log(title = "指标信息", businessType = BusinessType.INSERT)
     @PostMapping(value = "/{nodeId}")
     public AjaxResult add(@PathVariable("nodeId") String nodeId,
-                          @RequestBody MeterPoint meterPoint) {
-        boolean isExist = meterPointService.meterPointExist(meterPoint.getCode());
+                          @RequestBody MeterPointAddDTO meterPointAddDTO) {
+        boolean isExist = meterPointService.meterPointExist(meterPointAddDTO.getCode());
         if (isExist) {
             return AjaxResult.error("指标编码不能重复！");
         } else {
-            meterPoint.setPointId(UUID.randomUUID().toString());
-            meterPointService.insertMeterPoint(nodeId, meterPoint);
+            meterPointAddDTO.setPointId(UUID.randomUUID().toString());
+            meterPointService.insertMeterPoint(nodeId, meterPointAddDTO);
             return AjaxResult.success();
         }
     }
@@ -113,13 +113,13 @@ public class MeterPointController extends BaseController {
     @PreAuthorize("@ss.hasPermi('energyindex:energyindex:edit')")
     @Log(title = "指标信息", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody MeterPoint meterPoint) {
+    public AjaxResult edit(@RequestBody MeterPointEditDTO meterPointEditDTO) {
         boolean isExist = meterPointService
-                .meterPointExist(meterPoint.getPointId(), meterPoint.getCode());
+                .meterPointExist(meterPointEditDTO.getPointId(), meterPointEditDTO.getCode());
         if (isExist) {
             return AjaxResult.error("指标编码不能重复！");
         } else {
-            return toAjax(meterPointService.updateMeterPoint(meterPoint));
+            return toAjax(meterPointService.updateMeterPoint(meterPointEditDTO));
         }
     }
 
