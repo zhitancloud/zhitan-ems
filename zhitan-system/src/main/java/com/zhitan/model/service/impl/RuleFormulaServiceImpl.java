@@ -29,13 +29,13 @@ public class RuleFormulaServiceImpl implements RuleFormulaService {
       ruleFormulaMapper.updateIndexFormula(ruleFormula);
     }
 
-    ruleFormula.getRuleFormulaParams().forEach(param -> {
+    ruleFormula.getIndexFormulaParams().forEach(param -> {
       param.setId(UUID.fastUUID().toString());
       param.setFormulaId(ruleFormula.getId());
       param.setPointId(ruleFormula.getPointId());
     });
     ruleFormulaMapper
-        .saveIndexFormulaParam(ruleFormula.getPointId(), ruleFormula.getRuleFormulaParams());
+        .saveIndexFormulaParam(ruleFormula.getPointId(), ruleFormula.getIndexFormulaParams());
   }
 
   @Override
@@ -44,7 +44,7 @@ public class RuleFormulaServiceImpl implements RuleFormulaService {
     if (ruleFormula != null) {
       List<RuleFormulaParam> ruleFormulaParams = ruleFormulaMapper.getFormulaParam(indexId);
       if (!ruleFormulaParams.isEmpty()) {
-        ruleFormula.setRuleFormulaParams(ruleFormulaParams);
+        ruleFormula.setIndexFormulaParams(ruleFormulaParams);
       }
     } else {
       ruleFormula = new RuleFormula();

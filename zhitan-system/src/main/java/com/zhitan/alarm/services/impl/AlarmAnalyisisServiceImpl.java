@@ -70,12 +70,18 @@ public class AlarmAnalyisisServiceImpl implements IAlarmAnalysisService {
 
         List<ChartData> chartDataList = new ArrayList<>();
         final String nodeId = alarmAnalysisDTO.getNodeId();
-        final Date queryTime = alarmAnalysisDTO.getDataTime();
+        Date queryTime = alarmAnalysisDTO.getDataTime();
+        if (ObjectUtils.isEmpty(queryTime)){
+            queryTime = new Date();
+        }
        
         Date beginTime;
         Date endTime;
         String timeFormat;
         String queryTimeType = alarmAnalysisDTO.getTimeType();
+        if (ObjectUtils.isEmpty(queryTimeType)){
+            queryTimeType = TimeType.MONTH.name();
+        }
         if (TimeType.DAY.name().equals(queryTimeType)) {
             beginTime = DateUtil.beginOfDay(queryTime);
             endTime = DateUtil.endOfDay(queryTime);

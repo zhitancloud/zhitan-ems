@@ -16,15 +16,15 @@
     </resultMap>
     <insert id="insertIndexFormula">
     insert into rule_formula (id, point_id, formula_text,is_pv_calc)
-    values (#{id}, #{indexId}, #{formulaText},#{isPvCalc});
+    values (#{id}, #{pointId}, #{formulaText},#{isPvCalc});
   </insert>
   <insert id="saveIndexFormulaParam">
     delete
     from rule_formula_param
-    where point_id = #{indexId};
+    where point_id = #{pointId};
     <foreach collection="ruleFormulaParams" item="formulaParam" separator=";">
       insert into rule_formula_param (id, formula_id,point_id, param_name, param_value) values
-      (#{formulaParam.id}, #{formulaParam.formulaId}, #{formulaParam.indexId},
+      (#{formulaParam.id}, #{formulaParam.formulaId}, #{formulaParam.pointId},
       #{formulaParam.paramName},
       #{formulaParam.paramValue})
     </foreach>
