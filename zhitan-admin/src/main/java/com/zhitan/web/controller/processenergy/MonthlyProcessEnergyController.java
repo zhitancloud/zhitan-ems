@@ -103,7 +103,7 @@ public class MonthlyProcessEnergyController extends BaseController {
         energyUsed.setBeginTime(sf.parse(beginTime));
         String endTime = formattedDate + "-" + Integer.valueOf(getLastDayOfMonth(formattedDate).substring(getLastDayOfMonth(formattedDate).length() - 2)) + " 00:00:00";
         energyUsed.setEndTime(sf.parse(endTime));
-        List<MonthlyProcessEnergy> list = monthlyProcessEnergyService.getListChart(energyUsed.getPointId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
+        List<MonthlyProcessEnergy> list = monthlyProcessEnergyService.getListChart(energyUsed.getIndexId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
         return AjaxResult.success(list);
     }
 

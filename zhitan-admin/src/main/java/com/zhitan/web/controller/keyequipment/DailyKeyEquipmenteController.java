@@ -88,7 +88,7 @@ public class DailyKeyEquipmenteController extends BaseController {
         energyUsed.setBeginTime(energyUsed.getDataTime());
         String endTime = formattedDate + " 24:00:00";
         energyUsed.setEndTime(sf.parse(endTime));
-        List<DailyKeyEquipment> list = dailykeyEquipment.getListChart(energyUsed.getPointId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
+        List<DailyKeyEquipment> list = dailykeyEquipment.getListChart(energyUsed.getIndexId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
         return AjaxResult.success(list);
     }
 

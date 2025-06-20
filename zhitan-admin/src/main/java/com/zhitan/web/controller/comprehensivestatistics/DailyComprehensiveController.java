@@ -86,7 +86,7 @@ public class DailyComprehensiveController extends BaseController {
         energyUsed.setBeginTime(energyUsed.getDataTime());
         String endTime = formattedDate + " 24:00:00";
         energyUsed.setEndTime(sf.parse(endTime));
-        List<DailyComprehensive> list = dailyComprehensiveService.getListChart(energyUsed.getPointId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
+        List<DailyComprehensive> list = dailyComprehensiveService.getListChart(energyUsed.getIndexId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
         return AjaxResult.success(list);
     }
 

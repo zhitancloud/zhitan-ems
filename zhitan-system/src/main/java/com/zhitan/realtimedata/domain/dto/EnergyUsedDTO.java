@@ -1,7 +1,6 @@
 package com.zhitan.realtimedata.domain.dto;
 
 import com.zhitan.common.enums.Quality;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -14,12 +13,11 @@ import java.util.Date;
  * @author zhitan
  */
 @Data
-@ApiModel(value = "energy_used对象")
 public class EnergyUsedDTO implements Serializable {
     private static final long serialVersionUID = -2777479013884125925L;
 
     @ApiModelProperty(value = "点位指标id")
-    private String pointId;
+    private String indexId;
     @ApiModelProperty(value = "能源品种")
     private String energyType;
     @ApiModelProperty(value = "点位指标code")
