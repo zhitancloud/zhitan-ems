@@ -12,7 +12,7 @@ public interface RuleFormulaMapper {
 
     void updateIndexFormula(RuleFormula ruleFormula);
 
-    void saveIndexFormulaParam(@Param("indexId") String indexId, @Param("ruleFormulaParams") List<RuleFormulaParam> ruleFormulaParams);
+    void saveIndexFormulaParam(@Param("pointId") String pointId, @Param("ruleFormulaParams") List<RuleFormulaParam> ruleFormulaParams);
 
     RuleFormula getFormula(String indexId);
 

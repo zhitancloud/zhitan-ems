@@ -14,5 +14,5 @@ public class RuleFormula {
   private String formulaText;
   private String pointId;
   private Integer isPvCalc;
-  private List<RuleFormulaParam> ruleFormulaParams = new ArrayList<>();
+  private List<RuleFormulaParam> indexFormulaParams = new ArrayList<>();
 }

@@ -49,7 +49,7 @@ public class RuleStorageServiceImpl implements IRuleStorageService {
     ruleFormulaService.saveIndexFormula(ruleFormula);
     String calcText = ruleFormula.getFormulaText();
     List<String> paramNames = new ArrayList<>();
-    for (RuleFormulaParam param : ruleFormula.getRuleFormulaParams()) {
+    for (RuleFormulaParam param : ruleFormula.getIndexFormulaParams()) {
         calcText = calcText
                 .replace("(" + param.getParamName() + ")", "(" + String.format("'%s'", param.getParamValue()) + ")");
         paramNames.add(param.getParamValue());
