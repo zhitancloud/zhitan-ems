@@ -105,7 +105,7 @@ public class MonthlyComprehensiveController extends BaseController {
         energyUsed.setBeginTime(sf.parse(beginTime));
         String endTime = formattedDate + "-" + Integer.valueOf(getLastDayOfMonth(formattedDate).substring(getLastDayOfMonth(formattedDate).length() - 2)) + " 00:00:00";
         energyUsed.setEndTime(sf.parse(endTime));
-        List<MonthlyComprehensive> list = monthlyComprehensive.getListChart(energyUsed.getPointId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
+        List<MonthlyComprehensive> list = monthlyComprehensive.getListChart(energyUsed.getIndexId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
         return AjaxResult.success(list);
     }
 

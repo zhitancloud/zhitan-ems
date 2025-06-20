@@ -21,7 +21,7 @@
   <insert id="saveParams">
     delete from storage_parameter where storage_id = #{storageId};
     <foreach collection="parameterIds" item="paramId" separator=";">
-      insert into storage_parameter (storage_id, point_id)
+      insert into storage_parameter (storage_id, index_id)
       values (#{storageId}, #{paramId});
     </foreach>
   </insert>
@@ -46,7 +46,7 @@
   </select>
     <select id="getAllParameter"
             resultType="com.zhitan.model.domain.IndexStorageParam">
-        select storage_id as storageId, point_id as pointId
+        select storage_id as storageId, index_id as pointId
         from storage_parameter
     </select>
   <select id="getWithTimetype" resultMap="indexStorageMap">
