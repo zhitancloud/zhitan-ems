@@ -116,7 +116,7 @@ const useTagsViewStore = defineStore(
       delAllVisitedViews(view) {
         return new Promise(resolve => {
           // 过滤掉首页标签，只保留其他固定标签
-          const affixTags = this.visitedViews.filter(tag => tag.meta.affix && tag.path !== '/index' && tag.path !== '/' && tag.name !== 'Index')
+          const affixTags = this.visitedViews.filter(tag => tag.meta.affix && tag.path !== '/index/index' && tag.path !== '/' && tag.name !== 'Index')
           this.visitedViews = affixTags
           this.iframeViews = []
           resolve([...this.visitedViews])
