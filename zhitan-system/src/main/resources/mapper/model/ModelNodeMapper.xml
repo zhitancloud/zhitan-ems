@@ -378,7 +378,7 @@
         mn."name" "name",
         ni.point_id indexId,
         ei.energy_id energyId,
-        ei.point_type pointType,
+        ei.point_type indexType,
         ei.unit_id unitId
         FROM "model_node" mn
         LEFT JOIN node_point ni ON mn.node_id = ni.node_id

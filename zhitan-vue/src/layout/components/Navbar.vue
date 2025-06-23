@@ -53,12 +53,12 @@ function toggleSideBar() {
 
 function handleAlarm() {
   // 跳转到报警管理页面
-  router.push('/alarmmanage/measuremen?modelCode=BJGL')
+  router.push('/realtime/alarmmanage/measuremen?modelCode=BJGL')
 }
 
 function handleRobot() {
   // 跳转到智能助手页面
-  window.open('https://deepseek.tan-zhonghe.com/chat', '_blank')
+  window.open('https://deepseek.com', '_blank')
 }
 </script>
 

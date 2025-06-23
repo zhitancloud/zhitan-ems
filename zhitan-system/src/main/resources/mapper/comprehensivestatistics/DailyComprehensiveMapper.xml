@@ -76,8 +76,8 @@
 
     <select id="getListChart" resultType="com.zhitan.comprehensivestatistics.domain.DailyComprehensive">
         SELECT
-        di.point_id,
-        ci.name AS "point_name",
+        di.point_id AS "indexId",
+        ci.name AS "indexName",
         ci.unit_id,
         di."value",
         di.data_time,

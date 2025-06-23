@@ -92,7 +92,7 @@ function goToAlarm() {
 // 打开AI大模型对话框
 function openAIModel() {
   // 跳转到指定的URL
-  window.open("https://deepseek.tan-zhonghe.com/chat", "_blank")
+  window.open("https://deepseek.com", "_blank")
 }
 
 const classObj = computed(() => ({
