@@ -83,7 +83,7 @@ public class DailyProcessEnergyController extends BaseController {
         energyUsed.setBeginTime(energyUsed.getDataTime());
         String endTime = formattedDate + " 24:00:00";
         energyUsed.setEndTime(sf.parse(endTime));
-        List<DailyProcessEnergy> list = dailyProcessEnergy.getListChart(energyUsed.getPointId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
+        List<DailyProcessEnergy> list = dailyProcessEnergy.getListChart(energyUsed.getIndexId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
         return AjaxResult.success(list);
     }
 }

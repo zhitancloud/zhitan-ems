@@ -97,7 +97,7 @@ public class YearComprehensiveController extends BaseController {
         energyUsed.setBeginTime(DateUtil.beginOfYear(energyUsed.getDataTime()));
         energyUsed.setEndTime(DateUtil.endOfYear(energyUsed.getDataTime()));
 
-        List<YearComperhensive> list = yearComprehensive.getListChart(energyUsed.getPointId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
+        List<YearComperhensive> list = yearComprehensive.getListChart(energyUsed.getIndexId(), energyUsed.getBeginTime(), energyUsed.getEndTime(), energyUsed.getTimeType(), energyUsed.getEnergyType());
         return AjaxResult.success(list);
     }
 
