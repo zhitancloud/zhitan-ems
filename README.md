@@ -23,7 +23,7 @@
 3. 数据清洗服务：也即时序库➡️关系库，学习者可以使用java自带的XXL job等计划任务工具自己按照业务功能，来实现数据清洗服务。
 
 ## 文档--均在wiki目录
-### github wiki地址：https://github.com/zhitan-cloud/zhitan-ems/wiki
+### github wiki地址：https://github.com/zhitancloud/zhitan-ems/wiki
 ### gitee wiki地址：https://gitee.com/liulingling1993/zhitan-ems/wikis/
 
 
