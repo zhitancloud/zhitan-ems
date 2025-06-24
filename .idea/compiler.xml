@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="zhitan-quartz" />
+        <module name="zhitan-generator" />
+        <module name="zhitan-admin" />
+        <module name="zhitan-system" />
+        <module name="zhitan-common" />
+        <module name="zhitan-framework" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="BaseAdminAPI" options="-bootclasspath $PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/rt.jar;$PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/jce.jar -Xlint:deprecation" />
+      <module name="zhitan-admin" options="-bootclasspath $PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/rt.jar;$PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/jce.jar -Xlint:deprecation" />
+      <module name="zhitan-common" options="-bootclasspath $PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/rt.jar;$PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/jce.jar -Xlint:deprecation" />
+      <module name="zhitan-framework" options="-bootclasspath $PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/rt.jar;$PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/jce.jar -Xlint:deprecation" />
+      <module name="zhitan-generator" options="-bootclasspath $PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/rt.jar;$PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/jce.jar -Xlint:deprecation" />
+      <module name="zhitan-quartz" options="-bootclasspath $PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/rt.jar;$PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/jce.jar -Xlint:deprecation" />
+      <module name="zhitan-system" options="-bootclasspath $PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/rt.jar;$PROJECT_DIR$/../../JAVA/java/jdk1.8.0_241/jre/lib/jce.jar -Xlint:deprecation" />
+    </option>
+  </component>
+</project>

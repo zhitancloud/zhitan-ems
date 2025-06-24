@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhitan.energyUsed.mapper.EnergyUsedMapper">
+    <resultMap type="com.zhitan.energyUsed.domain.StageDataEntry" id="stageDataEntryResult">
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="pointId" column="point_id"/>
+        <result property="timeType" column="time_type"/>
+        <result property="unitId" column="unit_id"/>
+        <result property="calcType" column="calc_type"/>
+        <result property="value" column="value"/>
+        <result property="timeCode" column="time_code"/>
+        <result property="dataTime" column="data_time"/>
+    </resultMap>
+
+    <select id="getSettingIndex" parameterType="com.zhitan.energyUsed.domain.StageDataEntry" resultMap="stageDataEntryResult">
+
+        SELECT
+        ei.point_id,
+        code,
+        NAME,
+        si.time_type,
+        ei.unit_id
+        FROM
+        meter_point ei
+        LEFT JOIN node_point ni ON ei.point_id = ni.point_id
+        LEFT JOIN rule_storage si ON si.point_id = ei.point_id
+        WHERE
+        not EXISTS ( SELECT point_id FROM energy_used WHERE point_id =ei.point_id and  data_time >= #{beginTime} AND data_time &lt;= #{endTime}) AND
+        ni.node_id =  #{nodeId}
+        and si.time_type = #{timeType}
+        AND si.calc_type = #{calcType}
+   </select>
+    <select id="getSettingEdit" parameterType="com.zhitan.energyUsed.domain.StageDataEntry" resultMap="stageDataEntryResult">
+        SELECT
+            ei.point_id,
+            code,
+            NAME,
+            si.time_type,
+            ei.unit_id,
+            di.value,
+            di.data_time
+        FROM
+            meter_point ei
+            LEFT JOIN node_point ni ON ei.point_id = ni.point_id
+            LEFT JOIN rule_storage si ON si.point_id = ei.point_id
+            LEFT JOIN energy_used di on di.point_id = ei.point_id
+        WHERE
+            ni.node_id = #{nodeId}
+            and si.time_type = #{timeType}
+            AND si.calc_type = #{calcType}
+            AND data_time &gt;= #{beginTime}
+            AND data_time &lt;= #{endTime}
+    </select>
+    <select id="stagseDataByCode" parameterType="com.zhitan.energyUsed.domain.StageDataEntry" resultMap="stageDataEntryResult">
+        SELECT
+            ei.point_id,
+            code,
+            NAME,
+            ei.unit_id,
+            di.value,
+            di.data_time,
+            di.time_type
+        FROM
+            meter_point ei
+            LEFT JOIN node_point ni ON ei.point_id = ni.point_id
+            LEFT JOIN energy_used di on di.point_id = ei.point_id
+        WHERE
+            ni.node_id = #{nodeId}
+            and ei.code IN
+            <foreach item="indexCode" index="index" collection="indexCodes"
+                     open="(" separator="," close=")">
+                #{indexCode}
+            </foreach>
+            and di.time_type = #{timeType}
+            AND di.data_time &gt;= #{beginTime}
+            AND di.data_time &lt;= #{endTime}
+    </select>
+
+    <select id="getEnergyUsedTimeRangeInforByIndexIds" resultType="com.zhitan.realtimedata.domain.EnergyUsed">
+        SELECT
+        point_id,
+        data_time,
+        "value"
+        FROM
+        energy_used
+        WHERE
+        point_id IN
+        <foreach collection="indexIds" item="indexId" open="(" separator="," close=")">
+            #{indexId}
+        </foreach>
+            AND data_time between  #{beginTime}  AND  #{endTime}
+            AND time_type = #{timeType}
+    </select>
+
+    <select id="getEnergyUsedTimeRangeValueByIndexIds" resultType="java.math.BigDecimal">
+        SELECT
+            COALESCE (SUM ( "value" ), 0)
+        FROM
+            energy_used
+        WHERE
+            point_id IN
+            <foreach collection="indexIds" item="indexId" open="(" separator="," close=")">
+                #{indexId}
+            </foreach>
+            AND ( data_time &gt;= #{beginTime} AND data_time &lt; #{endTime} )
+            AND time_type = #{timeType}
+    </select>
+
+    <select id="listEnergyUsedByTimeCodeAndIndexIds" resultType="com.zhitan.realtimedata.domain.EnergyUsed">
+        SELECT
+        point_id,
+        data_time,
+        "value"
+        FROM
+        energy_used
+        WHERE
+        point_id IN
+        <foreach collection="indexIds" item="indexId" open="(" separator="," close=")">
+            #{indexId}
+            </foreach>
+            AND time_code = #{timeCode}
+    </select>
+
+    <select id="getEnergyUsedValueByTimeCodeAndIndexIds" resultType="java.math.BigDecimal">
+        SELECT
+            COALESCE (SUM ( "value" ), 0)
+        FROM
+            energy_used
+        WHERE
+            point_id IN
+            <foreach collection="indexIds" item="indexId" open="(" separator="," close=")">
+                #{indexId}
+            </foreach>
+            AND time_code = #{timeCode}
+    </select>
+    <select id="getUpCarbonEmission" resultType="com.zhitan.carbonemission.domain.CarbonEmission">
+        SELECT
+            di.point_id,
+            di.data_time,
+            di.value,
+            ei.energy_id
+        FROM
+            energy_used  di
+                JOIN meter_point ei  ON di.point_id = ei.point_id
+        WHERE
+            ei.energy_id != '' and
+            di.point_id IN ( SELECT point_id FROM node_point WHERE node_id = #{indexId})
+          AND di.data_time BETWEEN   #{beginTime}  AND  #{endTime}
+          AND di.time_type = #{timeType}
+    </select>
+    <select id="getMiddleCarbonEmission" resultType="com.zhitan.carbonemission.domain.CarbonEmission">
+        SELECT
+            di.point_id,
+            di.data_time,
+        CASE
+        WHEN di.time_type = 'MONTH' THEN
+        TO_CHAR( di.create_time, 'MM' )
+        WHEN di.time_type = 'DAY' THEN
+        TO_CHAR( di.create_time, 'DD' )
+        WHEN di.time_type = 'HOUR' THEN
+        TO_CHAR( di.data_time, 'HH24' )
+        ELSE TO_CHAR( di.data_time, 'YYMMDD' )
+        END AS dataTimeStr,
+            di.value,
+            ei.energy_id,
+            di.time_type
+        FROM
+            energy_used  di
+                JOIN meter_point ei  ON di.point_id = ei.point_id
+        WHERE
+            di.point_id IN ( SELECT point_id FROM node_point WHERE node_id = #{indexId})
+        <if test="emissionType !='' and emissionType !=null  and emissionType =='allType'">
+            AND ei.energy_id != ''
+        </if>
+        <if test="emissionType !='' and emissionType !=null  and emissionType !='allType'">
+            AND  ei.energy_id = #{emissionType}
+        </if>
+          AND di.data_time BETWEEN   #{beginTime}  AND  #{endTime}
+          AND di.time_type = #{timeType}
+    </select>
+    <select id="getDownCarbonEmission" resultType="com.zhitan.carbonemission.domain.CarbonEmission">
+        SELECT
+            di.point_id,
+            di.data_time,
+            di.value,
+            ei.energy_id,
+            mn.name as nodeName
+        FROM
+        model_node mn
+        LEFT JOIN node_point ni ON mn.node_id = ni.node_id
+        LEFT JOIN energy_used di ON di.point_id = ni.point_id
+        LEFT JOIN meter_point ei ON di.point_id = ei.point_id
+        WHERE
+        ei.energy_id != ''
+        AND mn.parent_id = #{indexId}
+        AND di.data_time BETWEEN   #{beginTime}  AND  #{endTime}
+        AND di.time_type =  #{timeType}
+    </select>
+
+    <select id="getDataItemHourInforByIndexIds" resultType="com.zhitan.realtimedata.domain.EnergyUsed">
+        SELECT
+        point_id,
+        data_time,
+        "value"
+        FROM
+        energy_used
+        WHERE
+        point_id IN
+        <foreach collection="indexIds" item="indexId" open="(" separator="," close=")">
+            #{indexId}
+        </foreach>
+        AND ( begin_time BETWEEN #{beginTime} AND #{endTime} )
+        AND time_type = #{timeType}
+    </select>
+
+    <select id="getDataItemTimeRangeValueByNodeId" resultType="java.math.BigDecimal">
+        SELECT
+        COALESCE (SUM ( "value" ), 0)
+        FROM
+        energy_used di
+        JOIN meter_point ei  ON di.point_id = ei.point_id
+        WHERE
+        di.point_id IN ( SELECT point_id FROM node_point WHERE node_id = #{nodeId})
+        <if test="energyType !='' and energyType !=null  and energyType =='allType'">
+            AND ei.energy_id != ''
+        </if>
+        <if test="energyType !='' and energyType !=null  and energyType !='allType'">
+            AND  ei.energy_id = #{energyType}
+        </if>
+        AND (di.data_time BETWEEN #{beginTime} AND #{endTime})
+        AND di.time_type = #{timeType}
+    </select>
+    <select id="getHomePageConsumptionRanking"
+            resultType="com.zhitan.consumptionanalysis.domain.vo.RankingEnergyData">
+        SELECT
+            A.node_Id,
+            A."name" AS nodeName,
+            A.energy_id AS energyTypeNo,
+            A.point_type AS energyTypeName,
+            A."value" AS energyConsumption
+        FROM
+        (
+            SELECT
+                mn.node_id,
+                mn."name",
+                ei.energy_id,
+                ei.point_type,
+                se.coefficient,
+                (SUM ( di."value" ) * se.coefficient) AS "value"
+            FROM
+                model_node mn
+            LEFT JOIN node_point ni ON ni.node_id = mn.node_id
+            LEFT JOIN energy_used di ON di.point_id = ni.point_id
+            LEFT JOIN meter_point ei ON ei.point_id = ni.point_id
+            LEFT JOIN sys_energy se ON se.enersno = ei.energy_id
+            WHERE
+                mn.node_id IN
+                <foreach collection="nodeIds" item="nodeId" open="(" separator="," close=")">
+                    #{nodeId}
+                </foreach>
+                AND di.time_type = #{timeType}
+                AND di.begin_time between #{beginTime} AND #{endTime}
+                AND ei.point_type = 'STATISTIC'
+            GROUP BY
+                mn.node_id,
+                mn."name",
+                ei.energy_id,
+                ei.point_type,
+                se.coefficient
+        ) A
+        ORDER BY
+            A."value" DESC
+        LIMIT 5
+    </select>
+</mapper>

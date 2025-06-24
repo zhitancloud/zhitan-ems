@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhitan.model.mapper.MeterPointMapper">
+
+    <resultMap type="com.zhitan.model.domain.MeterPoint" id="EnergyIndexResult">
+        <result property="pointId" column="point_id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="pointType" column="point_type"/>
+        <result property="pointCategory" column="category"/>
+        <result property="remark" column="remark"/>
+        <result property="unitId" column="unit_id"/>
+        <result property="meterId" column="meter_id"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="equipment" column="equipment"/>
+        <result property="energyId" column="energy_id"/>
+        <result property="meterName" column="meter_name"/>
+    </resultMap>
+
+    <sql id="selectEnergyIndexVo">
+        select point_id,
+        name,
+        code,
+        point_type,
+        point_category,
+        remark,
+        unit_id,
+        meter_id,
+        order_num,
+        equipment,
+        energy_id
+        from meter_point
+    </sql>
+
+    <select id="listMeterPointList" parameterType="com.zhitan.model.domain.MeterPoint"
+            resultMap="EnergyIndexResult">
+        select ni.point_id, name, code, point_type, remark, unit_id, point_category
+        from meter_point ei left join node_point ni on ei.point_id = ni.point_id
+        <where>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="code != null  and code != ''">and code like concat('%', #{code}, '%')</if>
+            <if test="pointType != null">and point_type = #{pointType}</if>
+            <if test="nodeId != null  and nodeId != ''">and node_id = #{nodeId}</if>
+            <if test="indexCategory != null  and indexCategory != ''">and point_category =
+                #{indexCategory}
+            </if>
+        </where>
+        order by ei.order_num
+    </select>
+
+    <select id="getMeterPointById" parameterType="String" resultMap="EnergyIndexResult">
+        <include refid="selectEnergyIndexVo"/>
+        where point_id = #{indexId}
+        order by order_num
+    </select>
+
+    <select id="listMeterPointByIds" resultType="com.zhitan.model.domain.MeterPoint">
+        <include refid="selectEnergyIndexVo"/>
+        where
+        point_id IN
+        <foreach collection="indexIds" item="indexId" open="(" separator="," close=")">
+            #{indexId}
+        </foreach>
+    </select>
+
+    <select id="meterPointExist" resultType="java.lang.Integer">
+        select count(*)
+        from meter_point
+        where code = #{code}
+        <if test="indexId != null  and indexId != ''">
+            AND point_id != #{indexId}
+        </if>
+
+    </select>
+    <select id="listMeterPointByMeterId" resultMap="EnergyIndexResult">
+        <include refid="selectEnergyIndexVo"/>
+        where meter_id = #{meterId}
+        order by order_num
+    </select>
+    <select id="listCollectPointByMeterId" resultMap="EnergyIndexResult">
+        <include refid="selectEnergyIndexVo"/>
+        where meter_id = #{meterId}
+        order by order_num
+    </select>
+    <select id="listMeterPointByCodes" resultMap="EnergyIndexResult">
+        <include refid="selectEnergyIndexVo"/>
+        where code in
+        <foreach item="indexCode" collection="list" open="(" separator="," close=")">
+            #{indexCode}
+        </foreach>
+        order by order_num
+    </select>
+    <select id="listMeterPointByNodeId" resultMap="EnergyIndexResult">
+        select ei.*
+        from meter_point ei
+        left join node_point ni on ei.point_id = ni.point_id
+        where ni.node_id in (select node_id
+        from model_node
+        where address like (select address
+        from model_node
+        where node_id = #{nodeId}) || '%')
+        order by ei.order_num
+    </select>
+
+    <select id="listMeterPointByQuery" resultMap="EnergyIndexResult">
+        select ei.point_id, name, code, point_type, remark, unit_id, point_category
+        from meter_point ei left join node_point ni on ei.point_id = ni.point_id
+        <where>
+            <if test="codeOrName != null  and codeOrName != ''">
+                and (name like concat('%', #{codeOrName},
+                '%') or code like concat('%', #{codeOrName}, '%'))
+            </if>
+            <if test="nodeId != null  and nodeId != ''">
+                and node_id = #{nodeId}
+            </if>
+            <if test="pointType != null">
+                and point_type = #{pointType}
+            </if>
+            <if test="indexCategory != null  and indexCategory != ''">
+                and point_category = #{indexCategory}
+            </if>
+        </where>
+        order by ei.order_num
+    </select>
+
+    <insert id="insertMeterPoint" parameterType="com.zhitan.model.domain.MeterPoint">
+        insert into meter_point
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="indexId != null  and indexId != ''">point_id,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="code != null  and code != ''">code,</if>
+            <if test="pointType != null">point_type,</if>
+            <if test="indexCategory != null  and indexCategory != ''">point_category,</if>
+            <if test="remark != null  and remark != ''">remark,</if>
+            <if test="unitId != null  and unitId != ''">unit_id,</if>
+            <if test="orderNum != null">order_num,</if>
+            <if test="equipment != null">equipment,</if>
+            <if test="energyId != null">energy_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=");" suffixOverrides=",">
+            <if test="indexId != null  and indexId != ''">#{indexId},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="code != null  and code != ''">#{code},</if>
+            <if test="pointType != null">#{pointType},</if>
+            <if test="indexCategory != null  and indexCategory != ''">#{indexCategory},</if>
+            <if test="remark != null  and remark != ''">#{remark},</if>
+            <if test="unitId != null  and unitId != ''">#{unitId},</if>
+            <if test="orderNum != null">#{orderNum},</if>
+            <if test="equipment != null">#{equipment},</if>
+            <if test="energyId != null">#{energyId},</if>
+        </trim>
+
+    </insert>
+    <insert id="insertNodePoint">
+        insert into node_point (node_id, point_id)
+        values (#{nodeId}, #{indexId});
+    </insert>
+    <insert id="insertMeterPointBatch">
+        <foreach collection="energyIndices" item="meterPoint" separator=";">
+            insert into meter_point
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="meterPoint.indexId != null  and meterPoint.indexId != ''">point_id,</if>
+                <if test="meterPoint.name != null  and meterPoint.name != ''">name,</if>
+                <if test="meterPoint.code != null  and meterPoint.code != ''">code,</if>
+                <if test="meterPoint.pointType != null">point_type,</if>
+                <if test="meterPoint.indexCategory != null  and meterPoint.indexCategory != ''">point_category,</if>
+                <if test="meterPoint.remark != null  and meterPoint.remark != ''">remark,</if>
+                <if test="meterPoint.unitId != null  and meterPoint.unitId != ''">unit_id,</if>
+                <if test="meterPoint.meterId != null  and meterPoint.meterId != ''">meter_id,</if>
+                <if test="meterPoint.orderNum != null">order_num,</if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="meterPoint.pointId != null  and meterPoint.pointId != ''">#{meterPoint.pointId},</if>
+                <if test="meterPoint.name != null  and meterPoint.name != ''">#{meterPoint.name},</if>
+                <if test="meterPoint.code != null  and meterPoint.code != ''">#{meterPoint.code},</if>
+                <if test="meterPoint.pointType != null">#{meterPoint.pointType},</if>
+                <if test="meterPoint.pointCategory != null  and meterPoint.pointCategory != ''">
+                    #{meterPoint.pointCategory},
+                </if>
+                <if test="meterPoint.remark != null  and meterPoint.remark != ''">#{meterPoint.remark},</if>
+                <if test="meterPoint.unitId != null  and meterPoint.unitId != ''">#{meterPoint.unitId},</if>
+                <if test="meterPoint.meterId != null  and meterPoint.meterId != ''">#{meterPoint.meterId},</if>
+                <if test="meterPoint.orderNum != null">#{meterPoint.orderNum},</if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="updateMeterPoint" parameterType="com.zhitan.model.domain.MeterPoint">
+        update meter_point
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="code != null  and code != ''">code = #{code},</if>
+            <if test="pointType != null">point_type = #{pointType},</if>
+            <if test="pointCategory != null  and pointCategory != ''">point_category = #{pointCategory},
+            </if>
+            <if test="remark != null  and remark != ''">remark = #{remark},</if>
+            <if test="unitId != null  and unitId != ''">unit_id = #{unitId},</if>
+            <if test="orderNum != null">order_num = #{orderNum},</if>
+            <if test="equipment != null">equipment = #{equipment},</if>
+            <if test="energyId != null">energy_id=#{energyId},</if>
+        </trim>
+        where point_id = #{pointId}
+    </update>
+
+    <delete id="deleteNodeMeterPointByIds" parameterType="String">
+        delete from meter_point where point_id in
+        <foreach item="indexId" collection="indexIds" open="(" separator="," close=")">
+            #{indexId}
+        </foreach>;
+        delete from node_point where node_id = #{nodeId} and point_id in
+        <foreach item="indexId" collection="indexIds" open="(" separator="," close=")">
+            #{indexId}
+        </foreach>;
+    </delete>
+    <delete id="deleteMeterPointByMeterId">
+        delete
+        from meter_point
+        where meter_id = #{meterId}
+    </delete>
+    <delete id="deleteMeterPointByPoints">
+        delete from meter_point where point_id in
+        <foreach collection="indexIds" item="indexId" open="(" separator="," close=")">
+            #{indexId}
+        </foreach>
+    </delete>
+
+    <select id="pageMeterPoint" resultMap="EnergyIndexResult">
+        select ei.point_id, ei.name, ei.code, ei.point_type, ei.remark, ei.unit_id, ei.point_category
+        from meter_point ei left join node_point ni on ei.point_id = ni.point_id
+        <where>
+            <if test="query.codeOrName != null  and query.codeOrName != ''">and (ei.name like concat('%',
+                #{query.codeOrName},
+                '%') or ei.code like concat('%', #{query.codeOrName}, '%'))
+            </if>
+            <if test="query.pointType != null">and ei.point_type = #{query.pointType}</if>
+            <if test="query.nodeId != null  and query.nodeId != ''">and ni.node_id = #{query.nodeId}</if>
+            <if test="query.pointCategory != null  and query.pointCategory != ''">and ei.point_category =
+                #{query.pointCategory}
+            </if>
+        </where>
+        order by ei.order_num
+
+    </select>
+    <select id="listMeterPointByMeterIds" resultType="com.zhitan.model.domain.MeterPoint">
+        select ei.point_id,
+        ei.name,
+        ei.code,
+        ei.point_type,
+        ei.point_category,
+        ei.remark,
+        ei.unit_id,
+        ei.meter_id,
+        ei.order_num,
+        ei.equipment,
+        ei.energy_id
+        from meter_point ei
+        left join node_point ni on ei.point_id = ni.point_id
+        <where>
+            <if test="nodeId != null  and nodeId != ''">and ni.node_id = #{nodeId}</if>
+            <if test="meterIds != null">
+                and ei.meter_id in
+                <foreach collection="meterIds" item="meterId" open="(" separator="," close=")">
+                    #{meterId}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <select id="getMeterPointByCode" resultType="com.zhitan.model.domain.MeterPoint">
+        <include refid="selectEnergyIndexVo"/>
+        where code = #{cdoe}
+    </select>
+    <select id="listMeterPointByCodeAndNodeId" resultType="com.zhitan.model.domain.MeterPoint">
+        SELECT ei.code,mi.meter_name||'_'||ei.name as name
+        from meter_point ei
+        LEFT JOIN node_device nd on ei.meter_id = nd.device_id
+        LEFT JOIN meter mi on mi."id" = nd.device_id
+        <where>
+            <if test="nodeId != null  and nodeId != ''">and nd.node_id = #{nodeId}</if>
+            <if test="code != null  and code != ''">
+                and (mi.meter_name like concat('%', #{code}, '%')
+                or ei.code like concat('%', #{code}, '%')
+                or ei.name like concat('%', #{code}, '%')
+                )
+            </if>
+        </where>
+    </select>
+    <select id="listMeterPointByMeterIdPointCodeAndNodeId" resultType="com.zhitan.model.domain.MeterPoint">
+        SELECT ei.code,mi.meter_name||'_'||ei.name as name from meter_point ei
+        LEFT JOIN node_device nd on ei.meter_id = nd.device_id
+        LEFT JOIN meter mi on mi."id" = nd.device_id
+        <where>
+            <if test="nodeId != null  and nodeId != ''">and nd.node_id = #{nodeId}</if>
+            <if test="indexCode != null  and indexCode != ''">
+                and (mi.meter_name like concat('%', #{indexCode}, '%')
+                or ei.code like concat('%', #{indexCode}, '%')
+                or ei.name like concat('%', #{indexCode}, '%')
+                )
+            </if>
+            <if test="meterId != null  and meterId != ''">
+                and ei.meter_id = #{meterId}
+            </if>
+        </where>
+    </select>
+    <select id="listModelNodePointByPointIds"
+            resultType="com.zhitan.model.domain.vo.ModelNodePointInfo">
+        SELECT mi.model_name modelName,
+        mi.model_code,
+        mn."name" "name",
+        ei.point_id,
+        ei.code indexCode,
+        ei."name" indexName,
+        ei.energy_id,
+        ei.energy_id
+        FROM node_point ni
+        INNER JOIN meter_point ei ON ni.point_id = ei.point_id
+        LEFT JOIN model_node mn ON ni.node_id = mn.node_id
+        LEFT JOIN model mi ON mn.model_code = mi.model_code
+        WHERE ei.point_id IN
+        <foreach collection="indexIds" item="indexId" open="(" separator="," close=")">
+            #{indexId}
+        </foreach>
+    </select>
+
+    <select id="listEnergyTypeMeterPointByPointIds" resultType="com.zhitan.basicdata.domain.vo.EnergyTypeMeterPointVO">
+        select ei.point_id indexId,
+        mi.id meterId,
+        mi.energy_type energyType
+        from meter_point ei
+        left join meter mi on ex.meter_id = mi.id
+        where ei.point_id in
+        <foreach collection="indexIds" item="indexId" open="(" separator="," close=")">
+            #{indexId}
+        </foreach>
+    </select>
+</mapper>

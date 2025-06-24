@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhitan.model.mapper.PointTemplateMapper">
+
+    <resultMap type="com.zhitan.model.domain.PointTemplate" id="PointTemplateResult">
+        <result property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="deviceType" column="device_type"/>
+        <result property="unit" column="unit"/>
+        <result property="gatewayKey" column="gateway_key"/>
+    </resultMap>
+
+    <sql id="selectDaqTemplateVo">
+        select id, code, name, device_type, unit, gateway_key
+        from point_template
+    </sql>
+
+    <select id="selectPointTemplateList" parameterType="com.zhitan.model.domain.PointTemplate" resultMap="PointTemplateResult">
+        <include refid="selectDaqTemplateVo"/>
+        <where>
+            <if test="code != null  and code != ''">and code = #{code}</if>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="deviceType != null  and deviceType != ''">and device_type = #{deviceType}</if>
+        </where>
+        order by device_type, code
+    </select>
+
+    <select id="selectPointTemplateById" parameterType="String" resultMap="PointTemplateResult">
+        <include refid="selectDaqTemplateVo"/>
+        where id = #{id}
+    </select>
+    <select id="hasExistWhenAdd" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM point_template
+        WHERE code = #{code}
+          AND device_type = #{deviceType}
+    </select>
+    <select id="hasExistWhenUpdate" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM point_template
+        WHERE code = #{code}
+          AND device_type = #{deviceType}
+          AND id != #{id}
+    </select>
+    <select id="codeHasExistWhenAdd" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM point_template
+        WHERE gateway_key = #{key}
+          AND device_type = #{deviceType}
+    </select>
+    <select id="codeHasExistWhenUpdate" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM point_template
+        WHERE gateway_key = #{key}
+          AND device_type = #{deviceType}
+          AND id != #{id}
+    </select>
+    <select id="listTemplate" resultType="com.zhitan.model.domain.PointTemplate">
+        <include refid="selectDaqTemplateVo"/>
+    </select>
+
+    <insert id="insertPointTemplate" parameterType="com.zhitan.model.domain.PointTemplate">
+        insert into point_template
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''">id,</if>
+            <if test="code != null  and code != ''">code,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="deviceType != null  and deviceType != ''">device_type,</if>
+            <if test="unit != null  and unit != ''">unit,</if>
+            <if test="gatewayKey != null  and gatewayKey != ''">gateway_key,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''">#{id},</if>
+            <if test="code != null  and code != ''">#{code},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="deviceType != null  and deviceType != ''">#{deviceType},</if>
+            <if test="unit != null  and unit != ''">#{unit},</if>
+            <if test="gatewayKey != null  and gatewayKey != ''">#{gatewayKey},</if>
+        </trim>
+    </insert>
+
+    <update id="updatePointTemplate" parameterType="com.zhitan.model.domain.PointTemplate">
+        update point_template
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null  and code != ''">code = #{code},</if>
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="deviceType != null  and deviceType != ''">device_type = #{deviceType},</if>
+            <if test="unit != null  and unit != ''">unit = #{unit},</if>
+            <if test="gatewayKey != null  and gatewayKey != ''">gateway_key = #{gatewayKey},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePointTemplateById" parameterType="String">
+        delete
+        from point_template
+        where id = #{id}
+    </delete>
+
+    <delete id="deletePointTemplateByIds" parameterType="String">
+        delete from point_template where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
