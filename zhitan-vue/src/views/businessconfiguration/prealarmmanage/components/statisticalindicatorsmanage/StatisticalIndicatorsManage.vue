@@ -3,10 +3,10 @@
     <div class="form-card" style="padding: 16px 16px 0 16px">
       <el-form :model="queryParams" ref="queryRef" :inline="true">
         <el-form-item label="采集点名称">
-          <el-input v-model="queryParams.name" placeholder="请输入采集点名称" maxlength="30" />
+          <el-input v-model="queryParams.name" placeholder="请输入采集点名称" maxlength="30" clearable />
         </el-form-item>
         <el-form-item label="采集点编码">
-          <el-input v-model="queryParams.code" placeholder="请输入采集点编码" maxlength="30" />
+          <el-input v-model="queryParams.code" placeholder="请输入采集点编码" maxlength="30" clearable />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" icon="Search" @click="getTabList"> 搜索 </el-button>
@@ -24,7 +24,7 @@
     </div>
     <el-table
       v-loading="loading"
-      row-key="indexId"
+      row-key="pointId"
       ref="tableRef"
       :data="tableData"
       @selection-change="handleSelectionChange"
@@ -103,7 +103,7 @@ function resetQuery() {
 function initStartStop() {
   for (let i = 0; i < tableData.value.length; i++) {
     let ndy = ""
-    getStartStop(tableData.value[i].indexId).then((response) => {
+    getStartStop(tableData.value[i].pointId).then((response) => {
       if (response.code == "200") {
         if (response.msg == "1") {
           tableData.value[i].indexCategory = "启动"
@@ -126,7 +126,7 @@ function handleAlarm(row) {
 
 // 多选框选中数据
 function handleSelectionChange(selection) {
-  ids.value = selection.map((item) => item.indexId)
+  ids.value = selection.map((item) => item.pointId)
   names.value = selection.map((item) => item.name)
   single.value = selection.length !== 1
   multiple.value = !selection.length
@@ -151,6 +151,7 @@ function handleUpdateState(flag) {
         startStopArrIds.push(ids.value[i])
       }
     }
+    console.log("startStopArrIds", ids.value, startStopArrIds)
     if (unStartStopArrName.length > 0) {
       var bh = unStartStopArrName.join("，")
       proxy.$modal

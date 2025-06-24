@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form :model="form" ref="formRef" :inline="true">
         <el-form-item label="期间" prop="timeType">
           <el-select v-model="form.timeType" placeholder="期间" style="width: 100%" @change="handleTimeType">

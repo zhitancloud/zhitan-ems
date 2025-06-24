@@ -1,7 +1,6 @@
 package com.zhitan.alarm.services;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhitan.alarm.domain.entity.AlarmItem;
 
 import java.util.ArrayList;
@@ -48,12 +47,20 @@ public interface IAlarmItemService {
     List<AlarmItem> selectAlarmItemtingById(String id);
 
     /**
+     * 修改预报警设置
+     *
+     * @param ids,flag 预报警设置
+     * @return 结果
+     */
+    int updateStartStop(String[] ids, String flag, String username);
+
+    /**
      * 查询预报警列表行启停值
      *
-     * @param indexid 预报警设置
+     * @param pointId 预报警设置
      * @return 预报警设置集合
      */
-    String getStartStop(String indexid);
+    String getStartStop(String pointId);
 
     /**
      * 修改弹出框限值

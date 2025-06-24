@@ -76,7 +76,7 @@ function getFacilityArchivesList() {
 }
 getFacilityArchivesList()
 
-const props = defineProps(["sys_index_category", "sys_unit", "indexType"])
+const props = defineProps(["sys_index_category", "sys_unit", "pointType"])
 
 let emit = defineEmits(["getList"])
 
@@ -87,7 +87,7 @@ let loading = ref(false)
 let form = ref({
   name: null,
   code: null,
-  indexType: props.indexType,
+  pointType: props.pointType,
   pointCategory: null,
   unitId: null,
   orderNum: null,
@@ -119,6 +119,10 @@ function handleOpen(row, modelNode) {
       title.value = "修改" + response.data.name + "指标信息"
     })
   } else {
+    form.value = {
+      ...form.value,
+      pointType: props.pointType,
+    }
     title.value = "添加指标信息"
   }
   visible.value = true
@@ -154,7 +158,7 @@ function handleClose(value) {
   form.value = {
     name: null,
     code: null,
-    indexType: props.indexType,
+    pointType: props.pointType,
     pointCategory: null,
     unitId: null,
     orderNum: null,

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form ref="form" :inline="true" :model="queryParams" @submit.prevent label-width="80px">
         <el-form-item label="函数名">
           <el-input v-model="queryParams.funcName" placeholder="请输入函数名" />
