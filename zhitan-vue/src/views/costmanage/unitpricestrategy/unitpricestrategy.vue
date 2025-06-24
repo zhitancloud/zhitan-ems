@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form :model="form" ref="queryRef" :inline="true" label-width="85px">
         <!-- <el-form-item label="有效周期">
                     <el-date-picker v-model="form.index1" type="daterange" format="YYYY-MM-DD" value-format="YYYY-MM-DD"

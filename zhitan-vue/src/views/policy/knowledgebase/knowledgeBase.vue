@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form :model="queryParams" ref="queryRef" :inline="true" label-width="120px">
         <el-form-item label="标题">
           <el-input v-model="queryParams.title" placeholder="请输入标题" clearable />

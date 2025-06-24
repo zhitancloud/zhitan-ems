@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div>
-      <div class="form-card">
+      <div class="form-card" style="margin: 0">
         <el-form :model="queryParams" ref="queryRef" :inline="true">
           <el-form-item label="期间" prop="timeType">
             <el-select

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form :model="queryParams" ref="queryRef" :inline="true" label-width="80px" @submit.prevent>
         <el-form-item label="能源品种">
           <el-input v-model="queryParams.name" placeholder="能源品种" maxlength="30" clearable />

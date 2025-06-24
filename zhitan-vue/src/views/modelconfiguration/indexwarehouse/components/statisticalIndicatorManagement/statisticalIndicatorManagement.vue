@@ -1,6 +1,6 @@
 <template>
   <div class="page-box">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form :model="form" ref="queryRef" :inline="true" label-width="70px">
         <el-form-item label="指标分类" prop="pointCategory">
           <el-select v-model="form.pointCategory" placeholder="请选择指标分类" style="width: 200px" clearable>
@@ -66,7 +66,7 @@
     />
     <edit-modal
       ref="EditModalRef"
-      :indexType="indexType"
+      :pointType="pointType"
       :sys_index_category="sys_index_category"
       :sys_unit="sys_unit"
       @getList="getList(currentNode)"
@@ -82,7 +82,7 @@ const { proxy } = getCurrentInstance()
 const { sys_index_category } = proxy.useDict("sys_index_category")
 const { sys_unit } = proxy.useDict("sys_unit")
 
-const props = defineProps(["indexType"])
+const props = defineProps(["pointType"])
 let loading = ref(false)
 let form = ref({
   pointCategory: null,
@@ -102,7 +102,7 @@ function getList(modelNode) {
   if (modelNode) {
     loading.value = true
     form.value.nodeId = modelNode.id
-    form.value.pointType = props.indexType
+    form.value.pointType = props.pointType
     listEnergyindex({ ...queryParams.value, ...form.value }).then((response) => {
       tableData.value = response.rows
       total.value = response.total
