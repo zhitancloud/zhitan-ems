@@ -1,14 +1,11 @@
 package com.zhitan.alarm.services.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhitan.alarm.domain.entity.AlarmItem;
 import com.zhitan.alarm.mapper.AlarmItemMapper;
 import com.zhitan.alarm.services.IAlarmItemService;
 import com.zhitan.common.utils.DateUtils;
 import com.zhitan.common.utils.uuid.IdUtils;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -72,13 +69,25 @@ public class AlarmItemServiceImpl implements IAlarmItemService {
     }
 
     /**
+     * 修改预报警设置
+     *
+     * @param ids,flag 预报警设置
+     * @return 结果
+     */
+    @Override
+    public int updateStartStop(String[] ids, String flag, String username) {
+
+        return alarmItemMapper.updateStartStop(ids, flag, username);
+    }
+
+    /**
      * 查询预报警设置
      *
      * @return 预报警设置
      */
     @Override
-    public String getStartStop(String indexid) {
-        return alarmItemMapper.getStartStop(indexid);
+    public String getStartStop(String pointId) {
+        return alarmItemMapper.getStartStop(pointId);
     }
 
     /**
@@ -93,7 +102,7 @@ public class AlarmItemServiceImpl implements IAlarmItemService {
         int num = 0;
         int dataNum = data.size();
         Map<String, Object> map = (Map<String, Object>) data.get(0);
-        id = map.get("indexId").toString();
+        id = map.get("pointId").toString();
         for (int i = 0; i < data.size(); i++) {
             Map<String, Object> map1 = (Map<String, Object>) data.get(i);
             String val = map1.get("limitVal").toString().trim();
@@ -103,7 +112,7 @@ public class AlarmItemServiceImpl implements IAlarmItemService {
                 num++;
             }
             map1.put("id", IdUtils.fastUUID());
-            map1.put("alarmCode", map1.get("indexId").toString() + ":" + map1.get("timeSlotVal").toString() + ":" + map1.get("limitTypeVal").toString());
+            map1.put("alarmCode", map1.get("pointId").toString() + ":" + map1.get("timeSlotVal").toString() + ":" + map1.get("limitTypeVal").toString());
         }
         //查询条数
         int count = alarmItemMapper.selectCountById(id);

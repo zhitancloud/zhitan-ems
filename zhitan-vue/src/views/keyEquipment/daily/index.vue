@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form :model="queryParams" ref="queryRef" :inline="true" label-width="68px">
         <!-- <el-form-item label="重点设备" prop="energyType">
           <el-select v-model="queryParams.energyType" placeholder="请选择重点设备">

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form :model="queryParams" ref="queryRef" :inline="true" label-width="120px">
         <el-form-item label="限值类型名称">
           <el-input v-model="queryParams.limitName" placeholder="请输入限值类型名称" />

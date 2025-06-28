@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form :model="form" ref="queryRef" :inline="true" label-width="80px">
         <el-form-item label="能源类型" prop="energyType">
           <el-select v-model="form.energyType" placeholder="请选择能源类型">

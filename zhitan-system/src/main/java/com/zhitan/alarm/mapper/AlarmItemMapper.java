@@ -49,7 +49,7 @@ public interface AlarmItemMapper extends BaseMapper<AlarmItem> {
     /**
      * @return 结果
      */
-    String getStartStop(String indexid);
+    String getStartStop(String pointId);
 
     /**
      * 修改【请填写功能名称】
@@ -59,6 +59,16 @@ public interface AlarmItemMapper extends BaseMapper<AlarmItem> {
      * @return 结果
      */
     int updateLimitVal(@Param("data") List data, @Param("id") String id, String username);
+
+    /**
+     * 修改预报警设置
+     *
+     * @param ids       预报警设置
+     * @param update_by 预报警设置
+     * @param flag      预报警设置
+     * @return 结果
+     */
+    int updateStartStop(@Param("ids") String[] ids, @Param("flag") String flag, @Param("update_by") String update_by);
 
     /**
      * 修改【查询是否存在测点设置】

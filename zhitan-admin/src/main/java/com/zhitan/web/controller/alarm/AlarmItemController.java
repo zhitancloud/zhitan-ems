@@ -1,13 +1,11 @@
 package com.zhitan.web.controller.alarm;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhitan.alarm.domain.entity.AlarmItem;
 import com.zhitan.alarm.services.IAlarmItemService;
 import com.zhitan.common.annotation.Log;
 import com.zhitan.common.core.controller.BaseController;
 import com.zhitan.common.core.domain.AjaxResult;
 import com.zhitan.common.core.domain.model.LoginUser;
-import com.zhitan.common.core.page.TableDataInfo;
 import com.zhitan.common.enums.BusinessType;
 import com.zhitan.common.utils.ServletUtils;
 import com.zhitan.common.utils.poi.ExcelUtil;
@@ -57,12 +55,24 @@ public class AlarmItemController extends BaseController {
     }
 
     /**
+     * 修改预报警设置启停状态
+     */
+    @PreAuthorize("@ss.hasPermi('system:alarmitem:edit')")
+    @Log(title = "预报警设置", businessType = BusinessType.UPDATE)
+    @PostMapping(value = "/startstop/{flag}")
+    public AjaxResult edit(@PathVariable String flag, @RequestBody String[] ids) {
+        LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+        String username = loginUser.getUsername();
+        return toAjax(alarmItemService.updateStartStop(ids, flag, username));
+    }
+
+    /**
      * 获取主表每行启停状态值
      */
     @PreAuthorize("@ss.hasPermi('system:alarmitem:query1')")
-    @GetMapping(value = "/getStartStop/{indexid}")
-    public AjaxResult getStartStop(@PathVariable("indexid") String indexid) {
-        return AjaxResult.success(alarmItemService.getStartStop(indexid));
+    @GetMapping(value = "/getStartStop/{pointId}")
+    public AjaxResult getStartStop(@PathVariable("pointId") String pointId) {
+        return AjaxResult.success(alarmItemService.getStartStop(pointId));
     }
 
     /**

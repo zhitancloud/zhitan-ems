@@ -1,6 +1,6 @@
 <template>
   <div class="app-container page">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="80px">
         <el-form-item label="参数名称" prop="configName">
           <el-input

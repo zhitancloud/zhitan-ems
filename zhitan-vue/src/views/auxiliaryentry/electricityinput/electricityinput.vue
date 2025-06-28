@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="form-card">
+    <div class="form-card" style="margin: 0">
       <el-form :model="form" ref="formRef" :inline="true">
         <el-form-item label="期间" prop="type">
           <el-select v-model="form.type" placeholder="期间" style="width: 100%" @change="handleTimeType">
@@ -52,7 +52,7 @@
           <el-table-column prop="electricityNum" label="总电量(千瓦时)" show-overflow-tooltip align="center" />
           <el-table-column prop="electricityFee" label="总电费(元)" show-overflow-tooltip align="center" />
           <el-table-column prop="powerFactor" label="功率因数" show-overflow-tooltip align="center" />
-          <el-table-column prop="electricityNum" label="尖(千瓦时)" show-overflow-tooltip align="center" />
+          <el-table-column prop="sharpElectricity" label="尖(千瓦时)" show-overflow-tooltip align="center" />
           <el-table-column prop="peakElectricity" label="峰(千瓦时)" show-overflow-tooltip align="center" />
           <el-table-column prop="flatElectricity" label="平(千瓦时)" show-overflow-tooltip align="center" />
           <el-table-column prop="valleyElectricity" label="谷(千瓦时)" show-overflow-tooltip align="center" />
