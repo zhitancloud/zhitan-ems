@@ -27,12 +27,11 @@ public class SysEnergyServiceImpl implements ISysEnergyService {
     /**
      * 查询energy
      *
-     * @param
      * @return energy
      */
     @Override
-    public SysEnergy selectSysEnergyById(Integer enerid) {
-        return sysEnergyMapper.selectSysEnergyById(enerid);
+    public SysEnergy selectSysEnergyById(Integer energyId) {
+        return sysEnergyMapper.selectSysEnergyById(energyId);
     }
 
     /**
@@ -43,7 +42,6 @@ public class SysEnergyServiceImpl implements ISysEnergyService {
      */
     @Override
     public List<SysEnergy> selectSysEnergyList(SysEnergy sysEnergy) {
-        String s = "1";
         //放入  是否储存（字符串）
         List<SysEnergy> list = sysEnergyMapper.selectSysEnergyList(sysEnergy);
         for (SysEnergy energy : list) {
@@ -91,23 +89,21 @@ public class SysEnergyServiceImpl implements ISysEnergyService {
     /**
      * 批量删除energy
      *
-     * @param
      * @return 结果
      */
     @Override
-    public int deleteSysEnergyByIds(Integer[] enerids) {
-        return sysEnergyMapper.deleteSysEnergyByIds(enerids);
+    public int deleteSysEnergyByIds(Integer[] energyIds) {
+        return sysEnergyMapper.deleteSysEnergyByIds(energyIds);
     }
 
     /**
      * 删除energy信息
      *
-     * @param
      * @return 结果
      */
     @Override
-    public int deleteSysEnergyById(Integer enerid) {
-        return sysEnergyMapper.deleteSysEnergyById(enerid);
+    public int deleteSysEnergyById(Integer energyId) {
+        return sysEnergyMapper.deleteSysEnergyById(energyId);
     }
 
     @Override
@@ -129,8 +125,8 @@ public class SysEnergyServiceImpl implements ISysEnergyService {
      * 修改的时候查询一样能源名称的id
      */
     @Override
-    public Integer selectIdByName(String enername) {
-        return sysEnergyMapper.selectIdByName(enername);
+    public Integer selectIdByName(String energyName) {
+        return sysEnergyMapper.selectIdByName(energyName);
     }
 
     /**
@@ -147,7 +143,6 @@ public class SysEnergyServiceImpl implements ISysEnergyService {
      * 根据code查询能源信息
      *
      * @param code 编号
-     * @return
      */
     @Override
     public EnergyTypeModel getEnergyTypeByCode(String code) {
@@ -158,9 +153,7 @@ public class SysEnergyServiceImpl implements ISysEnergyService {
 
     @Override
     public Page<SysEnergy> selectSysEnergyPage(SysEnergy sysEnergy, Long pageNum, Long pageSize) {
-
-        final Page<SysEnergy> sysEnergyPage = sysEnergyMapper.selectSysEnergyPage(sysEnergy, new Page<>(pageNum, pageSize));
-        return sysEnergyPage;
+        return sysEnergyMapper.selectSysEnergyPage(sysEnergy, new Page<>(pageNum, pageSize));
     }
 
     @Override
