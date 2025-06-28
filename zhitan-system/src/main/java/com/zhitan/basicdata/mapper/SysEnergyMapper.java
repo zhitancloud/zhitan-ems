@@ -18,7 +18,6 @@ public interface SysEnergyMapper extends BaseMapper<SysEnergy> {
     /**
      * 查询energy
      *
-     * @param
      * @return energy
      */
     SysEnergy selectSysEnergyById(Integer enerid);
@@ -50,7 +49,6 @@ public interface SysEnergyMapper extends BaseMapper<SysEnergy> {
     /**
      * 删除energy
      *
-     * @param
      * @return 结果
      */
     int deleteSysEnergyById(Integer enerid);
@@ -58,7 +56,6 @@ public interface SysEnergyMapper extends BaseMapper<SysEnergy> {
     /**
      * 批量删除energy
      *
-     * @param
      * @return 结果
      */
     int deleteSysEnergyByIds(Integer[] enerids);
