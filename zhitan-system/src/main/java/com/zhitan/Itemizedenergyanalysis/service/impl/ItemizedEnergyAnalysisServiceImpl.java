@@ -19,7 +19,6 @@ import com.zhitan.realtimedata.domain.EnergyUsed;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
@@ -54,11 +53,15 @@ public class ItemizedEnergyAnalysisServiceImpl implements IItemizedEnergyAnalysi
         List<ModelNodePointInfo> nodeIndexInfo = modelNodeMapper.getModelNodeIndexIdByNodeId(dto.getNodeId(), dto.getEnergyType());
         List<String> indexList = nodeIndexInfo.stream().map(ModelNodePointInfo::getIndexId).collect(Collectors.toList());
 
-        if(ObjectUtil.isEmpty(indexList)){
+        if (ObjectUtil.isEmpty(indexList)) {
             return new ItemizedEnergyAnalysisVO();
         }
 
-        ModelNodePointInfo info = nodeIndexInfo.stream().findFirst().get();
+        ModelNodePointInfo info = new ModelNodePointInfo();
+        Optional<ModelNodePointInfo> first = nodeIndexInfo.stream().findFirst();
+        if (first.isPresent()) {
+            info = first.get();
+        }
 
         List<TypeTime> dateTimeList;
         // 根据时间类型调整时间范围
@@ -81,21 +84,24 @@ public class ItemizedEnergyAnalysisServiceImpl implements IItemizedEnergyAnalysi
             default:
                 throw new ServiceException("时间格式错误");
         }
+        // 获取最大值、最小值、合计、平均值
+        ItemizedEnergyAnalysisVO vo = new ItemizedEnergyAnalysisVO();
+        if (ObjectUtil.isEmpty(indexList)) {
+            return vo;
+        }
         // 获取数据项列表
         List<EnergyUsed> energyUsedList = dataItemService.listEnergyUsedTimeRangeInfoByPointIds(beginTime, endTime, timeType, indexList);
 
-        // 获取最大值、最小值、合计、平均值
-        ItemizedEnergyAnalysisVO vo = new ItemizedEnergyAnalysisVO();
         double sum = energyUsedList.stream().mapToDouble(EnergyUsed::getValue).sum();
-        double max = energyUsedList.stream().mapToDouble(EnergyUsed::getValue).max().getAsDouble();
-        double min = energyUsedList.stream().mapToDouble(EnergyUsed::getValue).min().getAsDouble();
-        double avg = energyUsedList.stream().mapToDouble(EnergyUsed::getValue).average().getAsDouble();
+        double max = energyUsedList.stream().mapToDouble(EnergyUsed::getValue).max().orElse(0.0);
+        double min = energyUsedList.stream().mapToDouble(EnergyUsed::getValue).min().orElse(0.0);
+        double avg = energyUsedList.stream().mapToDouble(EnergyUsed::getValue).average().orElse(0.0);
 
         vo.setTotal(BigDecimal.valueOf(sum).setScale(2, RoundingMode.HALF_UP).toString());
         vo.setMax(BigDecimal.valueOf(max).setScale(2, RoundingMode.HALF_UP).toString());
         vo.setMin(BigDecimal.valueOf(min).setScale(2, RoundingMode.HALF_UP).toString());
         vo.setAvg(BigDecimal.valueOf(avg).setScale(2, RoundingMode.HALF_UP).toString());
-        if(ObjectUtil.isNotEmpty(info.getUnitId())){
+        if (ObjectUtil.isNotEmpty(info.getUnitId())) {
             vo.setUnit(info.getUnitId());
         }
 
