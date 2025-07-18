@@ -103,7 +103,6 @@ public class RuleStorageController extends BaseController {
     private List<RuleStorage> getDefaultIndexStorage() {
         List<RuleStorage> calcPeriods = new ArrayList<>();
         getPeriod(calcPeriods, TimeType.HOUR);
-        getPeriod(calcPeriods, TimeType.SCHEDULING);
         getPeriod(calcPeriods, TimeType.DAY);
         getPeriod(calcPeriods, TimeType.MONTH);
         getPeriod(calcPeriods, TimeType.YEAR);
