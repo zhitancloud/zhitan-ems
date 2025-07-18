@@ -10,7 +10,7 @@ import java.util.Date;
 public class TimeManager {
 
   public static final TimeType[] typeArray = {TimeType.LIVE, TimeType.DAY, TimeType.HOUR,
-      TimeType.MONTH, TimeType.SCHEDULING, TimeType.YEAR};
+      TimeType.MONTH, TimeType.YEAR};
   private static final DateTimeFormatter pastDataFormat = DateTimeFormat.forPattern
       ("yyyyMMddHHmmss");
   private static final DateTimeFormatter hourFormat = DateTimeFormat.forPattern("yyyyMMddHH");

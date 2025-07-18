@@ -25,9 +25,5 @@ public enum TimeType {
   /**
    * 季度
    */
-  QUARTER,
-  /**
-   * 排班
-   */
-  SCHEDULING
+  QUARTER
 }
