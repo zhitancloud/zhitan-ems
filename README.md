@@ -19,11 +19,11 @@
 
 ## 【注意】完整能碳管理平台包含三个部分，<span style="color: red;">本仓库只包含能碳平台后台管理端</span>
 1. 能碳平台后台管理端：<span style="color: red;">也即本项目能碳平台后台展示部分，代码完备，运行正常。通过本项目，学习者可以掌握能源管理行业的功能和业务，以及技术架构。</span>
-2. 数据采集程序：也即mqtt➡️时序库功能，请参考[我们另一个仓库（点击超链接），MQTT采集网关](https://github.com/zhitan-cloud/zhitan-gateway)；或者可参考thingsjs等知名项目，或者自己用netty自己实现。
+2. 数据采集程序：也即mqtt➡️时序库功能，请参考[我们另一个仓库（点击超链接），MQTT采集网关](https://gitee.com/liulingling1993/zhitan-gateway)；或者可参考thingsjs等知名项目，或者自己用netty自己实现。
 3. 数据清洗服务：也即时序库➡️关系库，学习者可以使用java自带的XXL job等计划任务工具自己按照业务功能，来实现数据清洗服务。
 
 ## 文档--均在wiki目录
-### github wiki地址：https://github.com/zhitan-cloud/zhitan-ems/wiki
+### github wiki地址：https://github.com/zhitancloud/zhitan-ems/wiki
 ### gitee wiki地址：https://gitee.com/liulingling1993/zhitan-ems/wikis/
 
 
@@ -33,7 +33,9 @@
 #### 演示地址：https://demo-ems.zhitancloud.com/
 
 ## 开源协议
-zhitan-ems是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [ZTPL](./LICENSE) 双协议的开源软件。
+zhitan-ems是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [ZTPL](./LICENSE) 双协议的开源软件。  
+
+另，学生学习、老师用于教学，可免费指导。
 
 ## 社区版-功能列表
 1.  首页看板 **已完成**
