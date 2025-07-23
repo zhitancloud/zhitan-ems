@@ -23,13 +23,13 @@
 3. 数据清洗服务：也即时序库➡️关系库，学习者可以使用java自带的XXL job等计划任务工具自己按照业务功能，来实现数据清洗服务。
 
 ## 文档--均在wiki目录
-### github wiki地址：https://github.com/zhitancloud/zhitan-ems/wiki
+### github wiki地址：https://github.com/zhitan-cloud/zhitan-ems/wiki
 ### gitee wiki地址：https://gitee.com/liulingling1993/zhitan-ems/wikis/
 
 
 ## 在线体验
 
-#### guestUser/guest@123
+#### guestUser/guest@123456
 #### 演示地址：https://demo-ems.zhitancloud.com/
 
 ## 开源协议
@@ -138,6 +138,7 @@ VUE版本：VUE 3
 
 ## 技术架构
 ![输入图片说明](readme/技术架构-1.png)
+![输入图片说明](readme/技术架构.png)
 
 ## 沟通交流
 
