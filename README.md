@@ -32,7 +32,8 @@
 #### guestUser/guest@123456
 #### 演示地址：https://demo-ems.zhitancloud.com/
 
-## Zhitan-Gateway 项目简介：https://gitee.com/liulingling1993/zhitan-gateway.git
+## Zhitan-Gateway 项目简介：
+https://gitee.com/liulingling1993/zhitan-gateway.git
 
 ## 开源协议
 zhitan-ems是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [ZTPL](./LICENSE) 双协议的开源软件。  
