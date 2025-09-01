@@ -165,7 +165,7 @@
                 <if test="meterPoint.name != null  and meterPoint.name != ''">name,</if>
                 <if test="meterPoint.code != null  and meterPoint.code != ''">code,</if>
                 <if test="meterPoint.pointType != null">point_type,</if>
-                <if test="meterPoint.indexCategory != null  and meterPoint.indexCategory != ''">point_category,</if>
+                <if test="meterPoint.pointCategory != null  and meterPoint.pointCategory != ''">point_category,</if>
                 <if test="meterPoint.remark != null  and meterPoint.remark != ''">remark,</if>
                 <if test="meterPoint.unitId != null  and meterPoint.unitId != ''">unit_id,</if>
                 <if test="meterPoint.meterId != null  and meterPoint.meterId != ''">meter_id,</if>
