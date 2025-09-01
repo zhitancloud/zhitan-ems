@@ -161,7 +161,7 @@
         <foreach collection="energyIndices" item="meterPoint" separator=";">
             insert into meter_point
             <trim prefix="(" suffix=")" suffixOverrides=",">
-                <if test="meterPoint.indexId != null  and meterPoint.indexId != ''">point_id,</if>
+                <if test="meterPoint.pointId != null  and meterPoint.pointId != ''">point_id,</if>
                 <if test="meterPoint.name != null  and meterPoint.name != ''">name,</if>
                 <if test="meterPoint.code != null  and meterPoint.code != ''">code,</if>
                 <if test="meterPoint.pointType != null">point_type,</if>

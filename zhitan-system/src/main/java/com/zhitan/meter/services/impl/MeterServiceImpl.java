@@ -27,6 +27,7 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -101,6 +102,7 @@ public class MeterServiceImpl implements IMeterService
      * @return 结果
      */
     @Override
+    @Transactional
     public int insertMeterImplement(Meter meter)
     {
         meter.setCreateTime(DateUtils.getNowDate());
