@@ -81,7 +81,7 @@ zhitan-ems是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [Z
 
 
 ## 增强版-功能列表
-1. 单耗分析
+1. 单耗分析 **已在开源版本** 
 2. 计划与实绩
 3. 用能考核
 4. 用能对标
