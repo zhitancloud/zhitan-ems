@@ -556,12 +556,12 @@ function resetQuery() {
 // 能耗对比分析-设备能耗分析-导出
 function handleExport() {
   proxy.download(
-    "consumptionanalysis/getByArea/export",
-    {
-      ...queryParams.value,
-      ...query.value,
-    },
-    `${queryParams.value.nodeName}-设备能耗统计分析表-${queryParams.enername}_${new Date().getTime()}.xlsx`
+      "consumptionanalysis/energyExport",
+      {
+        ...queryParams.value,
+        ...query.value,
+      },
+      `${queryParams.value.nodeName}-设备能耗统计分析表-${queryParams.enername}_${new Date().getTime()}.xlsx`
   )
 }
 </script>
