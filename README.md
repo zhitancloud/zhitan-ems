@@ -25,11 +25,6 @@
 1. 最快将于2025年9月【开源】面向中小型的能管系统，届时大家可以免费使用。https://gitee.com/liulingling1993/zhitan-ems-plus
 2. 或者联系我，使用我们的SAAS平台（支持免费改域名，改logo等），单项目5个仪表采集免费使用。
 
-## 文档--均在wiki目录
-### github wiki地址：https://github.com/zhitancloud/zhitan-ems/wiki
-### gitee wiki地址：https://gitee.com/liulingling1993/zhitan-ems/wikis/
-
-
 ## 在线体验
 
 #### 演示地址：https://demo-ems.zhitancloud.com/
@@ -161,7 +156,6 @@ VUE版本：VUE 3
 
 ## 技术架构
 ![输入图片说明](readme/技术架构-1.png)
-![输入图片说明](readme/技术架构.png)
 
 ## 沟通交流
 
