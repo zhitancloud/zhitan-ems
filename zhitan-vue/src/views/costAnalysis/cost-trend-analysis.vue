@@ -2,15 +2,9 @@
   <div class="page">
     <div>
       <div class="form-card" style="margin: 0">
-        <el-form :model="queryParams" ref="queryRef" :inline="true">
+        <el-form :model="queryParams" ref="queryRef" :inline="true" label-width="68px">
           <el-form-item label="期间" prop="timeType">
-            <el-select
-              v-model="queryParams.timeType"
-              placeholder="期间"
-              clearable
-              style="width: 120px"
-              @change="handleTimeType"
-            >
+            <el-select v-model="queryParams.timeType" placeholder="期间" style="width: 140px" @change="handleTimeType">
               <el-option v-for="dict in period" :key="dict.value" :label="dict.label" :value="dict.value" />
             </el-select>
           </el-form-item>
@@ -35,8 +29,8 @@
         </el-form>
       </div>
       <div class="table-bg-style">
-        <div class="table-box theme-dark-mt20" style="">
-          <el-table :data="tableData" v-loading="loading" style="border-bottom: 1px solid #ebeef5">
+        <div class="table-box" style="" :class="settingsStore.sideTheme == 'theme-dark' ? 'dark' : 'light'">
+          <el-table :data="tableData" v-loading="loading" :border="false">
             <el-table-column label="时间" prop="dateCode" align="center" width="160" />
             <el-table-column label="总费用(元)" prop="total" align="center" width="120" />
             <el-table-column :label="col.energyName" v-for="(col, index) in columns" :key="index" align="center">
@@ -255,20 +249,73 @@ onMounted(() => {
 })
 </script>
 <style scoped lang="scss">
-@import "@/assets/styles/page.scss";
+// @import "@/assets/styles/page.scss";
+.el-form.el-form--inline {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
 
-.table-box {
-  margin-top: 0;
-}
-
-.themeDark {
-  .table-box {
-    padding: 0 10px;
+  .el-form-item {
+    margin-right: 15px;
+    margin-bottom: 0;
+    height: 32px;
+    display: flex;
+    align-items: center;
   }
 }
+.table-box {
+  margin: 10px 20px;
+  padding-bottom: 20px;
+}
+.themeDark {
+  .form-card {
+    background: #08234f;
+    border-radius: 0px;
+    height: 52px;
+    line-height: 52px;
+    margin: 0 16px;
+    display: flex;
+    align-items: center;
+  }
+  .table-bg-style {
+    background-color: rgba(8, 35, 79, 0.5);
+    padding-top: 12px;
+    margin-top: 12px;
+  }
+}
+.dark {
+  :deep(.el-table--border th.el-table__cell) {
+    border-bottom: 1px solid #a1b0c6 !important;
+    border-right: 1px solid #a1b0c6 !important;
+  }
+  :deep(.el-table--border .el-table__cell) {
+    border-right: 1px solid #a1b0c6 !important;
+    border-bottom: 1px solid #a1b0c6 !important;
+  }
+  :deep(.el-table--border .el-table__inner-wrapper::after) {
+    background-color: #a1b0c6;
+  }
+}
+
 .themeLight {
-  .table-box {
-    padding-bottom: 20px;
+  .form-card {
+    background: #fff;
+    border-radius: 0px;
+    height: 52px;
+    line-height: 52px;
+    margin: 0 16px;
+    display: flex;
+    align-items: center;
+  }
+  .table-bg-style {
+    background-color: #fff;
+    padding-top: 12px;
+    margin-top: 12px;
+  }
+  :deep(.el-table--border th.el-table__cell) {
+    border-bottom: 1px solid #eaeaea !important;
   }
 }
 
