@@ -2,13 +2,15 @@ package com.zhitan.web.controller.statisticalAnalysis;
 
 import com.zhitan.common.annotation.Log;
 import com.zhitan.common.core.domain.AjaxResult;
+import com.zhitan.statisticalAnalysis.service.IEnergyConsumeDataService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import com.zhitan.statisticalAnalysis.service.IEnergyConsumeDataService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 能源消耗统计分析
@@ -40,8 +42,8 @@ public class EnergyTypeAnalysisController {
     @GetMapping(value = "/listEnergyCostTrend")
     public AjaxResult listEnergyCostTrend(@RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
                                           @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
-                                          @RequestParam(name = "timeCode") String timeCode,
-                                          @RequestParam(name = "timeType") String timeType,
+                                          @RequestParam(name = "timeCode", defaultValue = "2025-10-01") String timeCode,
+                                          @RequestParam(name = "timeType", defaultValue = "DAY") String timeType,
                                           @RequestParam(name = "energyType", required = false) String energyType,
                                           @RequestParam(name = "modelCode") String modelCode) {
         return AjaxResult.success(energyConsumeDataService.listEnergyCostTrend(pageNo, pageSize, timeCode, timeType, energyType,
