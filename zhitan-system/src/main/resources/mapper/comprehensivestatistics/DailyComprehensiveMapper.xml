@@ -58,8 +58,8 @@
         FROM
         model_node mn
         LEFT JOIN node_point ni ON ni.node_id = mn.node_id
-        LEFT JOIN meter_point ei ON ei.point_id = ni.index_id
-        LEFT JOIN energy_used di ON ni.index_id = di.point_id
+        LEFT JOIN meter_point ei ON ei.point_id = ni.point_id
+        LEFT JOIN energy_used di ON ni.point_id = di.point_id
         WHERE
         mn.parent_id = #{nodeId}
         AND di.data_time >= #{beginTime}
