@@ -168,7 +168,9 @@ VUE版本：VUE 3
 </p>
 
 扫码添加微信交流，加微信请备注：ems+姓名。
-
+<p align="center">
+  <img src="readme/img/联系人.jpg" width=50% height=50%>
+</p>
 <p align="center">
   <img src="readme/img/image-yc.png" width=50% height=50%>
 </p>
