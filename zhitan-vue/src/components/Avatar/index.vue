@@ -45,7 +45,7 @@ function handleCommand(command) {
       })
         .then(() => {
           userStore.logOut().then(() => {
-            location.href = "/index";
+            location.href = "/index/index";
           });
         })
         .catch(() => {});
