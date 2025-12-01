@@ -326,5 +326,5 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 ---
 
 <p align="center">
-  <strong>© 2025 智碳未来 - 为地球降1℃ </strong>
+  <strong>© 2025 智碳未来  -  我为地球降1℃ </strong>
 </p>
