@@ -299,9 +299,6 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 <p align="center">
   <img src="readme/img/xex_wx.jpg" width=30% height=30%>
 </p>
-<p align="center">
-  <img src="readme/img/联系人.jpg" width=30% height=30%>
-</p>
 
 ## 参与贡献
 
