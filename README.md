@@ -297,7 +297,7 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 如果您要想咨询我们的商业授权，以及培训等事宜，请优先加微信，请备注：ems+姓名
 
 <p align="center">
-  <img src="readme/img/image-yc.png" width=30% height=30%>
+  <img src="readme/img/xex_wx.jpg" width=30% height=30%>
 </p>
 <p align="center">
   <img src="readme/img/联系人.jpg" width=30% height=30%>
