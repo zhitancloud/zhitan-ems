@@ -54,4 +54,7 @@ nbdist/
 
 */.DS_Store
 
+### VS Code ###
+.vscode/
+
 uploadPath
