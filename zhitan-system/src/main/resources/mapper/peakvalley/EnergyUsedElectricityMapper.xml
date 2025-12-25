@@ -20,7 +20,7 @@
         FROM
         "energy_used_electricity"
         WHERE
-        index_id IN
+        index_code IN
         <foreach collection="indexIdSet" item="indexId" open="(" separator="," close=")">
             #{indexId}
         </foreach>
@@ -63,9 +63,9 @@
         di.remark
         FROM
         "energy_used_electricity" di
-        JOIN meter_point ei  ON di.index_id = ei.point_id
+        JOIN meter_point ei  ON di.index_code = ei.point_id
         WHERE
-        di.index_id IN ( SELECT index_id FROM node_point WHERE node_id = #{nodeId})
+        di.index_code IN ( SELECT index_code FROM node_point WHERE node_id = #{nodeId})
         <if test="energyType !='' and energyType !=null  and energyType =='allType'">
             AND ei.energy_id != ''
         </if>
