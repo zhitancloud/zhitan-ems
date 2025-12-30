@@ -56,8 +56,6 @@ spring:
   messages:
     # 国际化资源文件路径
     basename: i18n/messages
-  profiles:
-    active: @profileActive@
   # 文件上传
   servlet:
     multipart:
@@ -70,16 +68,76 @@ spring:
     restart:
       # 热部署开关
       enabled: true
+  # 数据源配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: org.postgresql.Driver
+    druid:
+      # 主库数据源
+      master:
+        url: ${DB_URL:jdbc:postgresql://localhost:5432/zhitan_ems}
+        username: ${DB_USERNAME:postgres}
+        password: ${DB_PASSWORD:postgres}
+      # 从库数据源
+      slave:
+        # 从数据源开关/默认关闭
+        enabled: ${DB_SLAVE_ENABLED:false}
+        url: ${DB_SLAVE_URL:}
+        username: ${DB_SLAVE_USERNAME:}
+        password: ${DB_SLAVE_PASSWORD:}
+      # 初始连接数
+      initialSize: 5
+      # 最小连接池数量
+      minIdle: 10
+      # 最大连接池数量
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置连接超时时间
+      connectTimeout: 30000
+      # 配置网络超时时间
+      socketTimeout: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      maxEvictableIdleTimeMillis: 900000
+      # 配置检测连接是否有效
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        # 设置白名单，不填则允许所有访问
+        allow:
+        url-pattern: /druid/*
+        # 控制台管理用户名和密码
+        login-username: ${DRUID_USERNAME:admin}
+        login-password: ${DRUID_PASSWORD:123456}
+      filter:
+        stat:
+          enabled: true
+          # 慢SQL记录
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
   # redis 配置
   redis:
     # 地址
-    host: localhost
+    host: ${REDIS_HOST:localhost}
     # 端口，默认为6379
-    port: 6379
+    port: ${REDIS_PORT:6379}
     # 数据库索引
-    database: 0
+    database: ${REDIS_DATABASE:0}
     # 密码
-    password:
+    password: ${REDIS_PASSWORD:}
     # 连接超时时间
     timeout: 10s
     lettuce:
@@ -96,12 +154,12 @@ spring:
 # token配置
 token:
   # 令牌自定义标识
-  header: Authorization
+  header: ${TOKEN_HEADER:Authorization}
   # 令牌密钥
-  secret: abcdefghijklmnopqrstuvwxyzzhitancloud
+  secret: ${TOKEN_SECRET:abcdefghijklmnopqrstuvwxyzzhitancloud}
   # 令牌有效期（默认30分钟）
-  expireTime: 300
-
+  expireTime: ${TOKEN_EXPIRE_TIME:300}
+  
 mybatis-plus:
   #  configuration:
   #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -142,35 +200,53 @@ shiro:
     # 踢出之前登录的/之后登录的用户，默认踢出之前登录的用户
     kickoutAfter: false
 rtdb:
-  host: http://127.0.0.1:8086
-  token: ==
-  org: org
-  bucket: bucket
-  measurement: data
+  host: ${RTDB_HOST:http://127.0.0.1:8086}
+  token: ${RTDB_TOKEN:==}
+  org: ${RTDB_ORG:org}
+  bucket: ${RTDB_BUCKET:bucket}
+  measurement: ${RTDB_MEASUREMENT:data}
 
 ###################### MQTT #################################
 mqtt:
   # 服务器地址
-  host: tcp://127.0.0.1:1883
+  host: ${MQTT_HOST:tcp://127.0.0.1:1883}
   # ID唯一
-  clientId: MQTT_WK
+  clientId: ${MQTT_CLIENT_ID:MQTT_WK}
   # 主题 多个主题用逗号(,)分割 #表示这个主题下面所有，topic1,topic2,topic2/topic22/#(默认会取第一个主题)
-  topics: topic1
+  topics: ${MQTT_TOPICS:topic1}
   # 用户名
-  username: admin
+  username: ${MQTT_USERNAME:admin}
   # 密码
-  password: 1q2w3e4r.
+  password: ${MQTT_PASSWORD:1q2w3e4r.}
   # 连接超时
-  timeout: 30
+  timeout: ${MQTT_TIMEOUT:30}
   # 心跳检测
-  keepalive: 60
+  keepalive: ${MQTT_KEEPALIVE:60}
   # 对消息处理的几种机制。
   # 0 表示的是订阅者没收到消息不会再次发送，消息会丢失
   # 1 表示的是会尝试重试，一直到接收到消息，但这种情况可能导致订阅者收到多次重复消息
   # 2 多了一次去重的动作，确保订阅者收到的消息有一次
-  qos: 1
+  qos: ${MQTT_QOS:1}
   # false为建立持久会话
-  cleanSession: false
+  cleanSession: ${MQTT_CLEAN_SESSION:false}
   # 断开后重新连接
-  automaticReconnect: true
-singleLoginUrl: localhost:8090/singleLogin/getInfo
+  automaticReconnect: ${MQTT_AUTO_RECONNECT:true}
+
+singleLoginUrl: ${SINGLE_LOGIN_URL:localhost:8090/singleLogin/getInfo}
+
+# 阿里云配置（可选）
+aliyun:
+  sms:
+    access-key-id: ${ALIYUN_ACCESS_KEY_ID:}
+    access-key-secret: ${ALIYUN_ACCESS_KEY_SECRET:}
+    endpoint: ${ALIYUN_SMS_ENDPOINT:dysmsapi.aliyuncs.com}
+    sign-name: ${ALIYUN_SMS_SIGN_NAME:}
+    template-code: ${ALIYUN_SMS_TEMPLATE_CODE:}
+    user-role-id: ${ALIYUN_USER_ROLE_ID:}
+    time-minutes: ${ALIYUN_SMS_TIME_MINUTES:40}
+    max-sms-count: ${ALIYUN_SMS_MAX_COUNT:1}
+
+# SSO配置（可选）
+sso:
+  ticket: ${SSO_TICKET:}
+  username: ${SSO_USERNAME:}
