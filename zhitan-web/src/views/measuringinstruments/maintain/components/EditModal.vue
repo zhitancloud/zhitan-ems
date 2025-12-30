@@ -100,7 +100,7 @@ import { addMaintain, updateMaintain } from '@/api/measuringInstruments/measurin
 import { gatewayBaseList } from "@/api/businessConfiguration/gatewayLedger";
 import {
   listDistributionRoomList
-} from "@/api/measuringinstruments/distributionroom";
+} from "@/api/measuringInstruments/distributionroom";
 import { nextTick } from 'vue';
 let props = defineProps(['typeArray', 'energyTypeArr'])
 const { proxy } = getCurrentInstance();

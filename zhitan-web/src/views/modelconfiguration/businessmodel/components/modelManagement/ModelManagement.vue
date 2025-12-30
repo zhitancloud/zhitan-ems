@@ -24,7 +24,7 @@
 <script setup>
 let { proxy } = getCurrentInstance()
 import { listModel, delModel } from '@/api/modelConfiguration/businessModel'
-import addModelManagement from './addModelManagement'
+import addModelManagement from './AddModelManagement.vue'
 let { sys_model_type } = proxy.useDict("sys_model_type");
 
 let visible = ref(false)

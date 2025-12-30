@@ -50,7 +50,7 @@
 </template>
 
 <script setup>
-import EditModal from "./components/EditModal"
+import EditModal from "./components/EditModal.vue"
 import { policyPage, policyDel } from "@/api/policy/policy"
 const { proxy } = getCurrentInstance()
 const { policy_sort } = proxy.useDict("policy_sort")

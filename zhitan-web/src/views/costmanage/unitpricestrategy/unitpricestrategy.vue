@@ -78,7 +78,7 @@
 <script setup>
 import { unitPriceStrategyList, unitPriceStrategyDel } from "@/api/costManage/costManage.js"
 const { proxy } = getCurrentInstance()
-import EditModal from "./components/EditModal"
+import EditModal from "./components/EditModal.vue"
 import { listEnergyVarietiesList } from "@/api/modelConfiguration/energyVarieties"
 const energyVarietiesList = ref([])
 

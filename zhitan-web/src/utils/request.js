@@ -6,16 +6,21 @@ import { tansParams, blobValidate } from '@/utils/ruoyi'
 import cache from '@/plugins/cache'
 import { saveAs } from 'file-saver'
 import useUserStore from '@/store/modules/user'
+import { getRuntimeConfig } from "@/utils/env"
 
 let downloadLoadingInstance;
 // 是否显示重新登录
 export let isRelogin = { show: false };
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
+
+// 获取运行时配置
+const config = getRuntimeConfig()
+
 // 创建axios实例
 const service = axios.create({
   // axios中请求配置有baseURL选项，表示请求URL公共部分
-  baseURL: import.meta.env.VITE_APP_BASE_API,
+  baseURL: config.API_BASE_URL,
   // 超时
   timeout: 10000
 })

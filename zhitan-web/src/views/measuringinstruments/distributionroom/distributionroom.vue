@@ -105,7 +105,7 @@ import {
   getDistributionRoom,
   updateDistributionRoom,
   delDistributionRoom,
-} from "@/api/measuringinstruments/distributionroom"
+} from "@/api/measuringInstruments/distributionroom"
 const { proxy } = getCurrentInstance()
 const energyTypeList = ref([])
 const open = ref(false)

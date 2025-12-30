@@ -103,7 +103,7 @@
   </div>
 </template>
 <script setup name="consumptionAnalysis">
-import { listConsumptionanalysis } from "@/api/consumptionAnalysis/consumptionAnalysis";
+import { listConsumptionanalysis } from "@/api/consumptionanalysis/consumptionanalysis";
 import { listEnergyTypeList } from "@/api/modelConfiguration/energyType";
 import * as echarts from "echarts";
 const { proxy } = getCurrentInstance();

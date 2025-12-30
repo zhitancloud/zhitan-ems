@@ -164,7 +164,7 @@ import {
   addEnergyindexinput,
   updateEnergyindexinput,
   delEnergyindexinput,
-} from "@/api/auxiliaryEntry/energyindexinput";
+} from "@/api/auxiliaryEntry/energyIndexInput";
 import { listEnergyTypeList } from "@/api/modelConfiguration/energyType";
 const { proxy } = getCurrentInstance();
 import { useRoute } from "vue-router";

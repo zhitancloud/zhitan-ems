@@ -102,7 +102,7 @@
 
 <script setup>
 import treeNodeModal from "./components/TreeNodeModal.vue"
-import modelManagementModal from "./components/modelManagement/modelManagement"
+import modelManagementModal from "./components/modelManagement/ModelManagement.vue"
 import { listModel } from "@/api/modelConfiguration/businessModel"
 import { treeList, delModelNode, hasEnergyIndex } from "@/api/modelConfiguration/indexWarehouse"
 import deviceConfig from "./components/deviceConfig/DeviceConfig.vue"
