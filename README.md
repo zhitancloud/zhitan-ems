@@ -74,31 +74,31 @@
 
 ### 登录页面
 
-![登录页面](readme/img/1-登录页.png)
+![登录页面](images/1-登录页.png)
 
 ### 首页展示（深色主题）
 
-![首页-深色](readme/img/2-2-首页-深色.png)
+![首页-深色](images/2-2-首页-深色.png)
 
 ### 首页展示（浅色主题）
 
-![首页-浅色](readme/img/2-1-首页-浅色.png)
+![首页-浅色](images/2-1-首页-浅色.png)
 
 ### 实时监测（深色主题）
 
-![实时监测-深色](readme/img/3-2-能源实时监测-深色.png)
+![实时监测-深色](images/3-2-能源实时监测-深色.png)
 
 ### 实时监测（浅色主题）
 
-![实时监测-浅色](readme/img/3-1-能源实时监测-浅色.png)
+![实时监测-浅色](images/3-1-能源实时监测-浅色.png)
 
 ### 区域能耗分析
 
-![区域能耗](readme/img/5-1-区域能耗分析-浅色.png)
+![区域能耗](images/5-1-区域能耗分析-浅色.png)
 
 ### 尖峰平谷分析
 
-![尖峰平谷](readme/img/4-1-峰平谷时段统计-浅色.png)
+![尖峰平谷](images/4-1-峰平谷时段统计-浅色.png)
 
 ## 系统架构
 
@@ -467,7 +467,7 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 如果您只是技术学习与咨询等，请加入我们的QQ群：1037733518 请备注：ems+姓名
 
 <p align="center">
-  <img src="readme/img/qq_1037733518.png" width=30% height=30%>
+  <img src="images/qq_1037733518.png" width=30% height=30%>
 </p>
 
 ### 微信交流
@@ -475,10 +475,10 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 如果您要想咨询我们的商业授权，以及培训等事宜，请优先加微信，请备注：ems+姓名
 
 <p align="center">
-  <img src="readme/img/image-yc.png" width=30% height=30%>
+  <img src="images/image-yc.png" width=30% height=30%>
 </p>
 <p align="center">
-  <img src="readme/img/xex_wx.jpg" width=30% height=30%>
+  <img src="images/xex_wx.jpg" width=30% height=30%>
 </p>
 
 ## 参与贡献
