@@ -201,7 +201,17 @@ zhitan-ems/
 
 ## 快速部署
 
-本项目提供简易部署命令，可供您快速部署，学习并使用。请按照以下顺序进行执行部署：
+本项目已支持容器化部署，可供您快速部署，学习并使用。请按照以下顺序进行执行部署：
+
+官方镜像库：
+
+`API镜像库: `https://hub.docker.com/r/zhitancorp/zhitan-api
+
+`Web镜像库：`https://hub.docker.com/r/zhitancorp/zhitan-web
+
+```
+
+```
 
 #### 1. 数据库：
 
