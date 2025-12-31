@@ -284,7 +284,7 @@ docker run -d \
 
 2. 点击`Continue`以后：请记住该Token
 
-![6d488ce2-7826-4165-bb23-d3369a888700](C:\Users\Yan\xwechat_files\antony-l_deff\temp\InputTemp\6d488ce2-7826-4165-bb23-d3369a888700.png)
+![2a8a88e2-57a3-4129-a473-55ed27c858a3](./images/2a8a88e2-57a3-4129-a473-55ed27c858a3.png)
 
 #### 5. 后端API：
 
@@ -418,8 +418,6 @@ docker run -d \
 
 
 
-
-
 ## 文档资源
 
 详细的开发文档和用户手册请访问我们的 Wiki：
@@ -511,5 +509,3 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 <p align="center">
   <strong>© 2025 智碳未来  -  我为地球降1℃ </strong>
 </p>
-
-
