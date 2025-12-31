@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="readme/logo-chinese.png" alt="智碳能源管理系统 Logo" height="150" width="150">
+    <img src="images/logo-chinese.png" alt="智碳能源管理系统 Logo" height="150" width="150">
 </div>
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">智碳能源管理系统</h1>
 <h3 align="center">Zhitan Energy Carbon Management System</h3>
@@ -22,7 +22,7 @@
 
 ## 核心亮点
 
-![输入图片说明](readme/亮点功能.png)
+![输入图片说明](images/亮点功能.png)
 
 ## 核心功能
 
@@ -208,10 +208,6 @@ zhitan-ems/
 `API镜像库: `https://hub.docker.com/r/zhitancorp/zhitan-api
 
 `Web镜像库：`https://hub.docker.com/r/zhitancorp/zhitan-web
-
-```
-
-```
 
 #### 1. 数据库：
 
@@ -519,3 +515,5 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 <p align="center">
   <strong>© 2025 智碳未来  -  我为地球降1℃ </strong>
 </p>
+
+
