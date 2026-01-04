@@ -22,7 +22,25 @@ npm install -g yarn
 ```bash
 yarn install
 ```
+### 2.3 配置API地址
+请在`zhitan-web/vite.config.js`中，更改API地址。
 
+```javascript
+    // vite 相关配置
+    server: {
+      port: 80,
+      host: true,
+      open: true,
+      proxy: {
+        // 这里为本地调试时，API的地址
+        "/dev-api": {
+          target: "http://192.168.8.40:9080",
+          changeOrigin: true,
+          rewrite: (p) => p.replace(/^\/dev-api/, "/"),
+        }
+      },
+    },
+```
 ## 3. 启动开发服务
 
 ```bash
