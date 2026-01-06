@@ -106,7 +106,7 @@
 
 完整的能碳管理平台由三个核心组件构成：
 
-1. **能碳平台后台管理端** (本项目,不含数据清洗服务) - 提供后台管理界面及API接口，如需**面向中小型客户定制开发版本**请移步仓库：[zhitan-ems-plus版](https://gitee.com/liulingling1993/zhitan-ems-plus)。
+1. **能碳平台后台管理端** (本项目,不含数据清洗服务) - 提供后台管理界面及API接口，如需**面向中小型客户定制开发版本**请移步仓库：[zhitan-ems-mini版](https://gitee.com/liulingling1993/zhitan-ems-mini)。
 2. **数据采集程序** - MQTT网关负责从现场设备采集数据并存储到时序数据库。请参考我们另一个仓库：[MQTT采集网关](https://gitee.com/liulingling1993/zhitan-gateway)
 3. **数据清洗服务** - 定期将时序数据转换并存储到关系型数据库用于分析。学习者可以使用java自带的XXL job等计划任务工具自己按照业务功能，来实现数据清洗服务。
 
