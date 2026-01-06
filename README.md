@@ -223,6 +223,7 @@ docker run -d \
   --name postgres \
   --restart always \
   -p 5432:5432 \
+  -v /var/lib/postgresql/data:/var/lib/postgresql/data \
   -e POSTGRES_DB=zhitan_ems \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_PASSWORD=postgres \
