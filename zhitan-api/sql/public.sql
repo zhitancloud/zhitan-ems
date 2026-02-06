@@ -7989,8 +7989,10 @@ COMMENT ON TABLE "public"."sys_user" IS '用户信息表';
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
+-- 密码：guest@123
 INSERT INTO "public"."sys_user" VALUES (24, NULL, 'guestUser', '体验用户', '00', NULL, NULL, '0', '/profile/avatar/2025/02/25/avatar_20250225094402A004.png', '$2a$10$60J16xa47M7KCdz8xJ7Ak.SDbi0zQkabDcNgpO3bzLITZVgdJc2t6', '0', '0', '127.0.0.1', '2025-06-03 14:12:03.409', 'admin', '2024-12-04 10:44:29.111243', 'admin', '2025-06-03 14:12:04.936651', NULL, NULL, NULL);
-INSERT INTO "public"."sys_user" VALUES (1, 103, 'admin', '管理员', '00', '', '', '0', '/profile/avatar/2025/02/10/微信图片_20250117220435_20250210160249A009.png', '$2a$10$60J16xa47M7KCdz8xJ7Ak.SDbi0zQkabDcNgpO3bzLITZVgdJc2t6', '0', '0', '192.168.110.78', '2025-06-25 09:39:32.813', 'admin', '2018-03-16 11:33:00', 'admin', '2025-06-25 09:39:33.702621', '管理员', NULL, NULL);
+-- 密码：123456
+INSERT INTO "public"."sys_user" VALUES (1, 103, 'admin', '管理员', '00', '', '', '0', '/profile/avatar/2025/02/10/微信图片_20250117220435_20250210160249A009.png', '$2a$10$lOJXAUhxaxoRnuOHj2igQu/HHggrnDi9SILfWGcfn77bl4f1ha9t6', '0', '0', '192.168.110.78', '2025-06-25 09:39:32.813', 'admin', '2018-03-16 11:33:00', 'admin', '2025-06-25 09:39:33.702621', '管理员', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_post
