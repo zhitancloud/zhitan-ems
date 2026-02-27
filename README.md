@@ -13,6 +13,10 @@
     <a href="#"><img src="https://img.shields.io/badge/License-AGPL--3.0-orange.svg" alt="License"></a>
 </p>
 
+## 在线演示
+
+演示地址：[https://demo-ems.zhitancloud.com/](https://demo-ems.zhitancloud.com/)
+
 ## 项目简介
 
 智碳能源管理系统（Zhitan EMS）是一款面向政府、园区、企业等用户的综合能源管理解决方案。
@@ -67,11 +71,7 @@
 - 🚀 积木报表 - 集成了积木报表设计器
 - 🚀 单点登录 - 增加了单点登录功能
 - 🚀 多种能源品种 - 实时数据兼容多能源品种
-## 在线演示
 
-演示地址：[https://demo-ems.zhitancloud.com/](https://demo-ems.zhitancloud.com/)
-
-> ⚠️ 注意：演示环境仅提供部分功能预览，且为只读权限。
 
 ## 系统截图
 
