@@ -30,6 +30,12 @@
 
 ## 核心功能
 
+### 业务全景图
+
+![输入图片说明](images/全景图.png)
+
+
+
 ### 📊 社区版功能
 
 - ✅ 首页看板 - 实时展示关键能源指标和统计数据
@@ -71,7 +77,6 @@
 - 🚀 积木报表 - 集成了积木报表设计器
 - 🚀 单点登录 - 增加了单点登录功能
 - 🚀 多种能源品种 - 实时数据兼容多能源品种
-
 
 ## 系统截图
 
@@ -181,6 +186,7 @@ zhitan-ems/
 ```
 
 ## 技术架构
+
 ![输入图片说明](images/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84-1.png)
 
 ## 技术栈
@@ -292,10 +298,9 @@ docker run -d \
 
 ##### 4.2 获得访问token
 
-1. 访问influxDB的 IP:8086。请填写以下信息，请记住`Org Name`和`Bucket Name`，点击`Continue`
+1. 访问influxDB的 IP:8086。请填写以下信息，请记住 `Org Name`和 `Bucket Name`，点击 `Continue`
    ![1a0eeda6-0328-483f-ac6d-2015263e9f04](./images/1a0eeda6-0328-483f-ac6d-2015263e9f04.png)
-
-2. 点击`Continue`以后：请记住该Token
+2. 点击 `Continue`以后：请记住该Token
 
 ![2a8a88e2-57a3-4129-a473-55ed27c858a3](./images/2a8a88e2-57a3-4129-a473-55ed27c858a3.png)
 
@@ -376,8 +381,6 @@ TOKEN_EXPIRE_TIME=300
 
 ```
 
-
-
 ##### 5.2 部署镜像
 
 将.env.file文件复制当前目录中，并执行以下语句。
@@ -429,8 +432,6 @@ docker run -d \
 
 ![bf129f1b-6246-49a4-a4b0-7db51ab8e25e](./images/bf129f1b-6246-49a4-a4b0-7db51ab8e25e.png)
 
-
-
 ## 文档资源
 
 详细的开发文档和用户手册请访问我们的 Wiki：
@@ -454,13 +455,9 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 如果您属于以下情况，需要获得[ZTPL](./LICENSE)协议许可
 
 - 您基于本项目的修改版本用于商业目的，但不希望公开您的项目代码。
-
 - 您在一个内部使用的系统中集成了本项目，只对组织内部使用，不打算将其对外提供服务。
-
 - 您计划将本项目打包成SaaS产品或云服务进行销售。
-
 - 您需要在专有/闭源产品中集成、修改或链接本项目的代码。
-
 - 您需要自行部署系统并运营，对外部用户提供收费服务。
 
 如何获得[ZTPL](./LICENSE)协议许可？
@@ -501,7 +498,7 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 2. 创建功能分支 (`git checkout -b feature/AmazingFeature`)
 3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 发起 Pull Request  
+5. 发起 Pull Request
 
 ### 开发规范
 
@@ -512,12 +509,10 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 
 ### 报告问题
 
-如果您发现任何问题，请在 Issues 中提交，并附上详细的描述和重现步骤。   
+如果您发现任何问题，请在 Issues 中提交，并附上详细的描述和重现步骤。
 
 ---
 
 <p align="center">
   <strong>© 2026 智碳未来  -  我为地球降1℃ </strong>
 </p>
-
-
