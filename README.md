@@ -10,7 +10,6 @@
     <a href='https://gitee.com/liulingling1993/zhitan-ems/stargazers'><img src='https://gitee.com/liulingling1993/zhitan-ems/badge/star.svg?theme=dark' alt='star'></img></a>
     <a href='https://gitee.com/liulingling1993/zhitan-ems/members'><img src='https://gitee.com/liulingling1993/zhitan-ems/badge/fork.svg?theme=dark' alt='fork'></img></a>
     <a href="#"><img src="https://img.shields.io/badge/Version-v3.0-blue.svg" alt="Version"></a>
-    <a href="#"><img src="https://img.shields.io/badge/License-AGPL--3.0-orange.svg" alt="License"></a>
 </p>
 
 ## 在线演示
