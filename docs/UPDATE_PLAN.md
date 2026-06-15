@@ -316,6 +316,7 @@ zhitan-api/zhitan-framework/src/test/java/com/zhitan/framework/
 | | Day 3 | 🧪 测试 | StringUtils 测试 | ✅ 已完成 |
 | | Day 4 | 📝 文档 | 源码部署文档 | ✅ 已完成 |
 | | Day 5 | 🧪 测试 | DateUtils 测试 | ✅ 已完成 |
+| | Day 6 | 📝 文档 | 前端部署文档 | ✅ 已完成 |
 | | ... | ... | ... | ... |
 
 ---
