@@ -247,7 +247,7 @@ zhitan-api/zhitan-common/src/test/java/com/zhitan/common/
 │   ├── DateTimeUtilTest.java           📋 Day 1
 │   ├── StringUtilsTest.java            ✅ 已完成
 │   ├── DateUtilsTest.java            ✅ 已完成
-│   ├── SecurityUtilsTest.java          📋 Day 7
+│   ├── SecurityUtilsTest.java          ✅ 已完成
 │   ├── DesensitizedUtilTest.java       📋 Day 11
 │   ├── PageUtilsTest.java              📋 Day 13
 │   ├── ChartUtilsTest.java             📋 Day 13
@@ -317,6 +317,7 @@ zhitan-api/zhitan-framework/src/test/java/com/zhitan/framework/
 | | Day 4 | 📝 文档 | 源码部署文档 | ✅ 已完成 |
 | | Day 5 | 🧪 测试 | DateUtils 测试 | ✅ 已完成 |
 | | Day 6 | 📝 文档 | 前端部署文档 | ✅ 已完成 |
+| | Day 7 | 🧪 测试 | SecurityUtils 测试 | ✅ 已完成 |
 | | ... | ... | ... | ... |
 
 ---
