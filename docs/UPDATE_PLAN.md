@@ -245,9 +245,9 @@ zhitan-api/zhitan-common/src/test/java/com/zhitan/common/
 │   ├── DoubleUtilTest.java             ✅ 已完成（25 用例）
 │   ├── IntegerUtilTest.java            ✅ 已完成（18 用例）
 │   ├── DateTimeUtilTest.java           📋 Day 1
-│   ├── StringUtilsTest.java            📋 Day 3
-│   ├── DateUtilsTest.java              📋 Day 5
-│   ├── SecurityUtilsTest.java          📋 Day 7
+│   ├── StringUtilsTest.java            ✅ 已完成
+│   ├── DateUtilsTest.java            ✅ 已完成
+│   ├── SecurityUtilsTest.java          ✅ 已完成
 │   ├── DesensitizedUtilTest.java       📋 Day 11
 │   ├── PageUtilsTest.java              📋 Day 13
 │   ├── ChartUtilsTest.java             📋 Day 13
@@ -311,9 +311,13 @@ zhitan-api/zhitan-framework/src/test/java/com/zhitan/framework/
 | 日期 | 天数 | 类型 | 任务 | 状态 |
 |------|------|------|------|------|
 | - | - | 🧪 测试 | 搭建测试框架 + Arith/DoubleUtil/IntegerUtil 测试 | ✅ 已完成（68 用例） |
-| | Day 1 | 🧪 测试 | DateTimeUtil 测试 | ⬜ 待开始 |
-| | Day 2 | 📝 文档 | 快速开始指南 | ⬜ 待开始 |
-| | Day 3 | 🧪 测试 | StringUtils 测试 | ⬜ 待开始 |
+| | Day 1 | 🧪 测试 | DateTimeUtil 测试 | ✅ 已完成 | |
+| | Day 2 | 📝 文档 | 快速开始指南 | ✅ 已完成 |
+| | Day 3 | 🧪 测试 | StringUtils 测试 | ✅ 已完成 |
+| | Day 4 | 📝 文档 | 源码部署文档 | ✅ 已完成 |
+| | Day 5 | 🧪 测试 | DateUtils 测试 | ✅ 已完成 |
+| | Day 6 | 📝 文档 | 前端部署文档 | ✅ 已完成 |
+| | Day 7 | 🧪 测试 | SecurityUtils 测试 | ✅ 已完成 |
 | | ... | ... | ... | ... |
 
 ---
