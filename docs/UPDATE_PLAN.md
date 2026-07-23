@@ -10,8 +10,8 @@
 
 | 维度 | 现状 |
 |------|------|
-| 单元测试 | **已有 3 个测试类（68 用例）**，覆盖 Arith / DoubleUtil / IntegerUtil 工具类 |
-| 项目文档 | README.md 已较完善（含部署说明、截图、架构），但缺少独立文档（用户手册、API 文档等） |
+| 单元测试 | **已有 4 个测试类（325 用例）**，覆盖 DateTimeUtil / StringUtils / DateUtils / SecurityUtils 工具类 |
+| 项目文档 | README.md 已较完善（含部署说明、截图、架构），已补充快速开始、源码部署、前端部署、数据库设计 4 篇独立文档 |
 | 后端代码 | `zhitan-api/` 下 6 个子模块（admin/common/framework/system/quartz/generator），31 个业务模块，25+ 个 ServiceImpl |
 | 前端代码 | `zhitan-web/` 下 Vue3 + Vite + Element Plus，32+ 个功能页面 |
 | 工具类 | 22 个工具类（Arith、DateTimeUtil、StringUtils、SecurityUtils 等） |
@@ -59,7 +59,7 @@ docs: 更新 README 功能列表描述
 
 > 目标：在已有测试基础上扩展覆盖面，补充独立部署和使用文档
 > 
-> 已完成：✅ Arith / DoubleUtil / IntegerUtil 测试（68 用例）
+> 已完成：✅ Day 1-8 全部完成（4 个工具类测试 325 用例 + 4 篇文档）
 
 | 天数 | 类型 | 任务 | 具体内容 | 涉及路径 |
 |------|------|------|----------|----------|
@@ -244,10 +244,10 @@ zhitan-api/zhitan-common/src/test/java/com/zhitan/common/
 │   ├── ArithTest.java                  ✅ 已完成（25 用例）
 │   ├── DoubleUtilTest.java             ✅ 已完成（25 用例）
 │   ├── IntegerUtilTest.java            ✅ 已完成（18 用例）
-│   ├── DateTimeUtilTest.java           📋 Day 1
-│   ├── StringUtilsTest.java            ✅ 已完成
-│   ├── DateUtilsTest.java            ✅ 已完成
-│   ├── SecurityUtilsTest.java          ✅ 已完成
+│   ├── DateTimeUtilTest.java           ✅ 已完成（92 用例）
+│   ├── StringUtilsTest.java            ✅ 已完成（100 用例）
+│   ├── DateUtilsTest.java              ✅ 已完成（69 用例）
+│   ├── SecurityUtilsTest.java          ✅ 已完成（64 用例）
 │   ├── DesensitizedUtilTest.java       📋 Day 11
 │   ├── PageUtilsTest.java              📋 Day 13
 │   ├── ChartUtilsTest.java             📋 Day 13
@@ -311,13 +311,15 @@ zhitan-api/zhitan-framework/src/test/java/com/zhitan/framework/
 | 日期 | 天数 | 类型 | 任务 | 状态 |
 |------|------|------|------|------|
 | - | - | 🧪 测试 | 搭建测试框架 + Arith/DoubleUtil/IntegerUtil 测试 | ✅ 已完成（68 用例） |
-| | Day 1 | 🧪 测试 | DateTimeUtil 测试 | ✅ 已完成 | |
+| | Day 1 | 🧪 测试 | DateTimeUtil 测试 | ✅ 已完成（92 用例） |
 | | Day 2 | 📝 文档 | 快速开始指南 | ✅ 已完成 |
-| | Day 3 | 🧪 测试 | StringUtils 测试 | ✅ 已完成 |
+| | Day 3 | 🧪 测试 | StringUtils 测试 | ✅ 已完成（100 用例） |
 | | Day 4 | 📝 文档 | 源码部署文档 | ✅ 已完成 |
-| | Day 5 | 🧪 测试 | DateUtils 测试 | ✅ 已完成 |
+| | Day 5 | 🧪 测试 | DateUtils 测试 | ✅ 已完成（69 用例） |
 | | Day 6 | 📝 文档 | 前端部署文档 | ✅ 已完成 |
-| | Day 7 | 🧪 测试 | SecurityUtils 测试 | ✅ 已完成 |
+| | Day 7 | 🧪 测试 | SecurityUtils 测试 | ✅ 已完成（64 用例） |
+| | Day 8 | 📝 文档 | 数据库设计文档 | ✅ 已完成（84表，含索引/字段/字典） |
+| | Day 9 | 🧪 测试 | 枚举类测试 | ✅ 已完成 |
 | | ... | ... | ... | ... |
 
 ---
