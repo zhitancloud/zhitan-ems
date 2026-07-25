@@ -4,7 +4,7 @@
 >
 > 规则：**奇数日 = 单元测试日**，**偶数日 = 文档更新日**，每天一次提交，持续不间断。
 >
-> **进度摘要（更新于 2026-07-24）**：第一阶段 Day 1–10 已完成，**下一项：Day 11 DesensitizedUtil 测试**。Day 1–9 成果位于 `origin/dev_from_master` / `origin/zt_from_dev`；基线测试与 Day 10 架构文档位于当前工作区 / `zhitan_master`。
+> **进度摘要（更新于 2026-07-25）**：第一阶段 Day 1–11 已完成，**下一项：Day 12 更新 README 文档索引**。当前分支 `lwx_from_dev`。
 
 ---
 
@@ -12,14 +12,12 @@
 
 | 维度 | 现状 |
 |------|------|
-| 单元测试 | **已有 8 个测试类**：基线 Arith / DoubleUtil / IntegerUtil（68 用例，`zhitan_master`）+ DateTimeUtil / StringUtils / DateUtils / SecurityUtils / Enums（约 498 个 `@Test`，进度分支） |
-| 项目文档 | README.md 已较完善；独立文档已有：快速开始、源码部署、前端部署、数据库设计、**系统架构**；仍缺环境变量/用户手册/API 等 |
-| 单元测试 | **已有 4 个测试类（325 用例）**，覆盖 DateTimeUtil / StringUtils / DateUtils / SecurityUtils 工具类 |
-| 项目文档 | README.md 已较完善（含部署说明、截图、架构），已补充快速开始、源码部署、前端部署、数据库设计 4 篇独立文档 |
-| 后端代码 | `zhitan-api/` 下 6 个子模块（admin/common/framework/system/quartz/generator），31 个业务模块，25+ 个 ServiceImpl |
-| 前端代码 | `zhitan-web/` 下 Vue3 + Vite + Element Plus，32+ 个功能页面 |
-| 工具类 | 22 个工具类（Arith、DateTimeUtil、StringUtils、SecurityUtils 等） |
-| 枚举类 | 17 个枚举类 |
+| 单元测试 | **当前分支约 6 个测试类**：DateTimeUtil / StringUtils / DateUtils / SecurityUtils / Enums / **DesensitizedUtil（30 用例）**；基线 Arith 等仍可能仅在其他分支 |
+| 项目文档 | README + 快速开始、源码部署、前端部署、数据库设计、系统架构等（以分支实际文件为准） |
+| 后端代码 | 多模块：admin/common/framework/system/quartz/generator，31 个业务包 |
+| 前端代码 | `zhitan-web/` Vue3 + Vite + Element Plus |
+| 工具类 | 含 Arith、DateTimeUtil、StringUtils、SecurityUtils、DesensitizedUtil 等 |
+| 枚举类 | 含 DesensitizedType 等十余个枚举 |
 
 ### 项目目录结构
 
@@ -63,9 +61,9 @@ docs: 更新 README 功能列表描述
 
 > 目标：在已有测试基础上扩展覆盖面，补充独立部署和使用文档
 > 
-> 已完成：✅ 基线 Arith / DoubleUtil / IntegerUtil（68 用例）+ Day 1–10（见下表）
+> 已完成：✅ Day 1–11（见下表）
 > 
-> **下一任务：Day 11 🧪 DesensitizedUtil 测试**
+> **下一任务：Day 12 📝 更新 README**
 
 | 天数 | 类型 | 任务 | 具体内容 | 涉及路径 | 状态 |
 |------|------|------|----------|----------|------|
@@ -79,8 +77,8 @@ docs: 更新 README 功能列表描述
 | Day 8 | 📝 文档 | 数据库设计文档 | 核心表结构说明（基于 SQL 分析），含表用途索引、字段说明 | `docs/database-design.md` | ✅ 已完成（2026-06-24） |
 | Day 9 | 🧪 测试 | 枚举类测试 | ElectricityTypeEnum、PointType、GroupTimeType、TimeType、UserStatus 等枚举测试 | `.../enums/EnumsTest.java` | ✅ 已完成（132 `@Test`，2026-07-07） |
 | Day 10 | 📝 文档 | 系统架构文档 | 多模块架构说明，各模块职责、依赖关系图、数据流向图 | `docs/architecture.md` | ✅ 已完成（2026-07-24） |
-| Day 11 | 🧪 测试 | DesensitizedUtil 测试 | 手机号、身份证、邮箱等脱敏工具方法测试 | `.../utils/DesensitizedUtilTest.java` | ⬜ 待开始 ← **当前下一项** |
-| Day 12 | 📝 文档 | 更新 README | 补充文档索引目录，链接到所有独立文档，优化排版 | `README.md` | ⬜ 待开始 |
+| Day 11 | 🧪 测试 | DesensitizedUtil 测试 | 密码/车牌脱敏；关联手机号、身份证、邮箱等（DesensitizedType） | `.../utils/DesensitizedUtilTest.java` | ✅ 已完成（30 用例，2026-07-25） |
+| Day 12 | 📝 文档 | 更新 README | 补充文档索引目录，链接到所有独立文档，优化排版 | `README.md` | ⬜ 待开始 ← **当前下一项** |
 | Day 13 | 🧪 测试 | PageUtils + ChartUtils 测试 | 分页工具、图表工具方法测试 | `PageUtilsTest.java`、`ChartUtilsTest.java` | ⬜ 待开始 |
 | Day 14 | 📝 文档 | 环境配置说明 | 详细说明 `.env.file` 中每个环境变量的作用、默认值、注意事项 | `docs/env-configuration.md` | ⬜ 待开始 |
 
@@ -193,14 +191,14 @@ docs: 更新 README 功能列表描述
 | 测试覆盖模块 | 全部 31 个业务模块的核心工具类和服务层 |
 | 文档体系 | 部署文档 + 用户手册 + API 文档 + 开发者文档 + FAQ 完整体系 |
 
-### 当前实际进度（扫描 2026-07-24）
+### 当前实际进度（更新 2026-07-25）
 
 | 指标 | 当前数值 |
 |------|----------|
-| 单元测试文件数 | **8 个测试类**（基线 3 + Day1/3/5/7/9 共 5） |
-| 独立文档文件数 | **5 个**（快速开始、源码部署、前端部署、数据库设计、系统架构）+ 本计划 |
-| 计划完成天数 | **Day 1–10 / 60**（第一阶段约 71%） |
-| 分支说明 | Day 1–9 在 `dev_from_master` / `zt_from_dev`；基线测试与 Day 10 `architecture.md` 在当前工作区 / `zhitan_master` |
+| 单元测试文件数 | **6+ 个测试类**（含 Day 11 DesensitizedUtilTest，30 用例） |
+| 独立文档文件数 | 以当前分支 `docs/` 实际文件为准（含 architecture、UPDATE_PLAN 等） |
+| 计划完成天数 | **Day 1–11 / 60**（第一阶段约 79%） |
+| 当前分支 | `lwx_from_dev` |
 
 ### 长期目标（300 天）
 
@@ -254,31 +252,20 @@ docs/
 ## 七、测试目录结构规划
 
 ```
-zhitan-api/zhitan-common/src/test/java/com/zhitan/common/
+zhitan-common/src/test/java/com/zhitan/common/
 ├── utils/
-│   ├── ArithTest.java                  ✅ 已完成（基线，约 25+ 用例 / 计划 68 合计）
-│   ├── DoubleUtilTest.java             ✅ 已完成（基线）
-│   ├── IntegerUtilTest.java            ✅ 已完成（基线）
-│   ├── DateTimeUtilTest.java           ✅ Day 1 已完成（92 `@Test`）
-│   ├── StringUtilsTest.java            ✅ Day 3 已完成（141 `@Test`）
-│   ├── DateUtilsTest.java              ✅ Day 5 已完成（69 `@Test`）
-│   ├── SecurityUtilsTest.java          ✅ Day 7 已完成（64 `@Test`）
-│   ├── DesensitizedUtilTest.java       📋 Day 11 ← 下一项
-│   ├── ArithTest.java                  ✅ 已完成（25 用例）
-│   ├── DoubleUtilTest.java             ✅ 已完成（25 用例）
-│   ├── IntegerUtilTest.java            ✅ 已完成（18 用例）
-│   ├── DateTimeUtilTest.java           ✅ 已完成（92 用例）
-│   ├── StringUtilsTest.java            ✅ 已完成（100 用例）
-│   ├── DateUtilsTest.java              ✅ 已完成（69 用例）
-│   ├── SecurityUtilsTest.java          ✅ 已完成（64 用例）
-│   ├── DesensitizedUtilTest.java       📋 Day 11
+│   ├── DateTimeUtilTest.java           ✅ Day 1 已完成
+│   ├── StringUtilsTest.java            ✅ Day 3 已完成
+│   ├── DateUtilsTest.java              ✅ Day 5 已完成
+│   ├── SecurityUtilsTest.java          ✅ Day 7 已完成
+│   ├── DesensitizedUtilTest.java       ✅ Day 11 已完成（30 用例）
 │   ├── PageUtilsTest.java              📋 Day 13
 │   ├── ChartUtilsTest.java             📋 Day 13
 │   └── PhoneNumberUtilsTest.java       📋 Day 51
 └── enums/
-    └── EnumsTest.java                  ✅ Day 9 已完成（132 `@Test`）
+    └── EnumsTest.java                  ✅ Day 9 已完成
 
-zhitan-api/zhitan-system/src/test/java/com/zhitan/
+zhitan-system/src/test/java/com/zhitan/
 ├── home/                               📋 Day 15
 ├── comprehensivestatistics/            📋 Day 17
 ├── alarm/                              📋 Day 19
@@ -300,16 +287,16 @@ zhitan-api/zhitan-system/src/test/java/com/zhitan/
 ├── energyIndicators/                   📋 Day 57
 └── powerDistribution/                  📋 Day 59
 
-zhitan-api/zhitan-quartz/src/test/java/com/zhitan/quartz/
+zhitan-quartz/src/test/java/com/zhitan/quartz/
 ├── SysJobServiceTest.java              📋 Day 47
 └── SysJobLogServiceTest.java           📋 Day 47
 
-zhitan-api/zhitan-framework/src/test/java/com/zhitan/framework/
+zhitan-framework/src/test/java/com/zhitan/framework/
 └── web/service/
     └── UserDetailsServiceImplTest.java 📋 Day 49
 ```
 
-> 说明：进度分支上测试路径曾为 `zhitan-common/src/test/...`（无 `zhitan-api/` 前缀）；`zhitan_master` 为 `zhitan-api/zhitan-common/...`。合并时以当前主分支目录结构为准。
+> 说明：当前进度分支路径为 `zhitan-common/...`（无 `zhitan-api/` 前缀）。基线 Arith/DoubleUtil/IntegerUtil 测试可能仅存在于其他分支。
 
 ---
 
@@ -335,34 +322,22 @@ zhitan-api/zhitan-framework/src/test/java/com/zhitan/framework/
 
 | 日期 | 天数 | 类型 | 任务 | 状态 | 备注 |
 |------|------|------|------|------|------|
-| - | 基线 | 🧪 测试 | 搭建测试框架 + Arith/DoubleUtil/IntegerUtil 测试 | ✅ 已完成（68 用例） | 位于 `zhitan_master` |
-| 2026-06-03 | Day 1 | 🧪 测试 | DateTimeUtil 测试 | ✅ 已完成（92 `@Test`） | `DateTimeUtilTest.java` |
-| 2026-06-05 | Day 2 | 📝 文档 | 快速开始指南 | ✅ 已完成 | 实际文件名 `docs/快速开始指南文档.md` |
-| 2026-06-06 | Day 3 | 🧪 测试 | StringUtils 测试 | ✅ 已完成（141 `@Test`） | `StringUtilsTest.java` |
+| - | 基线 | 🧪 测试 | Arith/DoubleUtil/IntegerUtil 测试 | ✅ 已完成（部分分支） | 可能不在当前分支 |
+| 2026-06-03 | Day 1 | 🧪 测试 | DateTimeUtil 测试 | ✅ 已完成 | `DateTimeUtilTest.java` |
+| 2026-06-05 | Day 2 | 📝 文档 | 快速开始指南 | ✅ 已完成 | `docs/快速开始指南文档.md` |
+| 2026-06-06 | Day 3 | 🧪 测试 | StringUtils 测试 | ✅ 已完成 | `StringUtilsTest.java` |
 | 2026-06-08 | Day 4 | 📝 文档 | 源码部署文档 | ✅ 已完成 | `docs/source-deployment.md` |
-| 2026-06-12 | Day 5 | 🧪 测试 | DateUtils 测试 | ✅ 已完成（69 `@Test`） | 提交信息曾误标为 Day 4 |
-| 2026-06-15 | Day 6 | 📝 文档 | 前端部署文档 | ✅ 已完成 | `docs/frontend-deployment.md`（06-22 有补充提交） |
-| 2026-06-22 | Day 7 | 🧪 测试 | SecurityUtils 测试 | ✅ 已完成（64 `@Test`） | 与 Day 6 补充提交一并合入 |
+| 2026-06-12 | Day 5 | 🧪 测试 | DateUtils 测试 | ✅ 已完成 | `DateUtilsTest.java` |
+| 2026-06-15 | Day 6 | 📝 文档 | 前端部署文档 | ✅ 已完成 | `docs/frontend-deployment.md` |
+| 2026-06-22 | Day 7 | 🧪 测试 | SecurityUtils 测试 | ✅ 已完成 | `SecurityUtilsTest.java` |
 | 2026-06-24 | Day 8 | 📝 文档 | 数据库设计文档 | ✅ 已完成 | `docs/database-design.md` |
-| 2026-07-07 | Day 9 | 🧪 测试 | 枚举类测试 | ✅ 已完成（132 `@Test`） | `EnumsTest.java` |
+| 2026-07-07 | Day 9 | 🧪 测试 | 枚举类测试 | ✅ 已完成 | `EnumsTest.java` |
 | 2026-07-24 | Day 10 | 📝 文档 | 系统架构文档 | ✅ 已完成 | `docs/architecture.md` |
-| - | Day 11 | 🧪 测试 | DesensitizedUtil 测试 | ⬜ 待开始 | **当前下一项** |
-| - | Day 12–60 | - | （其余计划任务） | ⬜ 待开始 | 见第三节各阶段表格 |
-| 日期 | 天数 | 类型 | 任务 | 状态 |
-|------|------|------|------|------|
-| - | - | 🧪 测试 | 搭建测试框架 + Arith/DoubleUtil/IntegerUtil 测试 | ✅ 已完成（68 用例） |
-| | Day 1 | 🧪 测试 | DateTimeUtil 测试 | ✅ 已完成（92 用例） |
-| | Day 2 | 📝 文档 | 快速开始指南 | ✅ 已完成 |
-| | Day 3 | 🧪 测试 | StringUtils 测试 | ✅ 已完成（100 用例） |
-| | Day 4 | 📝 文档 | 源码部署文档 | ✅ 已完成 |
-| | Day 5 | 🧪 测试 | DateUtils 测试 | ✅ 已完成（69 用例） |
-| | Day 6 | 📝 文档 | 前端部署文档 | ✅ 已完成 |
-| | Day 7 | 🧪 测试 | SecurityUtils 测试 | ✅ 已完成（64 用例） |
-| | Day 8 | 📝 文档 | 数据库设计文档 | ✅ 已完成（84表，含索引/字段/字典） |
-| | Day 9 | 🧪 测试 | 枚举类测试 | ✅ 已完成 |
-| | ... | ... | ... | ... |
+| 2026-07-25 | Day 11 | 🧪 测试 | DesensitizedUtil 测试 | ✅ 已完成（30 用例） | 含密码/车牌 + 手机号/身份证/邮箱等关联脱敏 |
+| - | Day 12 | 📝 文档 | 更新 README | ⬜ 待开始 | **当前下一项** |
+| - | Day 13–60 | - | （其余计划任务） | ⬜ 待开始 | 见第三节各阶段表格 |
 
 ---
 
 *本计划从项目实际代码结构出发，覆盖全部 31 个业务模块，确保每天的更新都有实质性的价值提升。*
-*状态更新日期：2026-07-24（Day 10 已完成）；成果核对分支：`origin/dev_from_master`、`origin/zt_from_dev`、`origin/zhitan_master`。*
+*状态更新日期：2026-07-25（Day 11 已完成）；当前分支：`lwx_from_dev`。*

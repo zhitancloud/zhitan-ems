@@ -279,7 +279,7 @@ class SecurityUtilsTest {
         @Test
         @DisplayName("matchesPassword() - 超长密码匹配")
         void testMatchesPassword_longPassword() {
-            String rawPassword = "a".repeat(72);
+            String rawPassword = StringUtils.repeat("a", 72);
             String encoded = SecurityUtils.encryptPassword(rawPassword);
             assertTrue(SecurityUtils.matchesPassword(rawPassword, encoded));
         }
