@@ -4,7 +4,7 @@
 >
 > 规则：**奇数日 = 单元测试日**，**偶数日 = 文档更新日**，每天一次提交，持续不间断。
 >
-> **进度摘要（更新于 2026-07-25）**：第一阶段 Day 1–11 已完成，**下一项：Day 12 更新 README 文档索引**。当前分支 `lwx_from_dev`。
+> **进度摘要（更新于 2026-07-27）**：第一阶段 Day 1–12 已完成，**下一项：Day 13 PageUtils + ChartUtils 测试**。当前分支 `lwx_from_dev`。
 
 ---
 
@@ -13,7 +13,7 @@
 | 维度 | 现状 |
 |------|------|
 | 单元测试 | **当前分支约 6 个测试类**：DateTimeUtil / StringUtils / DateUtils / SecurityUtils / Enums / **DesensitizedUtil（30 用例）**；基线 Arith 等仍可能仅在其他分支 |
-| 项目文档 | README + 快速开始、源码部署、前端部署、数据库设计、系统架构等（以分支实际文件为准） |
+| 项目文档 | README 已含文档导航；独立文档：快速开始、源码部署、前端部署、数据库设计、系统架构、UPDATE_PLAN；仍缺环境变量/用户手册/API 等 |
 | 后端代码 | 多模块：admin/common/framework/system/quartz/generator，31 个业务包 |
 | 前端代码 | `zhitan-web/` Vue3 + Vite + Element Plus |
 | 工具类 | 含 Arith、DateTimeUtil、StringUtils、SecurityUtils、DesensitizedUtil 等 |
@@ -61,9 +61,9 @@ docs: 更新 README 功能列表描述
 
 > 目标：在已有测试基础上扩展覆盖面，补充独立部署和使用文档
 > 
-> 已完成：✅ Day 1–11（见下表）
+> 已完成：✅ Day 1–12（见下表）
 > 
-> **下一任务：Day 12 📝 更新 README**
+> **下一任务：Day 13 🧪 PageUtils + ChartUtils 测试**
 
 | 天数 | 类型 | 任务 | 具体内容 | 涉及路径 | 状态 |
 |------|------|------|----------|----------|------|
@@ -78,8 +78,8 @@ docs: 更新 README 功能列表描述
 | Day 9 | 🧪 测试 | 枚举类测试 | ElectricityTypeEnum、PointType、GroupTimeType、TimeType、UserStatus 等枚举测试 | `.../enums/EnumsTest.java` | ✅ 已完成（132 `@Test`，2026-07-07） |
 | Day 10 | 📝 文档 | 系统架构文档 | 多模块架构说明，各模块职责、依赖关系图、数据流向图 | `docs/architecture.md` | ✅ 已完成（2026-07-24） |
 | Day 11 | 🧪 测试 | DesensitizedUtil 测试 | 密码/车牌脱敏；关联手机号、身份证、邮箱等（DesensitizedType） | `.../utils/DesensitizedUtilTest.java` | ✅ 已完成（30 用例，2026-07-25） |
-| Day 12 | 📝 文档 | 更新 README | 补充文档索引目录，链接到所有独立文档，优化排版 | `README.md` | ⬜ 待开始 ← **当前下一项** |
-| Day 13 | 🧪 测试 | PageUtils + ChartUtils 测试 | 分页工具、图表工具方法测试 | `PageUtilsTest.java`、`ChartUtilsTest.java` | ⬜ 待开始 |
+| Day 12 | 📝 文档 | 更新 README | 补充文档索引目录，链接到所有独立文档，优化排版 | `README.md` | ✅ 已完成（2026-07-27） |
+| Day 13 | 🧪 测试 | PageUtils + ChartUtils 测试 | 分页工具、图表工具方法测试 | `PageUtilsTest.java`、`ChartUtilsTest.java` | ⬜ 待开始 ← **当前下一项** |
 | Day 14 | 📝 文档 | 环境配置说明 | 详细说明 `.env.file` 中每个环境变量的作用、默认值、注意事项 | `docs/env-configuration.md` | ⬜ 待开始 |
 
 ---
@@ -191,13 +191,13 @@ docs: 更新 README 功能列表描述
 | 测试覆盖模块 | 全部 31 个业务模块的核心工具类和服务层 |
 | 文档体系 | 部署文档 + 用户手册 + API 文档 + 开发者文档 + FAQ 完整体系 |
 
-### 当前实际进度（更新 2026-07-25）
+### 当前实际进度（更新 2026-07-27）
 
 | 指标 | 当前数值 |
 |------|----------|
-| 单元测试文件数 | **6+ 个测试类**（含 Day 11 DesensitizedUtilTest，30 用例） |
-| 独立文档文件数 | 以当前分支 `docs/` 实际文件为准（含 architecture、UPDATE_PLAN 等） |
-| 计划完成天数 | **Day 1–11 / 60**（第一阶段约 79%） |
+| 单元测试文件数 | **6+ 个测试类**（含 DesensitizedUtilTest，30 用例） |
+| 独立文档文件数 | **6 个**（快速开始、源码部署、前端部署、数据库设计、系统架构、UPDATE_PLAN）+ README 文档导航 |
+| 计划完成天数 | **Day 1–12 / 60**（第一阶段约 86%） |
 | 当前分支 | `lwx_from_dev` |
 
 ### 长期目标（300 天）
@@ -259,7 +259,7 @@ zhitan-common/src/test/java/com/zhitan/common/
 │   ├── DateUtilsTest.java              ✅ Day 5 已完成
 │   ├── SecurityUtilsTest.java          ✅ Day 7 已完成
 │   ├── DesensitizedUtilTest.java       ✅ Day 11 已完成（30 用例）
-│   ├── PageUtilsTest.java              📋 Day 13
+│   ├── PageUtilsTest.java              📋 Day 13 ← 下一项
 │   ├── ChartUtilsTest.java             📋 Day 13
 │   └── PhoneNumberUtilsTest.java       📋 Day 51
 └── enums/
@@ -334,10 +334,11 @@ zhitan-framework/src/test/java/com/zhitan/framework/
 | 2026-07-07 | Day 9 | 🧪 测试 | 枚举类测试 | ✅ 已完成 | `EnumsTest.java` |
 | 2026-07-24 | Day 10 | 📝 文档 | 系统架构文档 | ✅ 已完成 | `docs/architecture.md` |
 | 2026-07-25 | Day 11 | 🧪 测试 | DesensitizedUtil 测试 | ✅ 已完成（30 用例） | 含密码/车牌 + 手机号/身份证/邮箱等关联脱敏 |
-| - | Day 12 | 📝 文档 | 更新 README | ⬜ 待开始 | **当前下一项** |
-| - | Day 13–60 | - | （其余计划任务） | ⬜ 待开始 | 见第三节各阶段表格 |
+| 2026-07-27 | Day 12 | 📝 文档 | 更新 README | ✅ 已完成 | 补充文档导航索引，优化快速开始与排版 |
+| - | Day 13 | 🧪 测试 | PageUtils + ChartUtils 测试 | ⬜ 待开始 | **当前下一项** |
+| - | Day 14–60 | - | （其余计划任务） | ⬜ 待开始 | 见第三节各阶段表格 |
 
 ---
 
 *本计划从项目实际代码结构出发，覆盖全部 31 个业务模块，确保每天的更新都有实质性的价值提升。*
-*状态更新日期：2026-07-25（Day 11 已完成）；当前分支：`lwx_from_dev`。*
+*状态更新日期：2026-07-27（Day 12 已完成）；当前分支：`lwx_from_dev`。*
