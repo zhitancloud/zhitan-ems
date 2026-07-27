@@ -14,6 +14,21 @@
     <a href="#"><img src="https://img.shields.io/badge/License-AGPL--3.0-orange.svg" alt="License"></a>
 </p>
 
+## 目录
+
+- [项目简介](#项目简介)
+- [核心亮点](#核心亮点)
+- [核心功能](#核心功能)
+- [在线演示](#在线演示)
+- [系统截图](#系统截图)
+- [系统架构](#系统架构)
+- [技术栈](#技术栈)
+- [快速开始](#快速开始)
+- [文档导航](#文档导航)
+- [开源协议](#开源协议)
+- [社区交流](#社区交流)
+- [参与贡献](#参与贡献)
+
 ## 项目简介
 
 智碳能源管理系统（Zhitan EMS）是一款面向政府、园区、企业等用户的综合能源管理解决方案。
@@ -93,6 +108,8 @@
 
 ## 系统架构
 
+> 更完整的多模块职责、依赖关系与数据流向说明，见独立文档：[系统架构文档](docs/architecture.md)。
+
 ### 整体架构说明
 
 完整的能碳管理平台由三个核心组件构成：
@@ -153,7 +170,7 @@ zhitan-ems/
     │   ├── layout/               # 布局组件
     │   ├── plugins/              # 插件
     │   ├── router/               # 路由配置
-    │   ├── store/                # Vuex状态管理
+    │   ├── store/                # Pinia 状态管理
     │   ├── utils/                # 前端工具
     │   ├── views/                # 视图组件
     │   ├── App.vue               # 根Vue组件
@@ -182,12 +199,14 @@ zhitan-ems/
 ### 前端技术
 - 主框架：Vue 3 + Element Plus
 - 构建工具：Vite
-- 状态管理：Vuex
+- 状态管理：Pinia
 - 路由管理：Vue Router
 - 图表库：ECharts
 - UI主题：支持深色/浅色模式切换
 
 ## 快速开始
+
+> 推荐阅读完整指南：[快速开始指南](docs/快速开始指南文档.md)。Docker / 源码 / 前端专项部署见下方[文档导航](#文档导航)。
 
 ### 环境要求
 - JDK 1.8+
@@ -195,63 +214,70 @@ zhitan-ems/
 - PostgreSQL 14+
 - Redis 5.0+
 - InfluxDB 2.7+
-- node 14.0+
+- Node.js 18+（Vite 5 要求）
 
 ### 安装步骤
+
 1. 克隆项目代码：
 
-```
-  bash 
-    git clone https://gitee.com/liulingling1993/zhitan-ems.git
-```
-
-2. 导入数据库脚本：
-
-```
-    sql -- 执行 sql/public-v3.sql 文件初始化数据库
+```bash
+git clone https://gitee.com/liulingling1993/zhitan-ems.git
 ```
 
-3. 修改配置文件：
+2. 导入数据库脚本：执行 `sql/public-v3.sql` 初始化 PostgreSQL。
 
-```
-    yaml
-修改文件 zhitan-admin/src/main/resources/application-dev.yml 中的相关配置
-```   
+3. 修改配置文件：按环境调整 `zhitan-admin/src/main/resources/` 下相关配置（数据源、Redis、InfluxDB、MQTT 等）。
 
 4. 编译和启动：
 
-4.1. 后端：
+后端：
 
-```
-  bash
-    cd zhitan-ems
-    bash mvn clean install 
-    cd zhitan-admin 
-    mvn spring-boot:run
-```
-4.2. 前端
-   
-```
-  bash
-    cd zhitan-vue
-    yarn install
-    yarn run dev
-```
-5. 访问系统：
-
-```
-    http://localhost    
-    admin / 123456
+```bash
+mvn clean install
+cd zhitan-admin
+mvn spring-boot:run
 ```
 
-## 文档资源
+前端：
 
-详细的开发文档和用户手册请访问我们的 Wiki：
+```bash
+cd zhitan-vue
+yarn install
+yarn run dev
+```
+
+5. 访问系统：`http://localhost`（默认账号 `admin` / `123456`）
+
+## 文档导航
+
+仓库内独立文档索引如下（持续补充中）：
+
+### 入门与部署
+
+| 文档 | 说明 |
+|------|------|
+| [快速开始指南](docs/快速开始指南文档.md) | 5 分钟上手：环境要求、启动步骤 |
+| [源码部署文档](docs/source-deployment.md) | 非 Docker 全量源码编译与部署 |
+| [前端部署文档](docs/frontend-deployment.md) | Vue3 构建、打包与 Nginx 配置 |
+
+### 架构与数据
+
+| 文档 | 说明 |
+|------|------|
+| [系统架构文档](docs/architecture.md) | 多模块职责、依赖关系、数据流向 |
+| [数据库设计文档](docs/database-design.md) | 核心表结构、字段与索引说明 |
+
+### 规划与协作
+
+| 文档 | 说明 |
+|------|------|
+| [持续更新计划](docs/UPDATE_PLAN.md) | 测试与文档迭代的 60 天计划 |
+
+### 在线 Wiki 与 API
+
 - GitHub Wiki：[https://github.com/zhitancloud/zhitan-ems/wiki](https://github.com/zhitancloud/zhitan-ems/wiki)
 - Gitee Wiki：[https://gitee.com/liulingling1993/zhitan-ems/wikis/](https://gitee.com/liulingling1993/zhitan-ems/wikis/)
-
-API文档可通过本地部署后访问：http://localhost:8080/swagger-ui/index.html
-
+- 本地 Swagger：部署后端后访问 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 ## 开源协议
 zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [ZTPL](./LICENSE) 双协议的开源软件。您在使用、修改、复制、分发本项目时，仔细阅读并理解以下该协议条款。
