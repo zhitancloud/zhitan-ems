@@ -259,6 +259,7 @@ yarn run dev
 | [快速开始指南](docs/快速开始指南文档.md) | 5 分钟上手：环境要求、启动步骤 |
 | [源码部署文档](docs/source-deployment.md) | 非 Docker 全量源码编译与部署 |
 | [前端部署文档](docs/frontend-deployment.md) | Vue3 构建、打包与 Nginx 配置 |
+| [环境配置说明](docs/env-configuration.md) | `.env.file` 与前后端环境变量详解 |
 
 ### 架构与数据
 
