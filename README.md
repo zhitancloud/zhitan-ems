@@ -268,6 +268,12 @@ yarn run dev
 | [系统架构文档](docs/architecture.md) | 多模块职责、依赖关系、数据流向 |
 | [数据库设计文档](docs/database-design.md) | 核心表结构、字段与索引说明 |
 
+### 用户手册
+
+| 文档 | 说明 |
+|------|------|
+| [首页看板](docs/user-guide/dashboard.md) | 能耗总览、成本/储能/报警看板使用说明 |
+
 ### 规划与协作
 
 | 文档 | 说明 |
