@@ -259,6 +259,7 @@ yarn run dev
 | [快速开始指南](docs/快速开始指南文档.md) | 5 分钟上手：环境要求、启动步骤 |
 | [源码部署文档](docs/source-deployment.md) | 非 Docker 全量源码编译与部署 |
 | [前端部署文档](docs/frontend-deployment.md) | Vue3 构建、打包与 Nginx 配置 |
+| [环境配置说明](docs/env-configuration.md) | `.env.file` 与前后端环境变量详解 |
 
 ### 架构与数据
 
@@ -266,6 +267,12 @@ yarn run dev
 |------|------|
 | [系统架构文档](docs/architecture.md) | 多模块职责、依赖关系、数据流向 |
 | [数据库设计文档](docs/database-design.md) | 核心表结构、字段与索引说明 |
+
+### 用户手册
+
+| 文档 | 说明 |
+|------|------|
+| [首页看板](docs/user-guide/dashboard.md) | 能耗总览、成本/储能/报警看板使用说明 |
 
 ### 规划与协作
 

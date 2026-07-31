@@ -424,6 +424,7 @@ POST /login（或短信登录 / SSO）
 | [快速开始指南](./快速开始指南文档.md) | 5 分钟上手（若仓库中存在该文件） |
 | [源码部署文档](./source-deployment.md) | 非 Docker 全量部署 |
 | [前端部署文档](./frontend-deployment.md) | Vue 构建与 Nginx |
+| [环境配置说明](./env-configuration.md) | `.env.file` 与前后端环境变量 |
 | [数据库设计文档](./database-design.md) | 核心表结构 |
 | [持续更新计划](./UPDATE_PLAN.md) | 测试与文档迭代计划 |
 | 根目录 [README.md](../README.md) | 产品介绍、演示与 Docker 说明 |
