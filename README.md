@@ -273,6 +273,7 @@ yarn run dev
 | 文档 | 说明 |
 |------|------|
 | [首页看板](docs/user-guide/dashboard.md) | 能耗总览、成本/储能/报警看板使用说明 |
+| [实时监测](docs/user-guide/realtime-monitor.md) | 实时数据、组态图 SVG 绑定、网关状态说明 |
 
 ### 规划与协作
 

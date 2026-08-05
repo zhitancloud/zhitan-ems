@@ -264,6 +264,7 @@
 | 文档 | 说明 |
 |------|------|
 | [快速开始指南](../快速开始指南文档.md) | 登录与环境准备 |
+| [用户手册 - 实时监测](./realtime-monitor.md) | 实时数据、组态图、网关 |
 | [环境配置说明](../env-configuration.md) | 前后端环境变量 |
 | [系统架构文档](../architecture.md) | 模块与数据流 |
 | [前端部署文档](../frontend-deployment.md) | 前端构建与 Nginx |
