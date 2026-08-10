@@ -275,6 +275,7 @@ yarn run dev
 | [首页看板](docs/user-guide/dashboard.md) | 能耗总览、成本/储能/报警看板使用说明 |
 | [实时监测](docs/user-guide/realtime-monitor.md) | 实时数据、组态图 SVG 绑定、网关状态说明 |
 | [告警管理](docs/user-guide/alarm.md) | 限值类型、预报警阈值、报警分析与记录 |
+| [能耗分析](docs/user-guide/energy-analysis.md) | 综合指标（日/月/年）、区域能耗、重点设备分析 |
 
 ### 规划与协作
 
