@@ -4,7 +4,7 @@
 >
 > 规则：**奇数日 = 单元测试日**，**偶数日 = 文档更新日**，每天一次提交，持续不间断。
 >
-> **进度摘要（更新于 2026-08-04）**：第二阶段进行中，Day 1–17 已完成，**下一项：Day 18 用户手册 - 实时监测**。当前分支 `lwx_from_dev`。
+> **进度摘要（更新于 2026-08-12）**：第二阶段进行中，Day 1–24 已完成，**下一项：Day 25 重点设备分析测试**。当前分支 `lwx_from_dev`。
 
 ---
 
@@ -12,8 +12,8 @@
 
 | 维度 | 现状 |
 |------|------|
-| 单元测试 | **当前分支约 12 个测试类**：工具类 8 个 + HomePageServiceImpl + **Daily/Monthly/Year Comprehensive（3）** |
-| 项目文档 | README 已含文档导航；独立文档：快速开始、源码部署、前端部署、数据库设计、系统架构、环境配置、用户手册-首页看板、UPDATE_PLAN；仍缺更多用户手册/API 等 |
+| 单元测试 | **当前分支约 20 个测试类**：工具类 8 个 + HomePage + Comprehensive×3 + Alarm×3 + PeakValley×3 + **CostManagement×2** |
+| 项目文档 | README 已含文档导航；独立文档含环境配置、用户手册（首页看板/实时监测/告警管理/能耗分析/尖峰平谷）、UPDATE_PLAN 等；仍缺更多用户手册/API 等 |
 | 后端代码 | 多模块：admin/common/framework/system/quartz/generator，31 个业务包 |
 | 前端代码 | `zhitan-vue/` Vue3 + Vite + Element Plus |
 | 工具类 | 含 Arith、DateTimeUtil、StringUtils、SecurityUtils、DesensitizedUtil 等 |
@@ -63,7 +63,7 @@ docs: 更新 README 功能列表描述
 > 
 > 已完成：✅ Day 1–14（见下表）；第一阶段完成
 > 
-> **下一任务：见第二阶段（当前进行至 Day 17+）**
+> **下一任务：见第二阶段（当前进行至 Day 24+）**
 
 | 天数 | 类型 | 任务 | 具体内容 | 涉及路径 | 状态 |
 |------|------|------|----------|----------|------|
@@ -93,14 +93,14 @@ docs: 更新 README 功能列表描述
 | Day 15 | 🧪 测试 | 首页看板服务测试 | HomePageServiceImpl 的 Mock 测试，首页数据聚合、看板展示逻辑 | `zhitan-system/src/test/.../home/HomePageServiceImplTest.java` | ✅ 已完成（17 用例，2026-07-30） |
 | Day 16 | 📝 文档 | 用户手册 - 首页看板 | 首页看板、成本看板、储能看板、告警看板的功能使用说明 | `docs/user-guide/dashboard.md` | ✅ 已完成（2026-07-31） |
 | Day 17 | 🧪 测试 | 综合指标分析测试 | DailyComprehensiveServiceImpl / MonthlyComprehensiveServiceImpl / YearComprehensiveServiceImpl | `zhitan-system/src/test/.../comprehensivestatistics/` | ✅ 已完成（20 用例，2026-08-04） |
-| Day 18 | 📝 文档 | 用户手册 - 实时监测 | 实时数据查看、组态图分析（SVG 绑定）、网关状态检测操作指南 | `docs/user-guide/realtime-monitor.md` | ⬜ 待开始 ← **当前下一项** |
-| Day 19 | 🧪 测试 | 告警服务测试 | AlarmItemServiceImpl / AlarmLimitTypeServiceImpl / AlarmHistoryServiceImpl | `zhitan-api/zhitan-system/src/test/.../alarm/` | ⬜ 待开始 |
-| Day 20 | 📝 文档 | 用户手册 - 告警管理 | 告警配置、告警规则设置、告警阈值调整、告警查询与导出 | `docs/user-guide/alarm.md` | ⬜ 待开始 |
-| Day 21 | 🧪 测试 | 尖峰平谷分析测试 | 尖峰平谷配置管理、时段数据统计逻辑测试 | `zhitan-api/zhitan-system/src/test/.../peakvalley/` | ⬜ 待开始 |
-| Day 22 | 📝 文档 | 用户手册 - 能耗分析 | 综合指标分析（日/月/年）、区域能耗、重点设备分析使用说明 | `docs/user-guide/energy-analysis.md` | ⬜ 待开始 |
-| Day 23 | 🧪 测试 | 成本管理服务测试 | CostPriceTacticsServiceImpl / CostPriceRelevancyServiceImpl 成本策略与关联 | `zhitan-api/zhitan-system/src/test/.../costmanagement/` | ⬜ 待开始 |
-| Day 24 | 📝 文档 | 用户手册 - 尖峰平谷 | 尖峰平谷配置方法、时段数据查看、费用分析操作指南 | `docs/user-guide/peak-valley.md` | ⬜ 待开始 |
-| Day 25 | 🧪 测试 | 重点设备分析测试 | keyequipment 模块重点设备日/月/年能耗分析逻辑 | `zhitan-api/zhitan-system/src/test/.../keyequipment/` | ⬜ 待开始 |
+| Day 18 | 📝 文档 | 用户手册 - 实时监测 | 实时数据查看、组态图分析（SVG 绑定）、网关状态检测操作指南 | `docs/user-guide/realtime-monitor.md` | ✅ 已完成（2026-08-05） |
+| Day 19 | 🧪 测试 | 告警服务测试 | AlarmItemServiceImpl / AlarmLimitTypeServiceImpl / AlarmHistoryServiceImpl | `zhitan-system/src/test/.../alarm/` | ✅ 已完成（27 用例，2026-08-06） |
+| Day 20 | 📝 文档 | 用户手册 - 告警管理 | 告警配置、告警规则设置、告警阈值调整、告警查询与导出 | `docs/user-guide/alarm.md` | ✅ 已完成（2026-08-07） |
+| Day 21 | 🧪 测试 | 尖峰平谷分析测试 | 尖峰平谷配置管理、时段数据统计逻辑测试 | `zhitan-system/src/test/.../peakvalley/` | ✅ 已完成（32 用例，2026-08-08） |
+| Day 22 | 📝 文档 | 用户手册 - 能耗分析 | 综合指标分析（日/月/年）、区域能耗、重点设备分析使用说明 | `docs/user-guide/energy-analysis.md` | ✅ 已完成（2026-08-10） |
+| Day 23 | 🧪 测试 | 成本管理服务测试 | CostPriceTacticsServiceImpl / CostPriceRelevancyServiceImpl 成本策略与关联 | `zhitan-system/src/test/.../costmanagement/` | ✅ 已完成（21 用例，2026-08-11） |
+| Day 24 | 📝 文档 | 用户手册 - 尖峰平谷 | 尖峰平谷配置方法、时段数据查看、费用分析操作指南 | `docs/user-guide/peak-valley.md` | ✅ 已完成（2026-08-12） |
+| Day 25 | 🧪 测试 | 重点设备分析测试 | keyequipment 模块重点设备日/月/年能耗分析逻辑 | `zhitan-system/src/test/.../keyequipment/` | ⬜ 待开始 ← **当前下一项** |
 | Day 26 | 📝 文档 | 用户手册 - 成本分析 | 能源成本分析方法、成本策略配置、电价关联操作指南 | `docs/user-guide/cost-analysis.md` | ⬜ 待开始 |
 | Day 27 | 🧪 测试 | 工序能耗分析测试 | processenergy 模块工序能耗日/月/年统计逻辑 | `zhitan-api/zhitan-system/src/test/.../processenergy/` | ⬜ 待开始 |
 | Day 28 | 📝 文档 | 用户手册 - 同环比分析 | 电/水/其他能源品种同环比对比分析操作指南 | `docs/user-guide/comparison.md` | ⬜ 待开始 |
@@ -191,13 +191,13 @@ docs: 更新 README 功能列表描述
 | 测试覆盖模块 | 全部 31 个业务模块的核心工具类和服务层 |
 | 文档体系 | 部署文档 + 用户手册 + API 文档 + 开发者文档 + FAQ 完整体系 |
 
-### 当前实际进度（更新 2026-08-04）
+### 当前实际进度（更新 2026-08-07）
 
 | 指标 | 当前数值 |
 |------|----------|
-| 单元测试文件数 | **12+ 个测试类**（含综合指标日/月/年 3 类，合计 20 用例） |
-| 独立文档文件数 | **8 个**（含环境配置、用户手册-首页看板）+ README 文档导航 |
-| 计划完成天数 | **Day 1–17 / 60**（第二阶段进行中） |
+| 单元测试文件数 | **15+ 个测试类**（含告警 Item/LimitType/History，合计 27 用例） |
+| 独立文档文件数 | **10 个**（含用户手册-首页看板/实时监测/告警管理）+ README 文档导航 |
+| 计划完成天数 | **Day 1–20 / 60**（第二阶段进行中） |
 | 当前分支 | `lwx_from_dev` |
 
 ### 长期目标（300 天）
@@ -228,10 +228,10 @@ docs/
 ├── data-integration.md            # 📋 Day 48
 ├── user-guide/                    # 用户操作手册
 │   ├── dashboard.md               # ✅ Day 16 已完成
-│   ├── realtime-monitor.md        # 📋 Day 18
-│   ├── alarm.md                   # 📋 Day 20
-│   ├── energy-analysis.md         # 📋 Day 22
-│   ├── peak-valley.md             # 📋 Day 24
+│   ├── realtime-monitor.md        # ✅ Day 18 已完成
+│   ├── alarm.md                   # ✅ Day 20 已完成
+│   ├── energy-analysis.md         # ✅ Day 22
+│   ├── peak-valley.md             # ✅ Day 24
 │   ├── cost-analysis.md           # 📋 Day 26
 │   ├── comparison.md              # 📋 Day 28
 │   ├── permission.md              # 📋 Day 50
@@ -268,9 +268,9 @@ zhitan-common/src/test/java/com/zhitan/common/
 zhitan-system/src/test/java/com/zhitan/
 ├── home/                               ✅ Day 15（HomePageServiceImplTest，17 用例）
 ├── comprehensivestatistics/            ✅ Day 17（Daily/Monthly/Year，20 用例）
-├── alarm/                              📋 Day 19
-├── peakvalley/                         📋 Day 21
-├── costmanagement/                     📋 Day 23
+├── alarm/                              ✅ Day 19（Item/LimitType/History，27 用例）
+├── peakvalley/                         ✅ Day 21（Price/PriceDate/EnergyUsed，32 用例）
+├── costmanagement/                     ✅ Day 23（Tactics/Relevancy，21 用例）
 ├── keyequipment/                       📋 Day 25
 ├── processenergy/                      📋 Day 27
 ├── carbonemission/                     📋 Day 29
@@ -340,10 +340,17 @@ zhitan-framework/src/test/java/com/zhitan/framework/
 | 2026-07-30 | Day 15 | 🧪 测试 | 首页看板服务测试 | ✅ 已完成（17 用例） | `HomePageServiceImplTest`（Mock） |
 | 2026-07-31 | Day 16 | 📝 文档 | 用户手册 - 首页看板 | ✅ 已完成 | `docs/user-guide/dashboard.md` |
 | 2026-08-04 | Day 17 | 🧪 测试 | 综合指标分析测试 | ✅ 已完成（20 用例） | Daily/Monthly/YearComprehensiveServiceImplTest |
-| - | Day 18 | 📝 文档 | 用户手册 - 实时监测 | ⬜ 待开始 | **当前下一项** → `docs/user-guide/realtime-monitor.md` |
-| - | Day 19–60 | - | （其余计划任务） | ⬜ 待开始 | 见第三节各阶段表格 |
+| 2026-08-05 | Day 18 | 📝 文档 | 用户手册 - 实时监测 | ✅ 已完成 | `docs/user-guide/realtime-monitor.md` |
+| 2026-08-06 | Day 19 | 🧪 测试 | 告警服务测试 | ✅ 已完成（27 用例） | AlarmItem/LimitType/HistoryServiceImplTest |
+| 2026-08-07 | Day 20 | 📝 文档 | 用户手册 - 告警管理 | ✅ 已完成 | `docs/user-guide/alarm.md` |
+| 2026-08-08 | Day 21 | 🧪 测试 | 尖峰平谷分析测试 | ✅ 已完成（32 用例） | SettingElectricityPrice/PriceDate/EnergyUsedElectricityServiceImplTest |
+| 2026-08-10 | Day 22 | 📝 文档 | 用户手册 - 能耗分析 | ✅ 已完成 | `docs/user-guide/energy-analysis.md` |
+| 2026-08-11 | Day 23 | 🧪 测试 | 成本管理服务测试 | ✅ 已完成（21 用例） | CostPriceTactics/RelevancyServiceImplTest |
+| 2026-08-12 | Day 24 | 📝 文档 | 用户手册 - 尖峰平谷 | ✅ 已完成 | `docs/user-guide/peak-valley.md` |
+| - | Day 25 | 🧪 测试 | 重点设备分析测试 | ⬜ 待开始 | **当前下一项** |
+| - | Day 26–60 | - | （其余计划任务） | ⬜ 待开始 | 见第三节各阶段表格 |
 
 ---
 
 *本计划从项目实际代码结构出发，覆盖全部 31 个业务模块，确保每天的更新都有实质性的价值提升。*
-*状态更新日期：2026-08-04（Day 17 已完成）；当前分支：`lwx_from_dev`。*
+*状态更新日期：2026-08-12（Day 24 已完成）；当前分支：`lwx_from_dev`。*
