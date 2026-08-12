@@ -276,6 +276,7 @@ yarn run dev
 | [实时监测](docs/user-guide/realtime-monitor.md) | 实时数据、组态图 SVG 绑定、网关状态说明 |
 | [告警管理](docs/user-guide/alarm.md) | 限值类型、预报警阈值、报警分析与记录 |
 | [能耗分析](docs/user-guide/energy-analysis.md) | 综合指标（日/月/年）、区域能耗、重点设备分析 |
+| [尖峰平谷](docs/user-guide/peak-valley.md) | 电价时段配置、时段/分时统计与费用分析 |
 
 ### 规划与协作
 

@@ -4,7 +4,7 @@
 >
 > 规则：**奇数日 = 单元测试日**，**偶数日 = 文档更新日**，每天一次提交，持续不间断。
 >
-> **进度摘要（更新于 2026-08-11）**：第二阶段进行中，Day 1–23 已完成，**下一项：Day 24 用户手册 - 尖峰平谷**。当前分支 `lwx_from_dev`。
+> **进度摘要（更新于 2026-08-12）**：第二阶段进行中，Day 1–24 已完成，**下一项：Day 25 重点设备分析测试**。当前分支 `lwx_from_dev`。
 
 ---
 
@@ -13,7 +13,7 @@
 | 维度 | 现状 |
 |------|------|
 | 单元测试 | **当前分支约 20 个测试类**：工具类 8 个 + HomePage + Comprehensive×3 + Alarm×3 + PeakValley×3 + **CostManagement×2** |
-| 项目文档 | README 已含文档导航；独立文档含环境配置、用户手册（首页看板/实时监测/告警管理/能耗分析）、UPDATE_PLAN 等；仍缺更多用户手册/API 等 |
+| 项目文档 | README 已含文档导航；独立文档含环境配置、用户手册（首页看板/实时监测/告警管理/能耗分析/尖峰平谷）、UPDATE_PLAN 等；仍缺更多用户手册/API 等 |
 | 后端代码 | 多模块：admin/common/framework/system/quartz/generator，31 个业务包 |
 | 前端代码 | `zhitan-vue/` Vue3 + Vite + Element Plus |
 | 工具类 | 含 Arith、DateTimeUtil、StringUtils、SecurityUtils、DesensitizedUtil 等 |
@@ -63,7 +63,7 @@ docs: 更新 README 功能列表描述
 > 
 > 已完成：✅ Day 1–14（见下表）；第一阶段完成
 > 
-> **下一任务：见第二阶段（当前进行至 Day 23+）**
+> **下一任务：见第二阶段（当前进行至 Day 24+）**
 
 | 天数 | 类型 | 任务 | 具体内容 | 涉及路径 | 状态 |
 |------|------|------|----------|----------|------|
@@ -99,8 +99,8 @@ docs: 更新 README 功能列表描述
 | Day 21 | 🧪 测试 | 尖峰平谷分析测试 | 尖峰平谷配置管理、时段数据统计逻辑测试 | `zhitan-system/src/test/.../peakvalley/` | ✅ 已完成（32 用例，2026-08-08） |
 | Day 22 | 📝 文档 | 用户手册 - 能耗分析 | 综合指标分析（日/月/年）、区域能耗、重点设备分析使用说明 | `docs/user-guide/energy-analysis.md` | ✅ 已完成（2026-08-10） |
 | Day 23 | 🧪 测试 | 成本管理服务测试 | CostPriceTacticsServiceImpl / CostPriceRelevancyServiceImpl 成本策略与关联 | `zhitan-system/src/test/.../costmanagement/` | ✅ 已完成（21 用例，2026-08-11） |
-| Day 24 | 📝 文档 | 用户手册 - 尖峰平谷 | 尖峰平谷配置方法、时段数据查看、费用分析操作指南 | `docs/user-guide/peak-valley.md` | ⬜ 待开始 ← **当前下一项** |
-| Day 25 | 🧪 测试 | 重点设备分析测试 | keyequipment 模块重点设备日/月/年能耗分析逻辑 | `zhitan-api/zhitan-system/src/test/.../keyequipment/` | ⬜ 待开始 |
+| Day 24 | 📝 文档 | 用户手册 - 尖峰平谷 | 尖峰平谷配置方法、时段数据查看、费用分析操作指南 | `docs/user-guide/peak-valley.md` | ✅ 已完成（2026-08-12） |
+| Day 25 | 🧪 测试 | 重点设备分析测试 | keyequipment 模块重点设备日/月/年能耗分析逻辑 | `zhitan-system/src/test/.../keyequipment/` | ⬜ 待开始 ← **当前下一项** |
 | Day 26 | 📝 文档 | 用户手册 - 成本分析 | 能源成本分析方法、成本策略配置、电价关联操作指南 | `docs/user-guide/cost-analysis.md` | ⬜ 待开始 |
 | Day 27 | 🧪 测试 | 工序能耗分析测试 | processenergy 模块工序能耗日/月/年统计逻辑 | `zhitan-api/zhitan-system/src/test/.../processenergy/` | ⬜ 待开始 |
 | Day 28 | 📝 文档 | 用户手册 - 同环比分析 | 电/水/其他能源品种同环比对比分析操作指南 | `docs/user-guide/comparison.md` | ⬜ 待开始 |
@@ -231,7 +231,7 @@ docs/
 │   ├── realtime-monitor.md        # ✅ Day 18 已完成
 │   ├── alarm.md                   # ✅ Day 20 已完成
 │   ├── energy-analysis.md         # ✅ Day 22
-│   ├── peak-valley.md             # 📋 Day 24
+│   ├── peak-valley.md             # ✅ Day 24
 │   ├── cost-analysis.md           # 📋 Day 26
 │   ├── comparison.md              # 📋 Day 28
 │   ├── permission.md              # 📋 Day 50
@@ -346,10 +346,11 @@ zhitan-framework/src/test/java/com/zhitan/framework/
 | 2026-08-08 | Day 21 | 🧪 测试 | 尖峰平谷分析测试 | ✅ 已完成（32 用例） | SettingElectricityPrice/PriceDate/EnergyUsedElectricityServiceImplTest |
 | 2026-08-10 | Day 22 | 📝 文档 | 用户手册 - 能耗分析 | ✅ 已完成 | `docs/user-guide/energy-analysis.md` |
 | 2026-08-11 | Day 23 | 🧪 测试 | 成本管理服务测试 | ✅ 已完成（21 用例） | CostPriceTactics/RelevancyServiceImplTest |
-| - | Day 24 | 📝 文档 | 用户手册 - 尖峰平谷 | ⬜ 待开始 | **当前下一项** |
-| - | Day 25–60 | - | （其余计划任务） | ⬜ 待开始 | 见第三节各阶段表格 |
+| 2026-08-12 | Day 24 | 📝 文档 | 用户手册 - 尖峰平谷 | ✅ 已完成 | `docs/user-guide/peak-valley.md` |
+| - | Day 25 | 🧪 测试 | 重点设备分析测试 | ⬜ 待开始 | **当前下一项** |
+| - | Day 26–60 | - | （其余计划任务） | ⬜ 待开始 | 见第三节各阶段表格 |
 
 ---
 
 *本计划从项目实际代码结构出发，覆盖全部 31 个业务模块，确保每天的更新都有实质性的价值提升。*
-*状态更新日期：2026-08-11（Day 23 已完成）；当前分支：`lwx_from_dev`。*
+*状态更新日期：2026-08-12（Day 24 已完成）；当前分支：`lwx_from_dev`。*

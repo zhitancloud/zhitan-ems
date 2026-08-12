@@ -241,6 +241,7 @@
 | [用户手册 - 首页看板](./dashboard.md) | 首页侧报警入口与分析摘要 |
 | [用户手册 - 实时监测](./realtime-monitor.md) | 实时值与采集链路排查 |
 | [用户手册 - 能耗分析](./energy-analysis.md) | 综合指标、区域能耗、重点设备 |
+| [用户手册 - 尖峰平谷](./peak-valley.md) | 电价配置、时段/分时统计 |
 | [环境配置说明](../env-configuration.md) | 时序库 / MQTT 等环境变量 |
 | [系统架构文档](../architecture.md) | 模块与数据流 |
 | [数据库设计文档](../database-design.md) | `alarm_*` 等表结构 |

@@ -237,6 +237,7 @@
 | [用户手册 - 首页看板](./dashboard.md) | 总览类看板与报警关联入口 |
 | [用户手册 - 告警管理](./alarm.md) | 限值、预报警、分析与记录 |
 | [用户手册 - 能耗分析](./energy-analysis.md) | 综合指标、区域能耗、重点设备 |
+| [用户手册 - 尖峰平谷](./peak-valley.md) | 电价配置、时段/分时统计 |
 | [环境配置说明](../env-configuration.md) | `RTDB_*` / `MQTT_*` 等变量 |
 | [系统架构文档](../architecture.md) | 采集链路与模块职责 |
 | [源码部署文档](../source-deployment.md) | InfluxDB / MQTT 部署 |
