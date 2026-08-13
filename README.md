@@ -278,6 +278,12 @@ yarn run dev
 | [能耗分析](docs/user-guide/energy-analysis.md) | 综合指标（日/月/年）、区域能耗、重点设备分析 |
 | [尖峰平谷](docs/user-guide/peak-valley.md) | 电价时段配置、时段/分时统计与费用分析 |
 
+### 测试文档
+
+| 文档 | 说明 |
+|------|------|
+| [测试文档目录](docs/test/README.md) | 奇数日测试说明存放处；模板见 `_TEMPLATE.md` |
+
 ### 规划与协作
 
 | 文档 | 说明 |

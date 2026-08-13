@@ -4,7 +4,9 @@
 >
 > 规则：**奇数日 = 单元测试日**，**偶数日 = 文档更新日**，每天一次提交，持续不间断。
 >
-> **进度摘要（更新于 2026-08-12）**：第二阶段进行中，Day 1–24 已完成，**下一项：Day 25 重点设备分析测试**。当前分支 `lwx_from_dev`。
+> **测试日约定（2026-08-13 起）**：奇数日除交付 `*Test.java` 外，**必须同步输出测试文档**至 `docs/test/`（模板见 `docs/test/_TEMPLATE.md`），并在进度备注中写明文档路径。
+>
+> **进度摘要（更新于 2026-08-13）**：第二阶段进行中，Day 1–25 已完成，**下一项：Day 26 用户手册 - 成本分析**。当前分支 `lwx_from_dev`。
 
 ---
 
@@ -12,7 +14,7 @@
 
 | 维度 | 现状 |
 |------|------|
-| 单元测试 | **当前分支约 20 个测试类**：工具类 8 个 + HomePage + Comprehensive×3 + Alarm×3 + PeakValley×3 + **CostManagement×2** |
+| 单元测试 | **当前分支约 23 个测试类**：工具类 8 个 + HomePage + Comprehensive×3 + Alarm×3 + PeakValley×3 + CostManagement×2 + **KeyEquipment×3** |
 | 项目文档 | README 已含文档导航；独立文档含环境配置、用户手册（首页看板/实时监测/告警管理/能耗分析/尖峰平谷）、UPDATE_PLAN 等；仍缺更多用户手册/API 等 |
 | 后端代码 | 多模块：admin/common/framework/system/quartz/generator，31 个业务包 |
 | 前端代码 | `zhitan-vue/` Vue3 + Vite + Element Plus |
@@ -42,10 +44,10 @@ zhitan-ems-v3-new/
 ## 二、提交信息规范
 
 ```
-# 单元测试日
-test: 添加 DateTimeUtil 日期工具类单元测试
-test: 添加首页看板服务层 Mock 测试
-test: 添加告警模块服务层单元测试
+# 单元测试日（代码 + 测试文档）
+test: 添加 DateTimeUtil 日期工具类单元测试与测试说明
+test: 添加首页看板服务层 Mock 测试与测试文档
+test: 添加告警模块服务层单元测试与 docs/test 说明
 
 # 文档更新日
 docs: 新增部署文档 deployment.md
@@ -63,7 +65,7 @@ docs: 更新 README 功能列表描述
 > 
 > 已完成：✅ Day 1–14（见下表）；第一阶段完成
 > 
-> **下一任务：见第二阶段（当前进行至 Day 24+）**
+> **下一任务：见第二阶段（当前进行至 Day 25+）**
 
 | 天数 | 类型 | 任务 | 具体内容 | 涉及路径 | 状态 |
 |------|------|------|----------|----------|------|
@@ -100,8 +102,8 @@ docs: 更新 README 功能列表描述
 | Day 22 | 📝 文档 | 用户手册 - 能耗分析 | 综合指标分析（日/月/年）、区域能耗、重点设备分析使用说明 | `docs/user-guide/energy-analysis.md` | ✅ 已完成（2026-08-10） |
 | Day 23 | 🧪 测试 | 成本管理服务测试 | CostPriceTacticsServiceImpl / CostPriceRelevancyServiceImpl 成本策略与关联 | `zhitan-system/src/test/.../costmanagement/` | ✅ 已完成（21 用例，2026-08-11） |
 | Day 24 | 📝 文档 | 用户手册 - 尖峰平谷 | 尖峰平谷配置方法、时段数据查看、费用分析操作指南 | `docs/user-guide/peak-valley.md` | ✅ 已完成（2026-08-12） |
-| Day 25 | 🧪 测试 | 重点设备分析测试 | keyequipment 模块重点设备日/月/年能耗分析逻辑 | `zhitan-system/src/test/.../keyequipment/` | ⬜ 待开始 ← **当前下一项** |
-| Day 26 | 📝 文档 | 用户手册 - 成本分析 | 能源成本分析方法、成本策略配置、电价关联操作指南 | `docs/user-guide/cost-analysis.md` | ⬜ 待开始 |
+| Day 25 | 🧪 测试 | 重点设备分析测试 | keyequipment 模块重点设备日/月/年能耗分析逻辑 | `zhitan-system/src/test/.../keyequipment/` | ✅ 已完成（20 用例，2026-08-13） |
+| Day 26 | 📝 文档 | 用户手册 - 成本分析 | 能源成本分析方法、成本策略配置、电价关联操作指南 | `docs/user-guide/cost-analysis.md` | ⬜ 待开始 ← **当前下一项** |
 | Day 27 | 🧪 测试 | 工序能耗分析测试 | processenergy 模块工序能耗日/月/年统计逻辑 | `zhitan-api/zhitan-system/src/test/.../processenergy/` | ⬜ 待开始 |
 | Day 28 | 📝 文档 | 用户手册 - 同环比分析 | 电/水/其他能源品种同环比对比分析操作指南 | `docs/user-guide/comparison.md` | ⬜ 待开始 |
 
@@ -238,6 +240,9 @@ docs/
 │   ├── building-consumption.md    # 📋 Day 52
 │   ├── energy-storage.md          # 📋 Day 54
 │   └── unit-consumption.md        # 📋 Day 56
+├── test/                          # 测试文档（奇数日与代码同步，2026-08-13 起）
+│   ├── README.md
+│   └── _TEMPLATE.md
 └── api/                           # API 接口文档
     ├── home-api.md                # 📋 Day 30
     ├── realtime-api.md            # 📋 Day 32
@@ -271,7 +276,7 @@ zhitan-system/src/test/java/com/zhitan/
 ├── alarm/                              ✅ Day 19（Item/LimitType/History，27 用例）
 ├── peakvalley/                         ✅ Day 21（Price/PriceDate/EnergyUsed，32 用例）
 ├── costmanagement/                     ✅ Day 23（Tactics/Relevancy，21 用例）
-├── keyequipment/                       📋 Day 25
+├── keyequipment/                       ✅ Day 25（Daily/Monthly/Year，20 用例）
 ├── processenergy/                      📋 Day 27
 ├── carbonemission/                     📋 Day 29
 ├── Itemizedenergyanalysis/             📋 Day 31
@@ -306,8 +311,10 @@ zhitan-framework/src/test/java/com/zhitan/framework/
 
 - [ ] 1. 阅读目标类的源码，理解业务逻辑
 - [ ] 2. 编写单元测试类（使用 JUnit5 + Mockito）
-- [ ] 3. 本地运行测试确认通过：`mvn test -pl zhitan-common -Dtest="目标测试类"`
-- [ ] 4. 提交代码，commit message 格式：`test: 添加 XXX 模块单元测试`
+- [ ] 3. 本地运行测试确认通过：`mvn test -pl zhitan-system|zhitan-common "-Dtest=目标测试类" -am`
+- [ ] 4. **编写/更新测试文档**：`docs/test/<主题>.md`（按 `_TEMPLATE.md`，含覆盖范围、运行方式、场景与缺口）
+- [ ] 5. 更新 `UPDATE_PLAN` 进度备注（含测试文档路径）；必要时在 README 测试文档导航加链接
+- [ ] 6. 提交代码，commit message 格式：`test: 添加 XXX 模块单元测试与测试说明`
 
 ### 文档日操作清单
 
@@ -347,10 +354,11 @@ zhitan-framework/src/test/java/com/zhitan/framework/
 | 2026-08-10 | Day 22 | 📝 文档 | 用户手册 - 能耗分析 | ✅ 已完成 | `docs/user-guide/energy-analysis.md` |
 | 2026-08-11 | Day 23 | 🧪 测试 | 成本管理服务测试 | ✅ 已完成（21 用例） | CostPriceTactics/RelevancyServiceImplTest |
 | 2026-08-12 | Day 24 | 📝 文档 | 用户手册 - 尖峰平谷 | ✅ 已完成 | `docs/user-guide/peak-valley.md` |
-| - | Day 25 | 🧪 测试 | 重点设备分析测试 | ⬜ 待开始 | **当前下一项** |
-| - | Day 26–60 | - | （其余计划任务） | ⬜ 待开始 | 见第三节各阶段表格 |
+| 2026-08-13 | Day 25 | 🧪 测试 | 重点设备分析测试 | ✅ 已完成（20 用例） | Daily/Monthly/YearKeyEquipmentServiceImplTest |
+| - | Day 26 | 📝 文档 | 用户手册 - 成本分析 | ⬜ 待开始 | **当前下一项** |
+| - | Day 27–60 | - | （其余计划任务） | ⬜ 待开始 | 见第三节各阶段表格 |
 
 ---
 
 *本计划从项目实际代码结构出发，覆盖全部 31 个业务模块，确保每天的更新都有实质性的价值提升。*
-*状态更新日期：2026-08-12（Day 24 已完成）；当前分支：`lwx_from_dev`。*
+*状态更新日期：2026-08-13（Day 25 已完成）；当前分支：`lwx_from_dev`。*
