@@ -58,3 +58,4 @@ nbdist/
 .vscode/
 
 uploadPath
+.workbuddy/
