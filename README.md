@@ -1,6 +1,7 @@
 <div align="center">
     <img src="images/logo-chinese.png" alt="智碳能源管理系统 Logo" height="150" width="150">
 </div>
+<p align="center"><a href="README_EN.md">English</a> | 中文</p>
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">智碳能源管理系统</h1>
 <h3 align="center">Zhitan Energy Carbon Management System</h3>
 
