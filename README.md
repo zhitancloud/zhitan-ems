@@ -5,13 +5,33 @@
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">智碳能源管理系统</h1>
 <h3 align="center">Zhitan Energy Carbon Management System</h3>
 
-<p align="center">基于SpringBoot和若依框架开发的企业级能源管理解决方案</p>
+<p align="center">面向政府、园区、企业的全能源品种碳排放管理平台</p>
 
 <p align="center">
     <a href='https://gitee.com/liulingling1993/zhitan-ems/stargazers'><img src='https://gitee.com/liulingling1993/zhitan-ems/badge/star.svg?theme=dark' alt='star'></img></a>
     <a href='https://gitee.com/liulingling1993/zhitan-ems/members'><img src='https://gitee.com/liulingling1993/zhitan-ems/badge/fork.svg?theme=dark' alt='fork'></img></a>
-    <a href="#"><img src="https://img.shields.io/badge/Version-v3.0-blue.svg" alt="Version"></a>
+    <a href="#"><img src="https://img.shields.io/badge/Version-v2.5.2-blue.svg" alt="Version"></a>
+    <a href="#"><img src="https://img.shields.io/badge/Java-8-orange.svg" alt="Java"></a>
+    <a href="#"><img src="https://img.shields.io/badge/Vue-3.3-brightgreen.svg" alt="Vue"></a>
+    <a href="#"><img src="https://img.shields.io/badge/License-AGPL%20%2B%20ZTPL-blue.svg" alt="License"></a>
+    <a href="#"><img src="https://img.shields.io/badge/更新计划-60天持续迭代-green.svg" alt="Update Plan"></a>
 </p>
+
+---
+
+## 目录
+
+- [在线演示](#在线演示)
+- [项目简介](#项目简介)
+- [核心功能](#核心功能)
+- [系统截图](#系统截图)
+- [系统架构](#系统架构)
+- [技术栈](#技术栈)
+- [快速部署](#快速部署)
+- [文档资源](#文档资源)
+- [开源协议](#开源协议)
+- [社区交流](#社区交流)
+- [参与贡献](#参与贡献)
 
 ## 在线演示
 
@@ -24,55 +44,85 @@
 实现对能耗和碳排放的精准化计量、精细化管控、智能化决策与可视化呈现，持续提升节能降碳管理能力，有效支撑能源利用效率提升和碳排放降低，为节能减排提供科学依据，促进绿色低碳转型。
 本系统致力于支持中国碳达峰、碳中和目标，助力企业实现碳跟踪、碳盘查、碳交易、碳汇报的全生命周期管理。
 
-## 绿色工厂申报支撑能力
+### 为什么选择智碳 EMS
 
-本系统紧扣国家绿色工厂「**用地集约化、原料无害化、生产洁净化、废物资源化、能源低碳化**」的五化评价导向，可在绿色工厂申报中为企业提供**能源与碳排放管理维度**的硬核数据支撑：
-
-- **能耗在线监测与精准计量**：对水、电、气、热及光伏、储能、充电等多能源品种进行实时采集与精准计量，满足申报中对能源消耗数据「可追溯、可核算」的要求。
-- **碳排放管理（增强版）**：提供碳盘查、碳排放因子管理、碳路径规划等能力，支撑申报材料中的碳排放核算与减排成效说明。
-- **能源管理体系落地**：通过综合指标分析、尖峰平谷、单耗分析（增强版）、用能考核与对标（增强版），帮助企业建立并规范运行能源管理体系。
-- **可再生能源与源网荷储（增强版）**：光伏运维监控、充电运营管理、源网荷储协同等能力，支撑申报中可再生能源利用与能源结构优化的量化呈现。
-- **可视化报表与证据留存**：自定义报表、积木报表（增强版）可将上述数据一键生成申报所需的图表与台账，显著降低材料编制工作量。
-
-> 说明：绿色工厂申报的「五化」涉及用地、原料、生产、废物等多维度，本系统主要覆盖其中的**能源低碳化与碳排放管理**相关指标；其余维度建议结合企业现场管理台账一并提交。具体申报口径请以最新《绿色工厂评价要求》及主管部门要求为准。
-
-## 核心亮点
-
-![输入图片说明](images/亮点功能.png)
+- **全能源品种覆盖** — 水、电、气、热、碳、光、储、充，一个系统全搞定
+- **开箱即用** — Docker Compose 一键部署，5 分钟体验完整系统
+- **双主题支持** — 深色/浅色主题自由切换，适配大屏监控与日常办公
+- **符合国标** — 参照工信部能碳管理中心建设指南，支撑绿色工厂申报
+- **活跃维护** — 60 天持续更新计划进行中，社区反馈快速响应
 
 ## 核心功能
+
+### 核心亮点
+
+![输入图片说明](images/亮点功能.png)
 
 ### 业务全景图
 
 ![输入图片说明](images/全景图.png)
 
+### 社区版功能 vs 增强版功能
 
+#### 社区版（开源免费）
 
-### 📊 社区版功能 vs 💎 增强版功能
+| 功能 | 说明 |
+|------|------|
+| 首页看板 | 实时展示关键能源指标和统计数据 |
+| 实时数据监测 | 实时查看能源消耗数据和组态图分析 |
+| 历史数据分析 | 查看历史点位数据进行趋势分析 |
+| 综合指标分析 | 日/月/年度综合能耗分析报告 |
+| 重点设备分析 | 关键设备能耗监测与分析 |
+| 工序能耗分析 | 生产工序能耗分布与效率评估 |
+| 尖峰平谷分析 | 电价时段统计与优化建议 |
+| 能耗对比分析 | 各能源品种同环比分析 |
+| 建筑能耗分析 | 支路与分项建筑能耗详细分析 |
+| 智能报警系统 | 异常能耗预警与报警管理 |
+| 数据补录功能 | 手动补充缺失数据记录 |
+| 节能项目管理 | 节能改造项目跟踪 |
+| 知识库系统 | 能源管理知识与最佳实践共享 |
+| 设备档案管理 | 能耗设备信息维护与管理 |
+| 模型配置管理 | 计算模型与业务模型自定义配置 |
+| 基础数据管理 | 字典、能源类型等基础信息维护 |
+| 系统权限管理 | 用户、角色、权限统一管控 |
 
-| 社区版功能 | 增强版功能 |
-|---|---|
-| ✅ 首页看板 - 实时展示关键能源指标和统计数据 | 🚀 单耗分析 - 产品单产能耗深度分析 |
-| ✅ 实时数据监测 - 实时查看能源消耗数据和组态图分析 | 🚀 计划与实绩对比 - 能耗计划执行情况追踪 |
-| ✅ 历史数据分析 - 查看历史点位数据进行趋势分析 | 🚀 用能考核体系 - 建立科学的用能考核机制 |
-| ✅ 综合指标分析 - 日/月/年度综合能耗分析报告 | 🚀 用能对标分析 - 行业标杆对比与差距分析 |
-| ✅ 重点设备分析 - 关键设备能耗监测与分析 | 🚀 空调节能优化 - 建筑空调系统节能策略 |
-| ✅ 工序能耗分析 - 生产工序能耗分布与效率评估 | 🚀 能源平衡分析 - 能源供应与消耗平衡图表 |
-| ✅ 尖峰平谷分析 - 电价时段统计与优化建议 | 🚀 能源对标分析 - 与行业标准或历史数据对标 |
-| ✅ 能耗对比分析 - 各能源品种同环比分析 | 🚀 重点设备节能 - 空压机等设备专项节能方案 |
-| ✅ 建筑能耗分析 - 支路与分项建筑能耗详细分析 | 🚀 碳管理体系 - 碳盘查、碳路径规划、排放因子管理 |
-| ✅ 智能报警系统 - 异常能耗预警与报警管理 | 🚀 源网荷储协同 - 微电网能量协调优化控制 |
-| ✅ 数据补录功能 - 手动补充缺失数据记录 | 🚀 低碳园区建设 - 园区级低碳发展解决方案 |
-| ✅ 节能项目管理 - 节能改造项目跟踪 | 🚀 自定义报表 - 灵活配置各类分析报表 |
-| ✅ 知识库系统 - 能源管理知识与最佳实践共享 | 🚀 成本效益分析 - 能源成本构成与优化分析 |
-| ✅ 设备档案管理 - 能耗设备信息维护与管理 | 🚀 光伏运维监控 - 光伏发电系统运行状态监控 |
-| ✅ 模型配置管理 - 计算模型与业务模型自定义配置 | 🚀 充电运营管理 - 新能源汽车充电设施运营 |
-| ✅ 基础数据管理 - 字典、能源类型等基础信息维护 | 🚀 能耗对标 - 增加了基于工业重点领域能效标杆和基准水平的能耗对标功能 |
-| ✅ 系统权限管理 - 用户、角色、权限统一管控 | 🚀 积木报表 - 集成了积木报表设计器 |
-|  | 🚀 单点登录 - 增加了单点登录功能 |
-|  | 🚀 多种能源品种 - 实时数据兼容多能源品种 |
+#### 增强版（商业授权）
 
-> 💎 增强版功能由商业版提供企业级解决方案。
+| 功能 | 说明 |
+|------|------|
+| 单耗分析 | 产品单产能耗深度分析 |
+| 计划与实绩对比 | 能耗计划执行情况追踪 |
+| 用能考核体系 | 建立科学的用能考核机制 |
+| 用能对标分析 | 行业标杆对比与差距分析 |
+| 空调节能优化 | 建筑空调系统节能策略 |
+| 能源平衡分析 | 能源供应与消耗平衡图表 |
+| 能源对标分析 | 与行业标准或历史数据对标 |
+| 重点设备节能 | 空压机等设备专项节能方案 |
+| 碳管理体系 | 碳盘查、碳路径规划、排放因子管理 |
+| 源网荷储协同 | 微电网能量协调优化控制 |
+| 低碳园区建设 | 园区级低碳发展解决方案 |
+| 自定义报表 | 灵活配置各类分析报表 |
+| 成本效益分析 | 能源成本构成与优化分析 |
+| 光伏运维监控 | 光伏发电系统运行状态监控 |
+| 充电运营管理 | 新能源汽车充电设施运营 |
+| 能耗对标 | 基于工业重点领域能效标杆和基准水平的能耗对标 |
+| 积木报表 | 集成积木报表设计器 |
+| 单点登录 | 单点登录功能 |
+| 多种能源品种 | 实时数据兼容多能源品种 |
+
+> 增强版功能由商业版提供企业级解决方案，如需商业授权请联系微信（备注：ems+姓名）。
+
+### 绿色工厂申报支撑能力
+
+本系统紧扣国家绿色工厂「**用地集约化、原料无害化、生产洁净化、废物资源化、能源低碳化**」的五化评价导向，可在绿色工厂申报中为企业提供**能源与碳排放管理维度**的数据支撑：
+
+- **能耗在线监测与精准计量**：对水、电、气、热及光伏、储能、充电等多能源品种进行实时采集与精准计量
+- **碳排放管理**：提供碳盘查、碳排放因子管理、碳路径规划等能力
+- **能源管理体系落地**：通过综合指标分析、尖峰平谷、单耗分析、用能考核与对标，帮助企业建立并规范运行能源管理体系
+- **可再生能源与源网荷储**：光伏运维监控、充电运营管理、源网荷储协同等能力
+- **可视化报表与证据留存**：自定义报表可将数据一键生成申报所需的图表与台账
+
+> 说明：绿色工厂申报的「五化」涉及用地、原料、生产、废物等多维度，本系统主要覆盖其中的**能源低碳化与碳排放管理**相关指标；其余维度建议结合企业现场管理台账一并提交。具体申报口径请以最新《绿色工厂评价要求》及主管部门要求为准。
 
 ## 系统截图
 
@@ -80,25 +130,59 @@
 
 ![登录页面](images/1-登录页.png)
 
-### 首页展示（深色主题）
+### 首页展示
 
-![首页-深色](images/2-2-首页-深色.png)
+<table>
+  <tr>
+    <td align="center"><b>深色主题</b></td>
+    <td align="center"><b>浅色主题</b></td>
+  </tr>
+  <tr>
+    <td><img src="images/2-2-首页-深色.png" alt="首页-深色"></td>
+    <td><img src="images/2-1-首页-浅色.png" alt="首页-浅色"></td>
+  </tr>
+</table>
 
-### 首页展示（浅色主题）
+### 首页看板
 
-![首页-浅色](images/2-1-首页-浅色.png)
+<table>
+  <tr>
+    <td align="center"><b>成本看板</b></td>
+    <td align="center"><b>储能看板</b></td>
+    <td align="center"><b>告警看板</b></td>
+  </tr>
+  <tr>
+    <td><img src="images/2-3-首页-成本看板.png" alt="成本看板"></td>
+    <td><img src="images/2-4-首页-储能看板.png" alt="储能看板"></td>
+    <td><img src="images/2-5-首页-告警看板.png" alt="告警看板"></td>
+  </tr>
+</table>
 
-### 实时监测（深色主题）
+### 实时监测
 
-![实时监测-深色](images/3-2-能源实时监测-深色.png)
-
-### 实时监测（浅色主题）
-
-![实时监测-浅色](images/3-1-能源实时监测-浅色.png)
+<table>
+  <tr>
+    <td align="center"><b>深色主题</b></td>
+    <td align="center"><b>浅色主题</b></td>
+  </tr>
+  <tr>
+    <td><img src="images/3-2-能源实时监测-深色.png" alt="实时监测-深色"></td>
+    <td><img src="images/3-1-能源实时监测-浅色.png" alt="实时监测-浅色"></td>
+  </tr>
+</table>
 
 ### 区域能耗分析
 
-![区域能耗](images/5-1-区域能耗分析-浅色.png)
+<table>
+  <tr>
+    <td align="center"><b>浅色主题</b></td>
+    <td align="center"><b>深色主题</b></td>
+  </tr>
+  <tr>
+    <td><img src="images/5-1-区域能耗分析-浅色.png" alt="区域能耗-浅色"></td>
+    <td><img src="images/5-2-区域能耗分析-深色.png" alt="区域能耗-深色"></td>
+  </tr>
+</table>
 
 ### 尖峰平谷分析
 
@@ -110,123 +194,207 @@
 
 完整的能碳管理平台由三个核心组件构成：
 
-1. **能碳平台后台管理端** (本项目,不含数据清洗服务) - 提供后台管理界面及API接口，如需**面向中小型客户定制开发版本**请移步仓库：[zhitan-ems-mini版](https://gitee.com/liulingling1993/zhitan-ems-mini)。
-2. **数据采集程序** - MQTT网关负责从现场设备采集数据并存储到时序数据库。请参考我们另一个仓库：[MQTT采集网关](https://gitee.com/liulingling1993/zhitan-gateway)
-3. **数据清洗服务** - 定期将时序数据转换并存储到关系型数据库用于分析。学习者可以使用java自带的XXL job等计划任务工具自己按照业务功能，来实现数据清洗服务。
+1. **能碳平台后台管理端**（本项目，不含数据清洗服务）- 提供后台管理界面及API接口。如需**面向中小型客户定制开发版本**请移步仓库：[zhitan-ems-mini版](https://gitee.com/liulingling1993/zhitan-ems-mini)。
+2. **数据采集程序** - MQTT网关负责从现场设备采集数据并存储到时序数据库。请参考我们另一个仓库：[MQTT采集网关](https://gitee.com/liulingling1993/zhitan-gateway)。
+3. **数据清洗服务** - 定期将时序数据转换并存储到关系型数据库用于分析。学习者可以使用Java自带的XXL-JOB等计划任务工具按照业务功能自行实现数据清洗服务。
+
+### 业务架构
+
+![业务架构](images/业务架构.png)
+
+### 技术架构
+
+![技术架构](images/技术架构-1.png)
 
 ### 项目结构
 
 ```
 zhitan-ems/
-├── bin/                          # 批处理脚本目录
-│   ├── clean.bat                 # 清理脚本
-│   ├── package.bat               # 打包脚本
-│   └── run.bat                   # 运行脚本
-├── zhitan-admin/                 # 主应用模块
-│   └── src/main/
-│       ├── java/com/zhitan/web/  # Web控制器
-│       ├── java/com/zhitan/AdminApplication.java     # Spring Boot主类
-│       ├── java/com/zhitan/AdminServletInitializer.java
-│       └── resources/            # 配置文件
-│           ├── application*.yml  # 环境配置文件
-│           ├── banner.txt        # 应用横幅
-│           ├── logback.xml       # 日志配置
-│           └── mybatis/          # MyBatis映射文件
-├── zhitan-common/                # 公共工具和共享组件
-│   └── src/main/java/com/zhitan/common/
-│       ├── annotation/           # 自定义注解
-│       ├── config/               # 公共配置
-│       ├── constant/             # 常量定义
-│       ├── core/                 # 核心组件(控制器、领域模型等)
-│       ├── enums/                # 枚举类型
-│       ├── exception/            # 异常处理
-│       ├── filter/               # 过滤器(XSS、重复请求等)
-│       ├── utils/                # 工具类
-│       └── xss/                  # XSS防护组件
-├── zhitan-framework/             # 框架组件
-│   └── src/main/java/com/zhitan/framework/
-│       ├── aspectj/              # 面向切面编程组件
-│       ├── config/               # 配置类
-│       ├── datasource/           # 数据源管理
-│       ├── interceptor/          # 拦截器
-│       ├── manager/              # 管理组件
-│       ├── mqtt/                 # MQTT消息支持
-│       ├── security/             # 安全组件
-│       ├── sms/                  # 短信功能
-│       └── web/                  # Web相关组件
-├── zhitan-generator/             # 代码生成模块
-├── zhitan-quartz/                # 定时任务模块
-├── zhitan-system/                # 系统管理模块
-└── zhitan-vue/                   # 前端应用(Vue.js)
-    ├── html/                     # HTML文件
-    ├── src/                      # 源码目录
-    │   ├── api/                  # API客户端
-    │   ├── assets/               # 静态资源
-    │   ├── components/           # Vue组件
-    │   ├── directive/            # Vue指令
-    │   ├── layout/               # 布局组件
-    │   ├── plugins/              # 插件
-    │   ├── router/               # 路由配置
-    │   ├── store/                # Vuex状态管理
-    │   ├── utils/                # 前端工具
-    │   ├── views/                # 视图组件
-    │   ├── App.vue               # 根Vue组件
-    │   ├── main.js               # 入口文件
-    │   ├── permission.js         # 权限控制
-    │   └── settings.js           # 应用设置
-    ├── vite/plugins/             # Vite构建插件
-    ├── index.html                # 主HTML文件
-    ├── package.json              # Node.js依赖
-    └── vite.config.js            # Vite配置
-
+├── zhitan-api/                     # 后端工程（Maven多模块）
+│   ├── zhitan-admin/               # 主应用模块（启动类 + Web控制器）
+│   │   └── src/main/
+│   │       ├── java/com/zhitan/web/  # Web控制器
+│   │       ├── java/com/zhitan/AdminApplication.java  # Spring Boot启动类
+│   │       └── resources/            # 配置文件（application.yml、mybatis等）
+│   ├── zhitan-common/              # 公共工具和共享组件
+│   │   └── src/main/java/com/zhitan/common/
+│   │       ├── annotation/         # 自定义注解
+│   │       ├── config/             # 公共配置
+│   │       ├── constant/           # 常量定义
+│   │       ├── core/               # 核心组件（控制器、领域模型等）
+│   │       ├── enums/              # 枚举类型
+│   │       ├── exception/         # 异常处理
+│   │       ├── filter/             # 过滤器（XSS、重复请求等）
+│   │       ├── utils/              # 工具类
+│   │       └── xss/                # XSS防护组件
+│   ├── zhitan-framework/           # 框架组件
+│   │   └── src/main/java/com/zhitan/framework/
+│   │       ├── aspectj/            # 面向切面编程组件
+│   │       ├── config/             # 配置类
+│   │       ├── datasource/         # 数据源管理
+│   │       ├── interceptor/        # 拦截器
+│   │       ├── manager/            # 管理组件
+│   │       ├── mqtt/               # MQTT消息支持
+│   │       ├── security/           # 安全组件
+│   │       ├── sms/                # 短信功能
+│   │       └── web/                # Web相关组件
+│   ├── zhitan-generator/           # 代码生成模块
+│   ├── zhitan-quartz/              # 定时任务模块
+│   ├── zhitan-system/              # 业务模块（31个业务子模块）
+│   ├── bin/                        # 批处理脚本（clean/package/run）
+│   ├── sql/                        # 数据库初始化脚本
+│   │   └── public-v3.sql           # PostgreSQL初始化SQL
+│   ├── pom.xml                     # 父POM
+│   └── Dockerfile                  # 后端镜像构建文件
+├── zhitan-web/                     # 前端工程（Vue3 + Vite）
+│   ├── src/                        # 前端源码
+│   │   ├── api/                    # API客户端
+│   │   ├── assets/                 # 静态资源
+│   │   ├── components/             # Vue组件
+│   │   ├── directive/              # Vue指令
+│   │   ├── layout/                 # 布局组件
+│   │   ├── plugins/                 # 插件
+│   │   ├── router/                 # 路由配置
+│   │   ├── store/                  # Pinia状态管理
+│   │   ├── utils/                  # 前端工具
+│   │   ├── views/                  # 视图组件
+│   │   ├── App.vue                 # 根组件
+│   │   ├── main.js                 # 入口文件
+│   │   ├── permission.js           # 权限控制
+│   │   └── settings.js             # 应用设置
+│   ├── vite/plugins/               # Vite构建插件
+│   ├── index.html                  # 主HTML文件
+│   ├── package.json                 # Node.js依赖
+│   ├── nginx.conf                   # Nginx配置
+│   ├── vite.config.js               # Vite配置
+│   └── Dockerfile                   # 前端镜像构建文件
+├── docs/                           # 项目文档
+│   └── UPDATE_PLAN.md               # 持续更新计划
+├── images/                         # README图片资源
+├── .env.file                       # 环境变量配置模板
+├── docker-compose.yml              # Docker Compose一键部署
+├── docker.md                       # Docker部署详细指南
+├── README.md                       # 中文文档
+├── README_EN.md                    # 英文文档
+└── LICENSE                         # 开源协议
 ```
-
-## 技术架构
-
-![输入图片说明](images/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84-1.png)
 
 ## 技术栈
 
 ### 后端技术
 
-- 核心框架：Spring Boot + Ruoyi Framework
-- 数据库：PostgreSQL (推荐), MySQL (需自行适配)
-- 时序数据库：InfluxDB 2.7+
-- 缓存中间件：Redis
-- 任务调度：Quartz
-- 消息通信：MQTT
-- 安全框架：Spring Security
-- 接口文档：Swagger
+| 技术 | 版本 | 说明 |
+|------|------|------|
+| Spring Boot | 2.5.15 | 核心框架（基于若依框架） |
+| Java | 1.8 | 编程语言 |
+| PostgreSQL | 14+ | 主数据库（推荐），MySQL需自行适配 |
+| InfluxDB | 2.7+ | 时序数据库 |
+| Redis | 6.2+ | 缓存中间件 |
+| Quartz | - | 任务调度 |
+| Spring Security | - | 安全框架 |
+| MQTT | - | 消息通信 |
+| MyBatis-Plus | 3.5.6 | ORM框架 |
+| Druid | 1.2.20 | 数据库连接池 |
+| Swagger | 3.0.0 | 接口文档 |
+| Undertow | - | Web服务器 |
+| JWT | 0.9.1 | Token认证 |
 
 ### 前端技术
 
-- 主框架：Vue 3 + Element Plus
-- 构建工具：Vite
-- 状态管理：Vuex
-- 路由管理：Vue Router
-- 图表库：ECharts
-- UI主题：支持深色/浅色模式切换
+| 技术 | 版本 | 说明 |
+|------|------|------|
+| Vue | 3.3.9 | 前端主框架 |
+| Element Plus | 2.4.3 | UI组件库 |
+| Vite | 5.0.4 | 构建工具 |
+| Pinia | 2.1.7 | 状态管理 |
+| Vue Router | 4.2.5 | 路由管理 |
+| ECharts | 5.4.3 | 图表库 |
+| Axios | 0.27.2 | HTTP客户端 |
 
 ## 快速部署
 
-本项目已支持容器化部署，可供您快速部署，学习并使用。请按照以下顺序进行执行部署：
+### 环境要求
+
+| 组件 | 版本要求 | 说明 |
+|------|---------|------|
+| Docker | 20.10+ | 容器运行时 |
+| Docker Compose | 2.0+ | 容器编排 |
+| 浏览器 | Chrome 90+ / Edge 90+ / Firefox 90+ | 前端运行环境 |
+
+### 一键部署（推荐）
+
+#### 1. 克隆仓库
+
+```bash
+git clone https://gitee.com/liulingling1993/zhitan-ems.git
+cd zhitan-ems
+```
+
+#### 2. 配置环境变量
+
+复制 `.env.file` 并修改为你的实际配置：
+
+```bash
+cp .env.file .env
+```
+
+关键配置项（详见 `.env.file` 中的注释）：
+
+```ini
+# 数据库配置
+DB_URL=jdbc:postgresql://postgres:5432/zhitan_ems
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+
+# Redis 配置
+REDIS_HOST=redis
+REDIS_PORT=6379
+
+# InfluxDB 配置
+RTDB_HOST=http://influxdb:8086
+RTDB_TOKEN=你的InfluxDB Token
+RTDB_ORG=org
+RTDB_BUCKET=bucket
+
+# MQTT 配置
+MQTT_HOST=tcp://broker.emqx.io:1883
+```
+
+#### 3. 启动服务
+
+```bash
+docker-compose up -d
+```
+
+等待所有服务启动完成后，访问 `http://你的IP` 即可使用。
+
+#### 4. 初始化数据库
+
+首次部署需导入数据库脚本：
+
+```bash
+# 进入PostgreSQL容器执行SQL初始化
+docker exec -i postgres psql -U postgres -d zhitan_ems < zhitan-api/sql/public-v3.sql
+```
+
+### 逐步部署
+
+如需手动部署各组件，请参考 [Docker部署详细指南](docker.md)。
 
 官方镜像库：
 
-`API镜像库: `https://hub.docker.com/r/zhitancorp/zhitan-api
+- API镜像：[zhitancorp/zhitan-api](https://hub.docker.com/r/zhitancorp/zhitan-api)
+- Web镜像：[zhitancorp/zhitan-web](https://hub.docker.com/r/zhitancorp/zhitan-web)
 
-`Web镜像库：`https://hub.docker.com/r/zhitancorp/zhitan-web
+<details>
+<summary>📖 点击展开手动部署步骤</summary>
 
-#### 1. 数据库：
-
-##### 1.1 部署数据库
+#### 1. PostgreSQL
 
 ```bash
-# 拉取镜像
 docker pull docker.1ms.run/library/postgres:14-alpine
 docker tag docker.1ms.run/library/postgres:14-alpine postgres:14-alpine
 
-# 启动容器
 docker run -d \
   --name postgres \
   --restart always \
@@ -239,20 +407,14 @@ docker run -d \
   postgres:14-alpine
 ```
 
-##### 1.2 导入数据库脚本：
+执行 `zhitan-api/sql/public-v3.sql` 初始化数据库。
 
-```
-    sql -- 执行 zhitan-api/sql/public-v3.sql 文件初始化数据库
-```
-
-#### 2. Redis：
+#### 2. Redis
 
 ```bash
-# 拉取镜像
 docker pull docker.1ms.run/library/redis:6.2.21
 docker tag docker.1ms.run/library/redis:6.2.21 redis:6.2.21
 
-# 启动容器
 docker run -d \
   --name redis \
   --restart always \
@@ -261,208 +423,99 @@ docker run -d \
   redis-server --appendonly yes
 ```
 
-#### 3. MQTT：
+#### 3. MQTT
 
-您可以使用免费公共MQTT服务来进行测试。 详情: https://www.emqx.com/zh/mqtt/public-mqtt5-broker
+可使用免费公共MQTT服务进行测试，详情：[EMQX Public MQTT Broker](https://www.emqx.com/zh/mqtt/public-mqtt5-broker)
 
 ```text
 Broker: broker.emqx.io
 TCP 端口: 1883
 WebSocket 端口: 8083
 SSL/TLS 端口: 8883
-WebSocket Secure 端口: 8084
-QUIC 端口: 14567
 ```
 
-#### 4. InfluxDB（时序数据库）：
-
-##### 4.1 部署
+#### 4. InfluxDB
 
 ```bash
-# 拉取镜像
 docker pull docker.1ms.run/library/influxdb:latest
-docker tag docker.1ms.run/library/influxdb:latest influxdb:latest 
+docker tag docker.1ms.run/library/influxdb:latest influxdb:latest
 
-# 启动容器
 docker run -d \
   --name influxdb \
   --restart always \
   -p 8086:8086 \
-  -v /path/to/your/data:/var/lib/influxdb  \
+  -v /path/to/your/data:/var/lib/influxdb \
   influxdb:latest
 ```
 
-##### 4.2 获得访问token
+访问 `IP:8086` 初始化 InfluxDB，记住 `Org`、`Bucket` 和 `Token`。
 
-1. 访问influxDB的 IP:8086。请填写以下信息，请记住 `Org Name`和 `Bucket Name`，点击 `Continue`
-   ![1a0eeda6-0328-483f-ac6d-2015263e9f04](./images/1a0eeda6-0328-483f-ac6d-2015263e9f04.png)
-2. 点击 `Continue`以后：请记住该Token
+![InfluxDB初始化](./images/1a0eeda6-0328-483f-ac6d-2015263e9f04.png)
+![InfluxDB Token](./images/2a8a88e2-57a3-4129-a473-55ed27c858a3.png)
 
-![2a8a88e2-57a3-4129-a473-55ed27c858a3](./images/2a8a88e2-57a3-4129-a473-55ed27c858a3.png)
+#### 5. 后端API
 
-#### 5. 后端API：
-
-##### 5.1 准备环境变量配置文件
-
-本项目中所需要的配置，均可通过环境变量进行注入，具体参考根目录中的 `.env.file` 文件
-
-请将该配置文件中的各个参数，配置为您实际的系统信息。如以下：
-
-```context
-# ============================================
-# 环境变量配置文件
-# ============================================
-
-# ===== 数据库配置 =====
-DB_URL=jdbc:postgresql://192.168.0.40:5432/zhitan_ems
-DB_USERNAME=postgres
-DB_PASSWORD=postgres
-
-# 从库配置（可选）
-DB_SLAVE_ENABLED=false
-DB_SLAVE_URL=
-DB_SLAVE_USERNAME=
-DB_SLAVE_PASSWORD=
-
-# ===== Redis 配置 =====
-REDIS_HOST=192.168.0.40
-REDIS_PORT=6379
-REDIS_DATABASE=0
-REDIS_PASSWORD=
-
-# ===== Druid 监控配置 =====
-DRUID_USERNAME=admin
-DRUID_PASSWORD=123456
-
-# ===== InfluxDB 配置 =====
-RTDB_HOST=http://192.168.0.40:8086
-RTDB_TOKEN=2yizQ6PXpzQvmfdoUr0vcV5rxvT3L_ss99p6MR816PV8mCJnUrtveddSISK83aZGPH8LO5S3Jx-c1UcXatUQ5A==
-RTDB_ORG=org
-RTDB_BUCKET=bucket
-RTDB_MEASUREMENT=data
-
-# ===== MQTT 配置 =====
-MQTT_HOST=tcp://broker.emqx.io:1883
-MQTT_CLIENT_ID=MQTT_WK
-MQTT_TOPICS=topic1
-MQTT_USERNAME=
-MQTT_PASSWORD=
-MQTT_TIMEOUT=30
-MQTT_KEEPALIVE=60
-MQTT_QOS=1
-MQTT_CLEAN_SESSION=false
-MQTT_AUTO_RECONNECT=true
-
-# ===== SSO 配置 =====
-SINGLE_LOGIN_URL=localhost:8090/singleLogin/getInfo
-
-# ===== 阿里云短信配置（可选） =====
-ALIYUN_ACCESS_KEY_ID=
-ALIYUN_ACCESS_KEY_SECRET=
-ALIYUN_SMS_ENDPOINT=dysmsapi.aliyuncs.com
-ALIYUN_SMS_SIGN_NAME=
-ALIYUN_SMS_TEMPLATE_CODE=
-ALIYUN_USER_ROLE_ID=
-ALIYUN_SMS_TIME_MINUTES=40
-ALIYUN_SMS_MAX_COUNT=1
-
-# ===== SSO Ticket 配置（可选） =====
-SSO_TICKET=
-SSO_USERNAME=
-
-# ===== Token 配置 =====
-TOKEN_HEADER=Authorization
-TOKEN_SECRET=abcdefghijklmnopqrstuvwxyzzhitancloud
-TOKEN_EXPIRE_TIME=300
-
-```
-
-##### 5.2 部署镜像
-
-将.env.file文件复制当前目录中，并执行以下语句。
-
-```
-# 拉取镜像
-docker pull docker.1ms.run/zhitancorp/zhitan-api:latest
-docker tag docker.1ms.run/zhitancorp/zhitan-api:latest zhitancorp/zhitan-api:latest 
-
-
-# 启动容器
-docker run -d -p 8080:8080 \
-          --name zhitan-api \
-          --restart=always \
-          --env-file .env.file \
-           zhitancorp/zhitan-api:latest
-```
-
-#### 6. Web管理平台：
-
-请注意：更改BACKEND_URL为您的API所在的IP地址与端口
+复制 `.env.file` 并修改配置后执行：
 
 ```bash
-# 拉取镜像
-docker pull docker.1ms.run/zhitancorp/zhitan-web:latest
-docker tag docker.1ms.run/zhitancorp/zhitan-web:latest zhitancorp/zhitan-web:latest 
+docker pull docker.1ms.run/zhitancorp/zhitan-api:latest
+docker tag docker.1ms.run/zhitancorp/zhitan-api:latest zhitancorp/zhitan-api:latest
 
-# 启动容器
+docker run -d -p 8080:8080 \
+  --name zhitan-api \
+  --restart=always \
+  --env-file .env.file \
+  zhitancorp/zhitan-api:latest
+```
+
+#### 6. Web管理平台
+
+```bash
+docker pull docker.1ms.run/zhitancorp/zhitan-web:latest
+docker tag docker.1ms.run/zhitancorp/zhitan-web:latest zhitancorp/zhitan-web:latest
+
 docker run -d \
   --name zhitan-web \
   -p 80:80 \
   -e API_BASE_URL=/prod-api \
-  -e BACKEND_URL=http://192.168.0.40:8080 \
-  -e APP_TITLE=碳未来能碳管理系统 \
+  -e BACKEND_URL=http://你的IP:8080 \
+  -e APP_TITLE=智碳能源管理系统 \
   -e APP_ENV=production \
-  -e APP_SYSTEM=智碳未来能碳管理系统前端 \
   --restart=always \
   zhitancorp/zhitan-web:latest
 ```
 
-##### 7. 访问Web管理平台
+</details>
 
-访问您的Web所在的IP与端口，使用测试账号与密码：
+### 访问系统
+
+访问 Web 所在的 IP 与端口，使用测试账号登录：
 
 ```
 账号：admin
 密码：123456
 ```
 
-![bf129f1b-6246-49a4-a4b0-7db51ab8e25e](./images/bf129f1b-6246-49a4-a4b0-7db51ab8e25e.png)
+![登录页面](./images/bf129f1b-6246-49a4-a4b0-7db51ab8e25e.png)
 
 ## 文档资源
 
-详细的开发文档和用户手册请访问我们的 Wiki：
-
-- GitHub Wiki：[https://github.com/zhitancloud/zhitan-ems/wiki](https://github.com/zhitancloud/zhitan-ems/wiki)
-- Gitee Wiki：[https://gitee.com/liulingling1993/zhitan-ems/wikis/](https://gitee.com/liulingling1993/zhitan-ems/wikis/)
-
-API文档可通过本地部署后访问：http://localhost:8080/swagger-ui/index.html
+| 文档 | 链接 | 说明 |
+|------|------|------|
+| GitHub Wiki | [zhitan-ems Wiki](https://github.com/zhitancloud/zhitan-ems/wiki) | 开发文档和用户手册 |
+| Gitee Wiki | [zhitan-ems Wiki](https://gitee.com/liulingling1993/zhitan-ems/wikis/) | 同上（Gitee镜像） |
+| API文档 | `http://localhost:8080/swagger-ui/index.html` | 本地部署后访问 |
+| 更新计划 | [60天持续更新计划](docs/UPDATE_PLAN.md) | 单元测试 + 文档更新计划 |
 
 ## 开源协议
 
-zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [ZTPL](./LICENSE) 双协议的开源软件。您在使用、修改、复制、分发本项目时，仔细阅读并理解以下该协议条款。
+本项目采用 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) + [ZTPL](./LICENSE) 双协议：
 
-如果您属于以下情况，请遵循[AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html)协议
+- **个人学习 / 研究 / 教育** → 遵循 AGPL 协议，免费使用，修改成果需同样开源
+- **商业闭源 / SaaS / 内部使用 / 专有集成** → 需获取 ZTPL 商业授权
 
-- 您是个人开发者、研究机构或教育机构，希望技术学习、研究或非商业性地使用本项目。
-- 您希望基于本项目进行修改或扩展，并愿意将您的修改成果同样开源给社区。
-
-如果您是学生或者教师，用于技术学习或教学目的，可联系我们，我们将免费提供培训与指导（远程）
-
-如果您属于以下情况，需要获得[ZTPL](./LICENSE)协议许可
-
-- 您基于本项目的修改版本用于商业目的，但不希望公开您的项目代码。
-- 您在一个内部使用的系统中集成了本项目，只对组织内部使用，不打算将其对外提供服务。
-- 您计划将本项目打包成SaaS产品或云服务进行销售。
-- 您需要在专有/闭源产品中集成、修改或链接本项目的代码。
-- 您需要自行部署系统并运营，对外部用户提供收费服务。
-
-如何获得[ZTPL](./LICENSE)协议许可？
-
-您需要通过官方渠道，包括不限于：微信、QQ群等与我们取得联系，这样确保您秉持开源精神同时，获得商业许可的自由，并能得到我们官方的技术支持
-
-## 版权须知
-
-本软件项目（包括但不限于源代码、文档、图片、配置等所有构成项目的材料）的原始版权和知识产权归 [青岛智碳未来科技有限公司] 所有。我们保留对本项目名称、品牌、Logo、专利以及商业许可的所有权利。未经明确授权，任何个人或组织不得使用与本项目相关的名称、标识进行商业性宣传或推广。
+> 学生和教师用于学习或教学，可联系我们获取免费培训与指导（远程）。  
+> 商业授权请联系微信，备注：ems+姓名。
 
 ## 社区交流
 
@@ -470,7 +523,7 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 
 ### QQ群交流
 
-如果您只是技术学习与咨询等，请加入我们的QQ群：1037733518 请备注：ems+姓名
+技术学习与咨询请加入QQ群：**1037733518**（备注：ems+姓名）
 
 <p align="center">
   <img src="images/qq_1037733518.png" width=30% height=30%>
@@ -478,7 +531,7 @@ zhitan-ems 是基于 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html) 和 [
 
 ### 微信交流
 
-如果您要想咨询我们的商业授权，以及培训等事宜，请优先加微信，请备注：ems+姓名
+商业授权、培训等事宜请加微信（备注：ems+姓名）
 
 <p align="center">
   <img src="images/image-yc.png" width=30% height=30%>
