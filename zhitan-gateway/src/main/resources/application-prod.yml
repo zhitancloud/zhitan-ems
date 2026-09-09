@@ -1,0 +1,78 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+logging:
+  level:
+    com.zhitan: info
+    org.springframework: warn
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: org.postgresql.Driver
+    druid:
+      master:
+        url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:ems}
+        username: ${POSTGRES_USER:postgres}
+        password: ${POSTGRES_PASSWORD:123456}
+      initialSize: 5
+      minIdle: 10
+      maxActive: 20
+      maxWait: 60000
+      connectTimeout: 30000
+      socketTimeout: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      maxEvictableIdleTimeMillis: 900000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        allow:
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+  redis:
+    database: ${REDIS_DATABASE:0}
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+  mqtt:
+    client-id: ${MQTT_CLIENT_ID:202503181042}
+    broker-url: ${MQTT_BROKER_URL:tcp://127.0.0.1:1883}
+    username: ${MQTT_USERNAME:admin}
+    password: ${MQTT_PASSWORD:1q2w3e4r.}
+    default-topic: ${MQTT_DEFAULT_TOPIC:zhitan}
+    timeout: 30
+    keep-alive: 60
+
+mybatis-plus:
+  type-aliases-package: com.zhitan.model
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  config-location: classpath:/mybatis/mybatis-config.xml
+  global-config:
+    db-config:
+      logic-delete-field: del_flag
+      logic-delete-value: 2
+      logic-not-delete-value: 0
+
+influxdb:
+  host: ${INFLUXDB_HOST:http://localhost:8086}
+  org: ${INFLUXDB_ORG:ems}
+  bucket: ${INFLUXDB_BUCKET:energy}
+  token: ${INFLUXDB_TOKEN:}
+  measurement: ${INFLUXDB_MEASUREMENT:data}
+  enable: true

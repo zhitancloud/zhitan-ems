@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: dev
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: false
+# 日志配置
+logging:
+  level:
+    com.zhitan: debug
+    org.springframework: warn
+
+mybatis-plus:
+  type-aliases-package: com.zhitan.entity
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  # 加载全局的配置文件
+  config-location: classpath:/mybatis/mybatis-config.xml
+  global-config:
+    db-config:
+      logic-delete-field: del_flag # 全局逻辑删除字段名
+      logic-delete-value: 2 # 逻辑已删除值
+      logic-not-delete-value: 0 # 逻辑未删除值

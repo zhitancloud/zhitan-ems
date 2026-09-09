@@ -121,7 +121,6 @@ zhitan-ems/
 │   ├── zhitan-system/               # 业务域（约 31 个包）
 │   ├── zhitan-quartz/               # 定时任务
 │   ├── zhitan-generator/            # 代码生成（开发辅助）
-│   ├── sql/                         # 初始化脚本（如 public-v3.sql）
 │   ├── Dockerfile
 │   └── pom.xml
 ├── zhitan-web/                      # 前端 Vue3 SPA
@@ -129,13 +128,16 @@ zhitan-ems/
 │   ├── nginx.conf
 │   ├── Dockerfile
 │   └── docker-entrypoint.sh
+├── zhitan-gateway/                  # MQTT 采集网关
+├── sql/                             # 统一初始化脚本（如 public-v3.sql）
+├── docker/                          # Compose 一键构建部署
 ├── docs/                            # 独立文档
 ├── images/                          # README 配图
 ├── README.md
 └── .env.file                        # Docker / 环境变量模板
 ```
 
-> 说明：部分历史文档仍写 `zhitan-vue` 或扁平的 `zhitan-admin/`。以当前仓库为准：**前端目录为 `zhitan-web/`，后端统一在 `zhitan-api/` 下**。
+> 说明：部分历史文档仍写 `zhitan-vue` 或扁平的 `zhitan-admin/`。以当前仓库为准：**前端目录为 `zhitan-web/`，后端统一在 `zhitan-api/` 下，SQL 在根目录 `sql/`**。
 
 ---
 
@@ -389,7 +391,7 @@ POST /login（或短信登录 / SSO）
 | API 镜像 | `zhitan-api/Dockerfile` | Maven 构建 → Temurin 8 运行 `zhitan-admin` JAR |
 | Web 镜像 | `zhitan-web/Dockerfile` | Node 18 构建 → nginx alpine |
 | 环境模板 | `.env.file` | DB / Redis / RTDB / MQTT / Token / SSO / SMS 等 |
-| 初始化 SQL | `zhitan-api/sql/public-v3.sql` | PostgreSQL 初始化 |
+| 初始化 SQL | `sql/public-v3.sql` | PostgreSQL 初始化 |
 
 推荐启动顺序：PostgreSQL → Redis → MQTT → InfluxDB → API（加载 `.env.file`）→ Web（配置 `API_BASE_URL` / `BACKEND_URL`）。
 

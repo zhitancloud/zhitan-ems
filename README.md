@@ -241,8 +241,6 @@ zhitan-ems/
 │   ├── zhitan-quartz/              # 定时任务模块
 │   ├── zhitan-system/              # 业务模块（31个业务子模块）
 │   ├── bin/                        # 批处理脚本（clean/package/run）
-│   ├── sql/                        # 数据库初始化脚本
-│   │   └── public-v3.sql           # PostgreSQL初始化SQL
 │   ├── pom.xml                     # 父POM
 │   └── Dockerfile                  # 后端镜像构建文件
 ├── zhitan-web/                     # 前端工程（Vue3 + Vite）
@@ -267,12 +265,20 @@ zhitan-ems/
 │   ├── nginx.conf                   # Nginx配置
 │   ├── vite.config.js               # Vite配置
 │   └── Dockerfile                   # 前端镜像构建文件
+├── zhitan-gateway/                 # MQTT 采集网关
+│   ├── src/
+│   ├── pom.xml
+│   └── Dockerfile
+├── sql/                            # 统一数据库脚本
+│   ├── 00-create-db.sql            # 手工建库（可选）
+│   └── public-v3.sql               # PostgreSQL 全量初始化
+├── docker/                         # Docker Compose 一键部署
+│   ├── docker-compose.yml
+│   └── README.md
 ├── docs/                           # 项目文档
 │   └── UPDATE_PLAN.md               # 持续更新计划
 ├── images/                         # README图片资源
 ├── .env.file                       # 环境变量配置模板
-├── docker-compose.yml              # Docker Compose一键部署
-├── docker.md                       # Docker部署详细指南
 ├── README.md                       # 中文文档
 ├── README_EN.md                    # 英文文档
 └── LICENSE                         # 开源协议
@@ -362,23 +368,24 @@ MQTT_HOST=tcp://broker.emqx.io:1883
 #### 3. 启动服务
 
 ```bash
-docker-compose up -d
+cd docker
+docker compose up -d --build
 ```
 
-等待所有服务启动完成后，访问 `http://你的IP` 即可使用。
+等待所有服务启动完成后，访问 `http://你的IP` 即可使用。Compose 首次启动会自动执行 `sql/public-v3.sql` 初始化数据库。
 
-#### 4. 初始化数据库
+#### 4. 初始化数据库（仅手动部署时需要）
 
-首次部署需导入数据库脚本：
+若未使用 Compose 自动初始化，可手工导入：
 
 ```bash
 # 进入PostgreSQL容器执行SQL初始化
-docker exec -i postgres psql -U postgres -d zhitan_ems < zhitan-api/sql/public-v3.sql
+docker exec -i zhitan-postgres psql -U postgres -d zhitan_ems < sql/public-v3.sql
 ```
 
 ### 逐步部署
 
-如需手动部署各组件，请参考 [Docker部署详细指南](docker.md)。
+如需手动部署各组件，请参考 [Docker 部署说明](docker/README.md)。
 
 官方镜像库：
 
@@ -406,7 +413,7 @@ docker run -d \
   postgres:14-alpine
 ```
 
-执行 `zhitan-api/sql/public-v3.sql` 初始化数据库。
+执行 `sql/public-v3.sql` 初始化数据库。
 
 #### 2. Redis
 

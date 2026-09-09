@@ -1,0 +1,213 @@
+# 在 docker/ 目录执行:
+#   docker compose build
+#   docker compose up -d
+# 一键构建并启动全部服务（含前后端、gateway、中间件）
+
+x-influx-token: &influx_token "UEIGnTA4KNaCxyYQm7R8pWLMqOc1Ps5wgzB6vtiHe9D03Frb"
+
+services:
+  postgres:
+    image: bitnami/postgresql:14
+    container_name: zhitan-postgres
+    restart: always
+    environment:
+      POSTGRESQL_DATABASE: zhitan_ems
+      POSTGRESQL_USERNAME: postgres
+      POSTGRESQL_PASSWORD: postgres
+      TZ: Asia/Shanghai
+    volumes:
+      - postgres_data:/bitnami/postgresql
+      # 仅挂载全量初始化脚本；00-create-db.sql 供手工建库，Bitnami 已通过环境变量建库
+      - ../sql/public-v3.sql:/docker-entrypoint-initdb.d/01-public-v3.sql:ro
+    ports:
+      - "5432:5432"
+    networks:
+      - zhitan-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d zhitan_ems"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:6.2.21
+    container_name: zhitan-redis
+    restart: always
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - zhitan-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: zhitan-influxdb
+    restart: always
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: admin
+      DOCKER_INFLUXDB_INIT_PASSWORD: admin123456
+      DOCKER_INFLUXDB_INIT_ORG: zhitan
+      DOCKER_INFLUXDB_INIT_BUCKET: ems_data
+      DOCKER_INFLUXDB_INIT_RETENTION: 30d
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: *influx_token
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    ports:
+      - "8086:8086"
+    networks:
+      - zhitan-network
+    healthcheck:
+      test: ["CMD", "influx", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  emqx:
+    image: emqx/emqx:5.0
+    container_name: zhitan-emqx
+    restart: always
+    environment:
+      EMQX_NAME: zhitan-emqx
+      EMQX_HOST: 127.0.0.1
+    ports:
+      - "1883:1883"
+      - "8083:8083"
+      - "8883:8883"
+      - "8084:8084"
+      - "18083:18083"
+    volumes:
+      - emqx_data:/opt/emqx/data
+      - emqx_log:/opt/emqx/log
+    networks:
+      - zhitan-network
+    healthcheck:
+      test: ["CMD", "emqx", "ping"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  zhitan-api:
+    build:
+      context: ../zhitan-api
+      dockerfile: Dockerfile
+    image: zhitan-api:local
+    container_name: zhitan-api
+    restart: always
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/zhitan_ems
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DATABASE: 0
+      REDIS_PASSWORD: ""
+      RTDB_HOST: http://influxdb:8086
+      RTDB_TOKEN: *influx_token
+      RTDB_ORG: zhitan
+      RTDB_BUCKET: ems_data
+      RTDB_MEASUREMENT: energy
+      MQTT_HOST: tcp://emqx:1883
+      MQTT_CLIENT_ID: MQTT_WK
+      MQTT_USERNAME: ""
+      MQTT_PASSWORD: ""
+      JAVA_OPTS: "-Xms256m -Xmx1024m -XX:+UseG1GC"
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      influxdb:
+        condition: service_healthy
+      emqx:
+        condition: service_started
+    networks:
+      - zhitan-network
+
+  zhitan-gateway:
+    build:
+      context: ../zhitan-gateway
+      dockerfile: Dockerfile
+    image: zhitan-gateway:local
+    container_name: zhitan-gateway
+    restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SERVER_PORT: 8081
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: zhitan_ems
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DATABASE: 0
+      REDIS_PASSWORD: ""
+      INFLUXDB_HOST: http://influxdb:8086
+      INFLUXDB_ORG: zhitan
+      INFLUXDB_BUCKET: ems_data
+      INFLUXDB_TOKEN: *influx_token
+      INFLUXDB_MEASUREMENT: energy
+      MQTT_BROKER_URL: tcp://emqx:1883
+      MQTT_CLIENT_ID: zhitan-gateway
+      MQTT_USERNAME: ""
+      MQTT_PASSWORD: ""
+      MQTT_DEFAULT_TOPIC: zhitan
+      JAVA_OPTS: "-Xms256m -Xmx512m -XX:+UseG1GC"
+    ports:
+      - "8081:8081"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      influxdb:
+        condition: service_healthy
+      emqx:
+        condition: service_started
+    networks:
+      - zhitan-network
+
+  zhitan-web:
+    build:
+      context: ../zhitan-web
+      dockerfile: Dockerfile
+    image: zhitan-web:local
+    container_name: zhitan-web
+    restart: always
+    environment:
+      API_BASE_URL: /prod-api
+      BACKEND_URL: http://zhitan-api:8080
+      APP_TITLE: 智碳能源管理系统
+      APP_ENV: production
+      APP_SYSTEM: 智碳能源管理系统前端
+    ports:
+      - "80:80"
+    depends_on:
+      - zhitan-api
+    networks:
+      - zhitan-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  influxdb_data:
+  emqx_data:
+  emqx_log:
+
+networks:
+  zhitan-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

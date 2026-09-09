@@ -1,61 +1,86 @@
 ######################################################################
-# Build Tools
+# Build Tools (Java / Maven / Gradle)
 
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+######################################################################
+# Node / Frontend
+
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+*.local
+tests/**/coverage/
+tests/e2e/reports
+selenium-debug.log
 
 ######################################################################
 # IDE
-.DS_Store
-/.DS_Store
-zhitan-admin/.DS_Store
-zhitan-admin/src/.DS_Store
-zhitan-system/.DS_Store
-zhitan-system/src/.DS_Store
 
-### STS ###
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse / STS ###
 .apt_generated
 .classpath
 .factorypath
 .project
 .settings
 .springBeans
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### JRebel ###
-rebel.xml
+.sts4-cache
 
 ### NetBeans ###
 nbproject/private/
-build/*
 nbbuild/
 dist/
 nbdist/
 .nb-gradle/
 
+### VS Code ###
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+### JRebel ###
+rebel.xml
+
 ######################################################################
-# Others
+# OS
+
+.DS_Store
+**/.DS_Store
+
+######################################################################
+# Logs / temp / local
+
 *.log
 *.xml.versionsBackup
 *.swp
 
-!*/build/*.java
-!*/build/*.html
-!*/build/*.xml
-
-*/.DS_Store
-
-### VS Code ###
-.vscode/
-
 uploadPath
 .workbuddy/
+
+######################################################################
+# Docker local data (if created beside compose)
+
+docker/postgres_data/
+docker/redis_data/
+docker/influxdb_data/

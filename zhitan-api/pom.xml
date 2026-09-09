@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zhitan</groupId>
-    <artifactId>BaseAdminAPI</artifactId>
+    <artifactId>zhitan-api</artifactId>
     <version>2.5.2</version>
 
     <name>BaseAdminAPI</name>

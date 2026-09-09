@@ -1,0 +1,7 @@
+target/
+.idea/
+*.iml
+.git/
+.gitignore
+**/src/test/
+bin/

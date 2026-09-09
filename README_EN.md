@@ -241,8 +241,6 @@ zhitan-ems/
 │   ├── zhitan-quartz/              # Scheduled task module
 │   ├── zhitan-system/              # Business module (31 sub-modules)
 │   ├── bin/                        # Batch scripts (clean/package/run)
-│   ├── sql/                        # Database initialization scripts
-│   │   └── public-v3.sql           # PostgreSQL init SQL
 │   ├── pom.xml                     # Parent POM
 │   └── Dockerfile                  # Backend image build
 ├── zhitan-web/                     # Frontend (Vue3 + Vite)
@@ -267,12 +265,13 @@ zhitan-ems/
 │   ├── nginx.conf                   # Nginx configuration
 │   ├── vite.config.js               # Vite configuration
 │   └── Dockerfile                   # Frontend image build
+├── zhitan-gateway/                 # MQTT data gateway
+├── sql/                            # Unified DB scripts (public-v3.sql)
+├── docker/                         # Docker Compose one-click deploy
 ├── docs/                           # Project documentation
 │   └── UPDATE_PLAN.md               # Continuous update plan
 ├── images/                         # README image assets
 ├── .env.file                       # Environment variable template
-├── docker-compose.yml              # Docker Compose deployment
-├── docker.md                       # Docker deployment guide
 ├── README.md                       # Chinese documentation
 ├── README_EN.md                    # English documentation
 └── LICENSE                         # License
@@ -362,20 +361,21 @@ MQTT_HOST=tcp://broker.emqx.io:1883
 #### 3. Start Services
 
 ```bash
-docker-compose up -d
+cd docker
+docker compose up -d --build
 ```
 
-Wait for all services to start, then access `http://your-ip`.
+Wait for all services to start, then access `http://your-ip`. Compose auto-loads `sql/public-v3.sql` on first Postgres start.
 
-#### 4. Initialize Database (First-time Only)
+#### 4. Initialize Database (Manual Deploy Only)
 
 ```bash
-docker exec -i postgres psql -U postgres -d zhitan_ems < zhitan-api/sql/public-v3.sql
+docker exec -i zhitan-postgres psql -U postgres -d zhitan_ems < sql/public-v3.sql
 ```
 
 ### Manual Deployment
 
-For manual component-by-component deployment, see the [Docker Deployment Guide](docker.md).
+For manual component-by-component deployment, see the [Docker deployment guide](docker/README.md).
 
 Official images:
 
@@ -403,7 +403,7 @@ docker run -d \
   postgres:14-alpine
 ```
 
-Initialize the database with `zhitan-api/sql/public-v3.sql`.
+Initialize the database with `sql/public-v3.sql`.
 
 #### 2. Redis
 
